@@ -1,0 +1,68 @@
+div{
+    background-color: rgba(231,109,1,255);
+    border-top-style:outset;
+    /* border-radius: 20px; */
+    font-family: "Lucida Console", "Courier New", monospace;
+    position : fixed;
+    left:0;
+    right:0; 
+}
+
+.button {
+    border: none;
+    /* color: rgba(182, 134, 2, 0.589); */
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0px 2px;
+    cursor: pointer;
+    box-shadow:none
+}
+.button:focus {
+    border: none;
+    outline: none;
+}
+button:focus{
+    outline:none;
+}
+
+.button1 {
+    border: none;
+    box-sizing: none;
+    font-size:larger;
+    font: bolder;
+
+}
+#nav a:hover{
+    color: rgb(255, 255, 255);
+    background-color: #f4511e;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    margin: 3px 1px;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    
+}
+
+.button2 {
+    font-size:larger;
+    font: bolder;
+    float: right;
+    
+}
+
+.search{
+    border-radius: 5px;
+    width: 210px;
+    padding: 6px;
+    /* position: absolute; */
+    
+}
