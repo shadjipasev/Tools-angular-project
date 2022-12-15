@@ -1,8 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors')
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const error = require('./middlewares/error');
 const authController = require('./controllers.js/authController');
 const toolController = require('./controllers.js/toolController');
+
 
 
 
@@ -18,24 +21,28 @@ async function start() {
 
     const app = express();
     app.use(express.json());
+    app.use(bodyParser.json());
 
+    // app.use(cors())
 
-    app.use(cors({
-        credentials: true,
-        origin: ["http://localhost:4200"],
+    const corsOptions = {        
+        origin: 'http://localhost:4200',
         methods: ['HEAD', 'OPTIONS', 'GET', 'POST', 'PUT', 'DELETE'],
-        allowedHeaders: ['Content-Type', 'Authorization']
-    }));
+        Headers: ['Content-Type', 'X-Authorization']
+    }
+
+    app.use(cors(corsOptions));
 
 
     app.get('/', (req, res) => {
         res.json({ message: 'REST' })
     });
 
-    app.use('/register', authController);
-    app.use('/login', authController);
-    app.use('/create', toolController)
+    app.use('/auth', authController);
+    app.use('/create', error, toolController)
 
-    app.listen(5225, () => { console.log('REST service started') });
+    const PORT = process.env.PORT || 3000;
+
+    app.listen(PORT, () => { console.log('REST service started') });
 
 }

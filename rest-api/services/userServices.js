@@ -1,13 +1,13 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
-const jwt  = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 
 const secret = 'zmhmfnios563dqa53d156'
 
-async function register(username, email ,password) {
-    const existingEmail = awaitUser.findOne({ email }).collation({ locale: en, strength: 2 });
+async function register(username, email, password) {
+    const existingEmail = await User.findOne({ email }).collation({ locale: en, strength: 2 });
 
-    const existingUsername = awaitUser.findOne({ username }).collation({ locale: en, strength: 2 });
+    const existingUsername = await User.findOne({ username }).collation({ locale: en, strength: 2 });
 
 
     if (existingEmail) {
@@ -20,26 +20,32 @@ async function register(username, email ,password) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    
     const user = await User.create({
         username,
         email,
         hashedPassword,
     })
 
-    return createToken(user)
-    
+
+    return {
+        _id: user._id,
+        username:  user.username,
+        token: createToken(user)
+    }
+
 }
 
 async function login(username, password) {
-    const existing = awaitUser.findOne({ username }).collation({ locale: en, strength: 2 });
+    const existing = await User.findOne({ username }).collation({ locale: en, strength: 2 });
 
-    if(!existing) {
+    if (!existing) {
         throw new Error('Wrong email or password');
     }
 
     const hasMatch = bcrypt.compare(password, existing.hashedPassword)
 
-    if(!hasMatch){
+    if (!hasMatch) {
         throw new Error('Wrong email or password');
     }
 
@@ -48,24 +54,23 @@ async function login(username, password) {
     }
 
     return createToken(user)
-    
+
 
 }
 
 async function logout() { }
 
 
-function createToken(user){
-   const payload = {
-    _id: user._id,
-    username,
-   }
+function createToken(user) {
+    const payload = {
+        _id: user._id,
+        username: user.username,
+    }
 
-   return {
-    _id: user._id,
-    username,
-    accessToken: jwt.sign(payload, secret)
-}
+    
+        
+        return jwt.sign(payload, secret)
+    
 }
 
 module.exports = {

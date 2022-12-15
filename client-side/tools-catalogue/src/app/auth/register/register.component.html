@@ -1,5 +1,5 @@
 <div class="register">
-<form [formGroup]="form" (ngSubmit)="onRegister()">
+<form [formGroup]="form" (ngSubmit)="onRegister(form.value)">
         <label for="username">Username:</label><br>
         <input type="text" formControlName="username" id="username"><br>
         <ng-container *ngIf="fc.username.touched">
@@ -27,7 +27,7 @@
             <div *ngIf="fc.pass.errors['minLength']">Password should be minimum 5 symbols</div>
         </div><br>
     </ng-container>
-        <p><button type="submit">Register</button></p>
+        <p><button [disabled]="form.invalid" type="submit">Register</button></p>
         <p>Already have account?  <a routerLink="/auth/login">Login</a></p>
 </form>
 </div>
