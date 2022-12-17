@@ -1,13 +1,17 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const BlackList = require("../models/BlackList");
+
 
 const secret = 'zmhmfnios563dqa53d156'
 
-async function register(username, email, password) {
-    const existingEmail = await User.findOne({ email }).collation({ locale: en, strength: 2 });
 
-    const existingUsername = await User.findOne({ username }).collation({ locale: en, strength: 2 });
+async function register(username, email, password) {
+
+    const existingEmail = await User.findOne({ username }).collation({ locale: 'en', strength: 2 });
+
+    const existingUsername = await User.findOne({ email }).collation({ locale: 'en', strength: 2 });
 
 
     if (existingEmail) {
@@ -18,39 +22,32 @@ async function register(username, email, password) {
         throw new Error('This username already taken');
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
 
-    
+
     const user = await User.create({
         username,
         email,
-        hashedPassword,
+        hashedPassword: await bcrypt.hash(password, 10)
     })
 
 
-    return {
-        _id: user._id,
-        username:  user.username,
-        token: createToken(user)
-    }
+
+    return createToken(user)
+
 
 }
 
 async function login(username, password) {
-    const existing = await User.findOne({ username }).collation({ locale: en, strength: 2 });
+    const user = await User.findOne({ username }).collation({ locale: 'en', strength: 2 });
 
-    if (!existing) {
-        throw new Error('Wrong email or password');
+    if (!user) {
+        throw new Error('Wrong username or password 1');
     }
 
-    const hasMatch = bcrypt.compare(password, existing.hashedPassword)
+    const hasMatch = bcrypt.compare(password, user.hashedPassword)
 
     if (!hasMatch) {
-        throw new Error('Wrong email or password');
-    }
-
-    const user = {
-        username
+        throw new Error('Wrong username or password 2');
     }
 
     return createToken(user)
@@ -58,7 +55,11 @@ async function login(username, password) {
 
 }
 
-async function logout() { }
+async function logout(token) {
+    await BlackList.create({
+        tokenBlackList: token,
+    })
+}
 
 
 function createToken(user) {
@@ -67,14 +68,29 @@ function createToken(user) {
         username: user.username,
     }
 
+    return {
+        _id: user._id,
+        username: user.username,
+        role: user.role,
+        token: jwt.sign(payload, secret),
+    }
+
+}
+
+async function parseToken(token) {
     
-        
-        return jwt.sign(payload, secret)
-    
+    const blackListed = await BlackList.findOne({ token }).collation({ locale: 'en', strength: 2 });
+
+    if(blackListed){
+        throw new Error('Token is blacklisted!')
+    }
+
+    return jwt.verify(token, secret)
 }
 
 module.exports = {
     register,
     login,
     logout,
+    parseToken,
 }

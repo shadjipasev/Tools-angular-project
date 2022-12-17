@@ -9,13 +9,15 @@ toolController.post('/create', async (req, res) => {
         material: req.body.material,
         country: req.body.country,
         price: req.body.price,
+        descripton: req.body.descripton,
         type: req.body.type
     }
-
     try {
         await createTool(data);
     } catch (error) {
-        res.status(401);
+        res.status(401).json({
+            message: error.message
+        })
     }
 })
 

@@ -1,10 +1,15 @@
-const { Schema, model} = require("mongoose");
+const { Schema, model, Types} = require("mongoose");
 
 
 const userSchema = new Schema({
     username: {type: String, required: true, unique: true},
     email: {type: String, required: true, unique: true},
-    hashedPassword: {type: Number, required: true},
+    hashedPassword: {type: String, required: true},
+    role: {
+        type: String,
+        default: 'user'
+    },
+    basket: [{ type: Types.ObjectId, ref: 'Tool' }]
 });
 
 userSchema.index({ username: 1}, {

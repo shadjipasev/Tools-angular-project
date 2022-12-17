@@ -2,11 +2,24 @@
 <div id="nav">
     <p><a routerLink="/" class="button button1">Home</a> 
     <a routerLink="/catalog" class="button button1">Catalog</a>
-    <a routerLink="/create" class="button button1">Create</a>  
+    
+    <!-- ADMIN ONLY  -->
+    <ng-container *ngIf="this.authService.admin">
+    <a routerLink="/data/create" class="button button1">Create</a>
+    </ng-container>
+    
+    <!-- NOT USER  -->
+    <ng-container *ngIf="!this.authService.hasUser">
     <a routerLink="/auth/login" class="button button2">Login</a> 
     <a routerLink="/auth/register" class="button button2">Register</a>
-    <a class="button button2">Logout</a>
+    </ng-container>
+
+    <!-- USER -->
+    <ng-container *ngIf="this.authService.hasUser">
+    <a class="button button2" (click)="onLogout()">Logout</a>
     <a class="button button2">Profile</a>
+    </ng-container>
+
     <input class="search" type="text" placeholder="Search..">
     <!-- <img src="img/logo.jpg"> -->
     </p>

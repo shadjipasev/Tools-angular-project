@@ -145,9 +145,11 @@ input:focus, textarea:focus {
 html, body {
     min-height: 100%;
     }
+    body{
+      margin-top: 5cm;
+    }
     body, div, form, input, select, textarea, label, p { 
     padding: 0;
-    margin: 0;
     outline: none;
     font-family: Roboto, Arial, sans-serif;
     font-size: 14px;
@@ -177,17 +179,20 @@ html, body {
     width: 100%;
     padding: 20px;
     border-radius: 6px;
+
     background: #fff;
     box-shadow: 0 0 8px  #669999; 
     }
     .banner {
     position: relative;
-    height: 300px; 
+    height: 100px; 
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    background-color: rgb(215,101,4);
+
     }
     .banner::after {
     content: "";
@@ -212,7 +217,7 @@ html, body {
     width: calc(100% - 12px);
     padding: 5px;
     }
-    .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
+    .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
     color:  #669999;
     }
     .item input:hover, .item select:hover, .item textarea:hover {
@@ -315,7 +320,7 @@ html, body {
     cursor: pointer;
     }
     button:hover {
-    background:  #a3c2c2;
+    background:  #288b2d;
     }
     @media (min-width: 568px) {
     .name-item, .city-item {
@@ -337,4 +342,12 @@ html, body {
     .description{
         display: flex;
         justify-content: center;
+    }
+
+    .error p{
+        color: red;
+    }
+
+    button:disabled{
+      background-color: rgba(204, 204, 204, 0.342);
     }

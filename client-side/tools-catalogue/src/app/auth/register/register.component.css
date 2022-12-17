@@ -70,3 +70,7 @@ p a:hover {
     cursor: pointer;
 }
 
+p a{
+    text-decoration: underline;
+}
+

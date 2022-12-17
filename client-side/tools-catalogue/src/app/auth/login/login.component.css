@@ -1,4 +1,4 @@
-div {
+.login {
     background-color:  rgb(215,101,4);
     border: 20px;
     margin-top: 5cm;
@@ -22,6 +22,7 @@ input{
     margin: 5px;
     border-radius: 4px;
     width: 200px;
+    font-size: larger;
 }
 
 button {
@@ -67,5 +68,9 @@ form button:hover{
 p a:hover {
     color: white;
     cursor: pointer;
+}
+
+p a{
+    text-decoration: underline;
 }
 

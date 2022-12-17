@@ -9,6 +9,7 @@ import { ToolService } from './main/services/tool/tool.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { appInterceptorProvider } from './app.interceptor';
 import { MainRoutingModule } from './main/main-routing.module';
+import { MainModule } from './main/main.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { MainRoutingModule } from './main/main-routing.module';
     AuthModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MainModule,
     MainRoutingModule
   ],
   providers: [

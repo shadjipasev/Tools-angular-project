@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const error = require('./middlewares/error');
 const authController = require('./controllers.js/authController');
 const toolController = require('./controllers.js/toolController');
+const session = require('./middlewares/session');
 
 
 
@@ -25,7 +26,7 @@ async function start() {
 
     // app.use(cors())
 
-    const corsOptions = {        
+    const corsOptions = {
         origin: 'http://localhost:4200',
         methods: ['HEAD', 'OPTIONS', 'GET', 'POST', 'PUT', 'DELETE'],
         Headers: ['Content-Type', 'X-Authorization']
@@ -37,9 +38,10 @@ async function start() {
     app.get('/', (req, res) => {
         res.json({ message: 'REST' })
     });
-
+                                    
     app.use('/auth', authController);
-    app.use('/create', error, toolController)
+    app.use('/data', toolController);
+    app.use(session);
 
     const PORT = process.env.PORT || 3000;
 

@@ -13,7 +13,7 @@ export class ToolService {
 
   constructor(private httpClient: HttpClient) { }
 
-  createTool(data:  ITool): Observable<ITool> {
-    return this.httpClient.post<ITool>(`${this.apiUrl}/create`, data)
+  createTool(data: any){
+    return this.httpClient.post(`${this.apiUrl}/data/create`, data)
   }
 }

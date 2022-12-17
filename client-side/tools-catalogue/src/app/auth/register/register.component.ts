@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { sameValueValidator } from 'src/app/shared/validators';
 import { AuthService } from '../auth.service';
 
@@ -12,54 +13,44 @@ export class RegisterComponent implements OnInit {
 
   form: any = FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
-
-  isSubmited = false;
-
-  // this.form = this.fb.group({
-  //   username:['', Validators.required],
-  //   email:['', [Validators.required, Validators.email]],
-  //   pass: this.fb.group({
-  //     password:['', Validators.required],
-  //     rePass:['', Validators.required],
-  //   }, {
-  //     validators: [Validators.minLength(5)]
-  //   })
-  // });
 
   get fc(){
     return this.form.controls
   }
+
  
   ngOnInit(): void {
     this.form = this.fb.group({
       username:['', Validators.required],
-      email:['', Validators.compose([Validators.required, Validators.email])],
+      email:['', [Validators.required, Validators.email]],
       pass: this.fb.group({
-            password:['', Validators.required],
-            rePass:['', Validators.required],
-          }, {
-            validators: [Validators.minLength(5)]
+            password:['', [Validators.required, Validators.minLength(5)]],
+            rePass:['', [Validators.required, Validators.minLength(5)]],
           })
     })
   }
 
+  redirectToHome(): void {
+    this.router.navigate(['/'])
+  }
 
   onRegister(data:any){
-    this.isSubmited = true;
     if(this.form.invalid) { return }
-    const fv  = this.form.value;
+      const fv  = this.form.value;
 
-    const user: any = {
-      username: fv.username,
-      email: fv.email,
-      password: fv.pass.password,
-    }
-    // const {username, email, pass} = this.form.values
-    this.authService.register(user.username, user.email, user.password)
-      .subscribe(res => console.log(res))
-      console.warn(user)
+      const username = fv.username;
+      const email = fv.email;
+      const password = fv.pass.password;
+  
+    this.authService.register(username, email, password).subscribe(res => {
+      console.log(res);
+      localStorage.setItem(this.authService.tokenName, res.token);
+      this.authService.isLogged()
+      this.authService.isAdmin()
+    })
+    this.redirectToHome()
   }
 
 }
