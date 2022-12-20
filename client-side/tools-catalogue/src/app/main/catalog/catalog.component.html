@@ -1,6 +1,66 @@
-<div class="catalog-item">
-    <img class="item" src="img/logo.jpg">
-    <p class="name">Lorem ipsum</p>
-    <p><span>Category</span></p>
-    <a class="btn" href="">Details</a>
+<!-- 
+<div class="title">
+    <h1>Catalog: All</h1>
+</div>
+
+<div class="row">
+    <a *ngFor="let tool of tools" routerLink="/data/details/{{tool._id}}">
+        <div class="column">
+            <div class="card">
+                <img src={{tool.imgUrl}}
+                    style="width:100%">
+                <h2>{{tool.name}}</h2>
+                <p>{{tool.description}}</p>
+            </div>
+        </div> -->
+
+<!-- <div>
+    <p>{{ i }}</p>
+    <div class="product-container">
+        <div class="image-container"><img style="max-height: 50px; max-width: 50px"></div>
+        <div>
+            <div class="name-container">
+                <h6>Name</h6>
+            </div>
+            <div class="detailContainer">
+                <div class="details" >details</div>
+                <div class="details"><b>Price:</b>Or</div>
+                <div class="details"><b>Color:</b>{{ p.color }}</div>
+            </div>
+        </div>
+        <div class="options">
+            <button class="btn btn-success">Show Details</button>
+            <button class="btn btn-warning" *ngIf="p.available === 'Available'; else notifyme">Buy Now</button>
+            <ng-template #notifyme>
+                <button class="btn btn-danger">Notify me</button>
+            </ng-template>
+        </div>
+    </div>
+</div> -->
+
+<div class="container">
+    <h2>All Products</h2>
+    <ng-container *ngFor="let tool of tools">
+        <div class="tool-container">
+            <div class="tool-card">
+                <div>
+                    <img [src]="tool.imgUrl" style="width:220px; height:140px;">
+                </div>
+                <div class="tool-name">
+                    <h4>{{tool.name}}</h4>
+                </div>
+                <div class="tool-description">
+                    <p>{{tool.description.slice(0, 80)}}...</p>
+                </div>
+                <div class="details">
+                    <!-- <div class="tool-type" [ngStyle]="{color: tool.type === 'Free' ? 'Green' : 'Red'}">{{tool.type}}</div> -->
+                    <div class="tool-price"><b>Price:</b> ${{tool.price}}</div>
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-buy">Buy Now</button>
+                    <button class="btn btn-show" routerLink="/data/details/{{tool._id}}">Show Deatils</button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
 </div>

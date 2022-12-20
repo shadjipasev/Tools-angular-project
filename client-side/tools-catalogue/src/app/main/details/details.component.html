@@ -1,0 +1,27 @@
+<div class="tool-container">
+    <div>
+        <img src="{{tool.imgUrl}}" width="560" height="280">
+    </div>
+    <div>
+        <h1 class="tool-title">{{tool.name}}</h1>
+    </div>
+    <div class="tool-details">
+        <div style="margin: 0px 10px;"><b>Material: </b>{{tool.material}}</div>
+        <div style="margin: 0px 10px;"><b>Country: </b>{{tool.country}}</div>
+        <div style="margin: 0px 10px;"><b>Type: </b>{{tool.type}}</div>
+    </div>
+    <div style="margin: 0px 10px;">
+        <h2>Price: {{tool.price}}$</h2>
+    </div>
+    <div style="margin: 20px 10px;">
+        <p>{{tool.description}}</p> 
+    </div>
+    <div class="three-inline-buttons">
+        <p>
+            <a class="buy button" routerLink="/data/buy/{{tool._id}}">Buy</a>
+            <a class="delete button" routerLink="/data/delete/{{tool._id}}">Delete</a>
+            <a class="edit button" routerLink="/data/edit/{{tool._id}}">Edit</a>
+        </p>
+    </div>
+    
+</div>

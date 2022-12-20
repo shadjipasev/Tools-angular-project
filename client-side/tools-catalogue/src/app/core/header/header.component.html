@@ -1,7 +1,7 @@
 <header>
 <div id="nav">
     <p><a routerLink="/" class="button button1">Home</a> 
-    <a routerLink="/catalog" class="button button1">Catalog</a>
+    <a routerLink="/data/catalog" class="button button1">Catalog</a>
     
     <!-- ADMIN ONLY  -->
     <ng-container *ngIf="this.authService.admin">
@@ -17,7 +17,7 @@
     <!-- USER -->
     <ng-container *ngIf="this.authService.hasUser">
     <a class="button button2" (click)="onLogout()">Logout</a>
-    <a class="button button2">Profile</a>
+    <a routerLink="/auth/profile" class="button button2">Profile</a>
     </ng-container>
 
     <input class="search" type="text" placeholder="Search..">

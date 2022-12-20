@@ -1,0 +1,69 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+body{
+    background-color: rgb(255, 255, 255);
+}
+.card{
+    width: 350px;
+    height: 400px;
+    margin-top: 170px;
+    border-radius: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 5px solid rgba(15, 3, 3, 0.959);
+    background-color: coral;
+    color: rgb(51, 48, 48);
+}
+.img-name{
+    width: 100%;
+    height: 210px;
+    
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -75px;
+    
+    border-bottom: 5px solid rgb(255, 255, 255);
+}
+.img-name img{
+    display: block;
+    width: 140px;
+    height: 140px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 70px;
+    border: 5px solid rgb(0, 0, 0);
+    background-color: rgb(234, 241, 247);
+}
+.img-name h2{
+    text-align: center;
+    padding: 16px;
+}
+.followers{
+    height: 140px;
+    padding-top: 50px;
+   
+}
+.followers h3{
+    text-align: center;
+}
+.profile-buttons  button{
+    display: block;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 16px;
+    background-color: rgb(182, 182, 233);
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.cart{
+    margin-bottom: 30px;
+}
+
+.profile-buttons  button:hover{
+    background-color: rgb(91, 119, 40);
+}

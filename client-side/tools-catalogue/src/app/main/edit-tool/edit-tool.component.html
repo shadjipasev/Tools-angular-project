@@ -1,14 +1,14 @@
 <body>
     <div class="testbox">
-      <form [formGroup]="form" (ngSubmit)="onCreate()">
+      <form [formGroup]="form" (ngSubmit)="onEdit()">
         <div class="banner">
           <h1>Create tool</h1>
         </div> 
         <div class="colums">
             <!--  NAME ---->
           <div class="item">
-            <label for="tool-name">Tool Name<span></span></label>
-            <input id="tool-name" formControlName="name" type="text"  name="tool-name"/>
+            <label for="name">Tool Name<span></span></label>
+            <input id="name" formControlName="name" type="text" name="name"/>
             <!-- ERROR NAME ---->
             <ng-container *ngIf="fc.name.touched">
               <div class="error" *ngIf="fc.name.errors">
@@ -30,7 +30,7 @@
           <div class="item">
             <!-- COUNTRY -->
             <label for="country">Country<span></span></label>
-            <input id="country" type="text"  formControlName="country" name="country" required/>
+            <input id="country" type="text"  formControlName="country" name="country"/>
             <!-- ERROR COUNTRY -->
             <ng-container *ngIf="fc.country.touched">
               <div class="error" *ngIf="fc.country.errors">
@@ -42,7 +42,7 @@
           <!-- PRICE  -->
           <div class="item">
             <label for="price">Price<span></span></label>
-            <input id="price" type="text" formControlName="price" name="price" required/>
+            <input id="price" type="text" formControlName="price" name="price"/>
           <!-- ERROR PRICE -->
             <ng-container *ngIf="fc.price.touched">
               <div class="error" *ngIf="fc.price.errors">
@@ -56,7 +56,7 @@
           <!-- IMAGE URL -->
         <div class="item">
           <label for="imgUrl">Image<span></span></label>
-          <input id="imgUrl" type="text" formControlName="imgUrl" name="imgUrl" required/>
+          <input id="imgUrl" type="text" formControlName="imgUrl" name="imgUrl"/>
         <!-- ERROR PRICE -->
           <ng-container *ngIf="fc.imgUrl.touched">
             <div class="error" *ngIf="fc.imgUrl.errors">

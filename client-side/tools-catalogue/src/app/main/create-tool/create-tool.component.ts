@@ -25,6 +25,7 @@ export class CreateToolComponent implements OnInit {
       material: ['', Validators.required],
       country: ['', Validators.required],
       price: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      imgUrl: ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]],
       description: ['', Validators.required],
       selectType: ['', Validators.required],
 
@@ -41,6 +42,7 @@ export class CreateToolComponent implements OnInit {
       material: fv.material,
       country: fv.country,
       price: fv.price,
+      imgUrl: fv.imgUrl,
       description: fv.description,
       type: fv.selectType,
     }
@@ -53,5 +55,7 @@ export class CreateToolComponent implements OnInit {
 
 
   }
+
+  
 
 }

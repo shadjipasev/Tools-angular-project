@@ -6,7 +6,7 @@ const error = require('./middlewares/error');
 const authController = require('./controllers.js/authController');
 const toolController = require('./controllers.js/toolController');
 const session = require('./middlewares/session');
-
+// const multer = require('multer')
 
 
 
@@ -19,6 +19,8 @@ async function start() {
 
     await mongoose.connect(connectionString)
     console.log('Database: Works')
+
+     
 
     const app = express();
     app.use(express.json());
@@ -41,6 +43,7 @@ async function start() {
                                     
     app.use('/auth', authController);
     app.use('/data', toolController);
+
     app.use(session);
 
     const PORT = process.env.PORT || 3000;

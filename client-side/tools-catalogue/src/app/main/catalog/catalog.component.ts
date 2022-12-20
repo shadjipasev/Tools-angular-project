@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ITool } from 'src/app/shared/interfaces/Tool';
+import { ToolService } from '../services/tool/tool.service';
+
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CatalogComponent implements OnInit {
 
-  constructor() { }
+  constructor(private toolService: ToolService) { }
+
+  tools: any = null 
 
   ngOnInit(): void {
+    this.toolService.getAll().subscribe(res => {
+      this.tools = res;
+      console.warn(this.tools)
+    })
   }
+
+  
 
 }

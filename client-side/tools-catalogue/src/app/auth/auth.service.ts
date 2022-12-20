@@ -51,4 +51,8 @@ export class AuthService {
       this.admin = true
     }
   }
+
+  getUser(){
+    
+  }
 }

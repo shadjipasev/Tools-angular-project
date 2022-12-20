@@ -7,6 +7,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetailsComponent } from './details/details.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { RouterModule } from '@angular/router';
+import { CatalogMachiningComponent } from './catalog-machining/catalog-machining.component';
+import { EditToolComponent } from './edit-tool/edit-tool.component';
+import { DeleteToolComponent } from './delete-tool/delete-tool.component';
 
 
 
@@ -16,6 +19,9 @@ import { RouterModule } from '@angular/router';
     CreateToolComponent,
     DetailsComponent,
     CatalogComponent,
+    CatalogMachiningComponent,
+    EditToolComponent,
+    DeleteToolComponent,
   ],
   imports: [
     ReactiveFormsModule,

@@ -9,11 +9,28 @@ import { environment } from 'src/environments/environment';
 })
 export class ToolService {
 
-  private apiUrl = environment.apiUrl
+  private apiUrl = environment.apiUrl;
 
   constructor(private httpClient: HttpClient) { }
 
   createTool(data: any){
-    return this.httpClient.post(`${this.apiUrl}/data/create`, data)
+    return this.httpClient.post<ITool>(`${this.apiUrl}/data/create`, data)
+  };
+
+  getAll(){
+    return this.httpClient.get<ITool>(`${this.apiUrl}/data/catalog`)
+  };
+
+  getById(id: any){
+    return this.httpClient.get<any>(`${this.apiUrl}/data/details/${id}`)
+  };
+
+  editTool(id:any, data: any){
+    return this.httpClient.put<any>(`${this.apiUrl}/data/edit/` + id, data)
+  };
+
+  deleteTool(id:any){
+    return this.httpClient.get<any>(`${this.apiUrl}/data/delete/` + id)
   }
+
 }

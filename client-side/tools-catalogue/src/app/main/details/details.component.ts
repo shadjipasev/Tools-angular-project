@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { ToolService } from '../services/tool/tool.service';
 
 @Component({
   selector: 'app-details',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor() { }
+  tool: any;
+  toolId: any;
+
+  constructor(private toolService: ToolService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.toolId = this.route.snapshot.params['id']
+
+    this.toolService.getById(this.toolId).subscribe(res => {
+      this.tool = res;
+      console.log(this.tool)
+    })
+  }
+
+  onDelete():void{
+    this.toolService.deleteTool(this.toolId).subscribe(res => {
+      console.log(`${res} ---- DELETED`)
+    })
   }
 
 }

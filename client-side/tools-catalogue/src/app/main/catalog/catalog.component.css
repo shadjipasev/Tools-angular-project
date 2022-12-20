@@ -1,0 +1,131 @@
+/* .title h1 {
+    margin-top: 5cm;
+    color: black;
+} */
+
+/* * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  } */
+
+/* Float three columns side by side */
+/* .column {
+    float: left;
+    width: 27.3%;
+    padding: 10px 10px;
+  } */
+
+/* Remove extra left and right margins, due to padding */
+/* .row {
+    margin-top: 2cm;
+}
+   */
+/* Clear floats after the columns */
+/* .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  } */
+
+/* Responsive columns */
+/* @media screen and (max-width: 1000px) {
+    .column {
+      width: 50%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  } */
+
+
+/* Style the counter cards */
+/* .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 12px;
+    text-align: center;
+    background-color: #f1f1f1;
+    transition: 0.3s;
+    border-radius: 10px;
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 30px 0 rgba(0,0,0,0.4);
+  }
+  
+  img {
+    border-radius: 10px 10px 10px 10px;
+  } */
+
+.container {
+    margin: 10px 0px;
+    padding: 10px 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.tool-container {
+    display: inline-flex;
+}
+
+.tool-card {
+    width: 220px;
+    height: 320px;
+    margin: 10px 10px;
+    background-color: #F8F9F9;
+}
+
+.tool-name {
+    text-align: center;
+}
+
+.tool-description {
+    margin: 10px 0px;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.details {
+    display: flex;
+    margin: 10px 0px;
+}
+
+.tool-type {
+    width: 50%;
+    font-weight: bold;
+}
+
+.tool-buttons {
+    display: flex;
+}
+
+.btn {
+    width: 140px;
+    height: 30px;
+    border: none;
+    margin: 5px 3px;
+    transition-duration: 0.4s;
+}
+
+.btn:hover{
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-buy {
+    background-color: #EC7063;
+}
+
+.btn-show {
+    background-color: #ABEBC6;
+}
