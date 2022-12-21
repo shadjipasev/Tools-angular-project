@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 const apiUrl = environment.apiUrl
@@ -23,6 +24,7 @@ export class AuthService {
   register(username: string, email: string, password: string) {
     return this.http.post<any>(`${apiUrl}/auth/register`, { username, email, password })
   }
+ 
 
   login(username: string, password: string,) {
     return this.http.post<any>(`${apiUrl}/auth/login`, { username, password })
@@ -39,20 +41,24 @@ export class AuthService {
   isLogged() {
     const token = localStorage.getItem('token')
     if (token) {
-      this.hasUser = true
+      return this.hasUser = true
     } else {
-      this.hasUser = false
+      return this.hasUser = false
     }
   }
 
   isAdmin(){
+    
     const role = localStorage.getItem('role')
     if(role === 'admin'){
-      this.admin = true
+      return this.admin = true
+    }else{
+      return this.admin = false
     }
   }
 
-  getUser(){
-    
+  getUser(id: string){
+    return this.http.get<any>(`${apiUrl}/auth/profile/` +  id)
   }
+
 }

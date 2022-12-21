@@ -1,6 +1,6 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Injectable, Provider } from "@angular/core";
-import { Observable } from "rxjs";
+import { catchError, Observable, throwError } from "rxjs";
 import { AuthService } from "./auth/auth.service";
 
 
@@ -18,11 +18,21 @@ export class appInterceptor implements HttpInterceptor {
             return next.handle(req.clone({
                 headers: req.headers.set(this.TOKEN_HEADER_KEY, token)
             }))
+                .pipe(
+                    catchError(this.handleError)
+                )
         } else {
             return next.handle(req)
+                .pipe(
+                    catchError(this.handleError)
+                )
         }
     }
-    
+
+    handleError(error: HttpErrorResponse): Observable<never> {
+        return throwError(() => error)
+    }
+
 }
 
 export const appInterceptorProvider: Provider = {

@@ -1,28 +1,67 @@
-<header>
-<div id="nav">
-    <p><a routerLink="/" class="button button1">Home</a> 
-    <a routerLink="/data/catalog" class="button button1">Catalog</a>
-    
-    <!-- ADMIN ONLY  -->
-    <ng-container *ngIf="this.authService.admin">
-    <a routerLink="/data/create" class="button button1">Create</a>
-    </ng-container>
-    
-    <!-- NOT USER  -->
-    <ng-container *ngIf="!this.authService.hasUser">
-    <a routerLink="/auth/login" class="button button2">Login</a> 
-    <a routerLink="/auth/register" class="button button2">Register</a>
-    </ng-container>
 
-    <!-- USER -->
-    <ng-container *ngIf="this.authService.hasUser">
-    <a class="button button2" (click)="onLogout()">Logout</a>
-    <a routerLink="/auth/profile" class="button button2">Profile</a>
-    </ng-container>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<body>
+<nav class="navbar navbar-default navbar-inverse" role="navigation">
+<div class="container-fluid">
+<!-- Brand and toggle get grouped for better mobile display -->
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 
-    <input class="search" type="text" placeholder="Search..">
-    <!-- <img src="img/logo.jpg"> -->
-    </p>
-    <p id="title"></p>
+</button>
+<a class="navbar-brand" routerLink="/">Home</a>
 </div>
-</header>
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<ul class="nav navbar-nav">
+    <ng-container *ngIf="this.authService.admin">
+<li><a routerLink="/data/create">Create</a></li>
+    </ng-container>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalogs <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+    <li><a routerLink="/data/catalog/machining">Machining</a></li>
+    <li><a routerLink="/data/catalog/hand-tools">Hand-Tools</a></li>
+    <li><a routerLink="/data/catalog/personal-equipment">Protective/Personal equipment</a></li>
+<li class="divider"></li>
+<li><a routerLink="/data/catalog">All Items</a></li>
+</ul>
+</li>
+</ul>
+<form class="navbar-form navbar-left" role="search">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Search">
+</div>
+<button type="submit" class="btn btn-default">Submit</button>
+</form>
+<ul class="nav navbar-nav navbar-right">
+    <ng-container *ngIf="!this.authService.hasUser">
+        <li><a routerLink="/auth/login"><b>Login</b></a></li>
+        <li><a routerLink="/auth/register"><b>Register</b></a></li>
+    </ng-container>
+    <ng-container *ngIf="this.authService.hasUser">
+        <li><a routerLink="/auth/profile/{{userId}}"><b>Profile</b></a></li>
+        <li><a (click)="onLogout()"><b>Logout</b></a></li>
+    </ng-container>
+    
+<!-- <li><a routerLink=""><b>Logout</b></a></li> -->
+
+<li class="dropdown">
+<!-- <a href="#"><b>Profile</b></a> -->
+
+<ul id="login-dp" class="dropdown-menu">
+    
+<li>
+<div class="row">
+<div class="col-md-12">
+</div>
+<div class="bottom text-center">
+</div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>
+</body> 

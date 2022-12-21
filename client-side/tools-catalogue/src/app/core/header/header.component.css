@@ -1,21 +1,21 @@
-div{
-    background-color: rgba(231,109,1,255);
-    border-top-style:outset;
-    /* border-radius: 20px; */
-    font-family: "Lucida Console", "Courier New", monospace;
+/* div{
+    background-color: rgba(231,109,1,255); */
+/* border-top-style:outset; */
+/* border-radius: 20px; */
+/* font-family: "Lucida Console", "Courier New", monospace;
     position : fixed;
     left:0;
     right:0;
 }
 
 .button {
-    border: none;
-    /* color: rgba(182, 134, 2, 0.589); */
-    padding: 15px 15px;
+    border: none; */
+/* color: rgba(182, 134, 2, 0.589); */
+/* padding: 10px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 12px;
     margin: 0px 2px;
     cursor: pointer;
     box-shadow:none
@@ -38,17 +38,7 @@ button:focus{
 #nav a:hover{
     color: rgb(255, 255, 255);
     background-color: #f4511e;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    font-size: 16px;
-    margin: 3px 1px;
-    opacity: 0.6;
-    transition: 0.3s;
-    display: inline-block;
-    text-decoration: none;
-    cursor: pointer;
+    text-decoration: underline;
     
 }
 
@@ -62,7 +52,71 @@ button:focus{
 .search{
     border-radius: 5px;
     width: 210px;
-    padding: 6px;
-    /* position: absolute; */
-    
+    padding: 6px; */
+/* position: absolute; */
+/* } */
+
+
+
+#login-dp {
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, .8);
 }
+
+#login-dp .help-block {
+    font-size: 12px
+}
+
+#login-dp .bottom {
+    background-color: rgba(255, 255, 255, .8);
+    border-top: 1px solid #ddd;
+    clear: both;
+    padding: 14px;
+}
+
+#login-dp .social-buttons {
+    margin: 12px 0
+}
+
+#login-dp .social-buttons a {
+    width: 49%;
+}
+
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+
+.btn-fb {
+    color: #fff;
+    background-color: #3b5998;
+}
+
+.btn-fb:hover {
+    color: #fff;
+    background-color: #496ebc
+}
+
+.btn-tw {
+    color: #fff;
+    background-color: #55acee;
+}
+
+.btn-tw:hover {
+    color: #fff;
+    background-color: #59b5fa;
+}
+
+@media(max-width:768px) {
+    #login-dp {
+        background-color: inherit;
+        color: #fff;
+    }
+
+    #login-dp .bottom {
+        background-color: inherit;
+        border-top: 0 none;
+    }
+}
+

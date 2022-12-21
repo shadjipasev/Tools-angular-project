@@ -16,19 +16,19 @@ export class RegisterComponent implements OnInit {
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
 
-  get fc(){
+  get fc() {
     return this.form.controls
   }
 
- 
+
   ngOnInit(): void {
     this.form = this.fb.group({
-      username:['', Validators.required],
-      email:['', [Validators.required, Validators.email]],
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       pass: this.fb.group({
-            password:['', [Validators.required, Validators.minLength(5)]],
-            rePass:['', [Validators.required, Validators.minLength(5)]],
-          })
+        password: ['', [Validators.required, Validators.minLength(5)]],
+        rePass: ['', [Validators.required, Validators.minLength(5)]],
+      })
     })
   }
 
@@ -36,21 +36,23 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['/'])
   }
 
-  onRegister(data:any){
-    if(this.form.invalid) { return }
-      const fv  = this.form.value;
+  onRegister(data: any) {
+    if (this.form.invalid) { return }
+    const fv = this.form.value;
 
-      const username = fv.username;
-      const email = fv.email;
-      const password = fv.pass.password;
-  
+    const username = fv.username;
+    const email = fv.email;
+    const password = fv.pass.password;
+
     this.authService.register(username, email, password).subscribe(res => {
       console.log(res);
       localStorage.setItem(this.authService.tokenName, res.token);
+      localStorage.setItem('userId', res._id)
       this.authService.isLogged()
       this.authService.isAdmin()
+      this.redirectToHome(),
+        (error: any) => console.log(error);
     })
-    this.redirectToHome()
   }
 
 }

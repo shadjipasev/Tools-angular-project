@@ -1,4 +1,4 @@
-const { register, login, logout } = require('../services/userServices');
+const { register, login, logout, getUserById } = require('../services/userServices');
 
 const authController = require('express').Router();
 
@@ -29,6 +29,14 @@ authController.post('/login', async (req, res) => {
             message: error.message
         })
     }
+})
+
+
+authController.get('/profile/:id', async (req, res) => {
+    const userId = req.params.id;
+    const user = await getUserById(userId);
+
+    res.json(user)
 })
 
 

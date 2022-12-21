@@ -1,16 +1,16 @@
-<div class="login">
-<form [formGroup]="form" (ngSubmit)="onLogin()">
-    <!-- Username -->
-    <label for="username">Username</label><br>
+<!-- <div class="login">
+<form [formGroup]="form" (ngSubmit)="onLogin()"> -->
+<!-- Username -->
+<!-- <label for="username">Username</label><br>
     <input type="text"  formControlName="username" id="username"><br>
     <ng-container *ngIf="fc.username.touched">
     <div *ngIf="fc.username.errors">
       <div *ngIf="fc.username.errors['required']">Username field is required</div>
     </div><br>
-    </ng-container>
+    </ng-container> -->
 
-    <!-- Password -->
-    <label for="password">Password:</label><br>
+<!-- Password -->
+<!-- <label for="password">Password:</label><br>
     <input type="password" id="password" formControlName="password"><br>
     <ng-container *ngIf="fc.password.touched">
     <div *ngIf="fc.password.errors">
@@ -21,4 +21,34 @@
     <button [disabled]="form.invalid">Log In</button>
     <p>You don't have account?  <a routerLink="/auth/register">Register</a></p>
   </form>
+</div> -->
+
+
+<div class="flex-container">
+  <div class="content-container">
+    <div class="form-container">
+      <form [formGroup]="form" (ngSubmit)="onLogin()">
+        <h1>Login</h1>
+        <span class="subtitle">USERNAME:</span>
+        <br>
+        <input type="text" formControlName="username" value="">
+        <ng-container class="error" *ngIf="fc.username.touched">
+          <div *ngIf="fc.username.errors">
+            <div *ngIf="fc.username.errors['required']">Username field is required</div>
+          </div><br>
+          </ng-container> 
+        <br>
+        <span class="subtitle">PASSWORD:</span>
+        <br>
+        <input type="password" formControlName="password" value="">
+        <br><ng-container *ngIf="fc.password.touched">
+          <div *ngIf="fc.password.errors">
+            <div *ngIf="fc.password.errors['required']">Password field is required</div>
+            <div *ngIf="fc.password.errors['minlength']">Password must be at least 5 characters</div>
+          </div>
+          </ng-container><br>
+        <input type="submit" [disabled]="form.invalid" value="SUBMIT" class="submit-btn">
+      </form>
+    </div>
+  </div>
 </div>

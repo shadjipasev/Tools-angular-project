@@ -31,6 +31,10 @@ export class ToolService {
 
   deleteTool(id:any){
     return this.httpClient.get<any>(`${this.apiUrl}/data/delete/` + id)
-  }
+  };
+
+  getToolsByType(type: string){
+    return this.httpClient.get<any>(`${this.apiUrl}/data/catalog/` + type)
+  };
 
 }

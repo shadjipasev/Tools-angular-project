@@ -19,14 +19,10 @@ export class DetailsComponent implements OnInit {
 
     this.toolService.getById(this.toolId).subscribe(res => {
       this.tool = res;
-      console.log(this.tool)
+      console.log(this.tool),
+      (error: any) => console.log(error);
     })
   }
 
-  onDelete():void{
-    this.toolService.deleteTool(this.toolId).subscribe(res => {
-      console.log(`${res} ---- DELETED`)
-    })
-  }
 
 }

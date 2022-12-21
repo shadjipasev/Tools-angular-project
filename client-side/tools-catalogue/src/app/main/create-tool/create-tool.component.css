@@ -153,7 +153,7 @@ html, body {
     outline: none;
     font-family: Roboto, Arial, sans-serif;
     font-size: 14px;
-    color: #666;
+    color: #333;
     line-height: 22px;
     }
     h1 {
@@ -180,7 +180,7 @@ html, body {
     padding: 20px;
     border-radius: 6px;
 
-    background: #fff;
+    background: rgb(107, 97, 97);
     box-shadow: 0 0 8px  #669999; 
     }
     .banner {
@@ -191,7 +191,7 @@ html, body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: rgb(215,101,4);
+    background-color: 333;
 
     }
     .banner::after {

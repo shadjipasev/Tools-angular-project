@@ -17,7 +17,8 @@ export class CatalogComponent implements OnInit {
   ngOnInit(): void {
     this.toolService.getAll().subscribe(res => {
       this.tools = res;
-      console.warn(this.tools)
+      console.warn(this.tools),
+      (error: any) => console.log(error);
     })
   }
 

@@ -20,7 +20,7 @@ toolController.post('/create', async (req, res) => {
         await createTool(data);
 
     } catch (error) {
-        res.status(401).json({
+        res.status(400).json({
             message: error.message
         })
     }
@@ -31,19 +31,10 @@ toolController.get('/catalog', async(req, res) => {
     res.json(getAll)
 });
 
-toolController.get('/catalog/machining', async(req, res) => {
-    const allMachiningTools = await getAllToolsType('machining')
-    res.json(allMachiningTools)
-});
-
-toolController.get('/catalog/machining', async(req, res) => {
-    const allMachiningTools = await getAllToolsType('machining')
-    res.json(allMachiningTools)
-});
-
-toolController.get('/catalog/machining', async(req, res) => {
-    const allMachiningTools = await getAllToolsType('machining')
-    res.json(allMachiningTools)
+toolController.get('/catalog/:type', async(req, res) => {
+    const toolType = req.params.type
+    const tools = await getAllToolsType(toolType)
+    res.json(tools)
 });
 
 toolController.get('/details/:id', async(req, res) => {
@@ -71,7 +62,7 @@ toolController.put('/edit/:id', async (req, res) => {
         // res.json(req.body)
         
     } catch (error) {
-        res.status(401).json({
+        res.status(400).json({
             message: error.message
         })
     }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToolService } from '../services/tool/tool.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class EditToolComponent implements OnInit {
   toolValues: any
 
 
-  constructor(private toolService: ToolService, private fb: FormBuilder, private route: ActivatedRoute) { }
+  constructor(private toolService: ToolService, private fb: FormBuilder, private route: ActivatedRoute, private router: Router) { }
 
 
 
@@ -42,7 +42,7 @@ export class EditToolComponent implements OnInit {
       name: ['', Validators.required],
       material: ['', Validators.required],
       country: ['', Validators.required],
-      price: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      price: ['', [Validators.required, Validators.pattern("^[0-9./]*$")]],
       imgUrl: ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]],
       description: ['', Validators.required],
       selectType: ['', Validators.required],
@@ -71,10 +71,11 @@ export class EditToolComponent implements OnInit {
     }
 
     this.toolService.editTool(this.toolId, tool).subscribe(res => {
-      console.log(`${res} ----> onEdit`)
+      console.log(`${res} ----> onEdit`),
+      (error: any) => console.log('Error' , error)
     })
-
-    console.warn(tool)
+    this.router.navigateByUrl(`/data/details/${this.toolId}`),
+    console.warn(this.toolId)
 
 
   }

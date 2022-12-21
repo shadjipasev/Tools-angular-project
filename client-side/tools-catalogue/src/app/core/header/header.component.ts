@@ -11,10 +11,12 @@ export class HeaderComponent implements OnInit {
 
   constructor(private router: Router, public authService: AuthService) { }
 
+  userId: any;
 
   ngOnInit(): void {
     this.authService.isLogged()
     this.authService.isAdmin()
+    this.userId = localStorage.getItem('userId')
   }
 
   onLogout(): void {

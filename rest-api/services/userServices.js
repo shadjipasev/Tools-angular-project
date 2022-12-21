@@ -41,13 +41,13 @@ async function login(username, password) {
     const user = await User.findOne({ username }).collation({ locale: 'en', strength: 2 });
 
     if (!user) {
-        throw new Error('Wrong username or password 1');
+        throw new Error('Wrong username or password!');
     }
 
     const hasMatch = bcrypt.compare(password, user.hashedPassword)
 
     if (!hasMatch) {
-        throw new Error('Wrong username or password 2');
+        throw new Error('Wrong username or password!');
     }
 
     return createToken(user)
@@ -88,9 +88,14 @@ async function parseToken(token) {
     return jwt.verify(token, secret)
 }
 
+async function getUserById(id) {
+    return await User.findById(id)
+}
+
 module.exports = {
     register,
     login,
     logout,
     parseToken,
+    getUserById,
 }

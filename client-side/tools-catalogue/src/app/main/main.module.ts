@@ -10,6 +10,12 @@ import { RouterModule } from '@angular/router';
 import { CatalogMachiningComponent } from './catalog-machining/catalog-machining.component';
 import { EditToolComponent } from './edit-tool/edit-tool.component';
 import { DeleteToolComponent } from './delete-tool/delete-tool.component';
+import { AuthenticationGuard } from '../auth/guards/authentication.guard';
+import { PermissionGuard } from '../auth/guards/permission.guard';
+import { CatalogHandToolsComponent } from './catalog-hand-tools/catalog-hand-tools.component';
+import { CatalogPersonalEquipmentComponent } from './catalog-personal-equipment/catalog-personal-equipment.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 
@@ -22,6 +28,10 @@ import { DeleteToolComponent } from './delete-tool/delete-tool.component';
     CatalogMachiningComponent,
     EditToolComponent,
     DeleteToolComponent,
+    CatalogHandToolsComponent,
+    CatalogPersonalEquipmentComponent,
+    ShoppingCartComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -30,6 +40,10 @@ import { DeleteToolComponent } from './delete-tool/delete-tool.component';
     CommonModule,
     RouterModule,
 
+  ],
+  providers: [
+    AuthenticationGuard,
+    PermissionGuard,
   ]
 })
 export class MainModule { }

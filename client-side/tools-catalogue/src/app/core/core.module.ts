@@ -10,7 +10,7 @@ import { MainRoutingModule } from '../main/main-routing.module';
 @NgModule({
   declarations: [
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     CommonModule,

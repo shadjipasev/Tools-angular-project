@@ -1,76 +1,84 @@
-.login {
-    background-color:  rgb(215,101,4);
-    border: 20px;
-    margin-top: 5cm;
-    text-align: center;
-    border-style: groove;
-    border-color: rgba(136, 73, 17, 0.747);
-    border-radius: 10px;
-    font-family: 'Courier New', Courier, monospace;
-    font:caption;
-    font-size: large;
-}
-form {
-    display: inline-block;
-    background-color: rgb(215,101,4);
-    margin: 100px;
-   
-}
-
-input{
-    border: 200px;
-    margin: 5px;
-    border-radius: 4px;
-    width: 200px;
-    font-size: larger;
-}
-
-button {
-    border-style: groove;
-    margin-top: 10px;
-    background-color: rgb(124, 79, 40);
-    border-radius: 10px;
-    position: relative;
-    border: none;
-    font-size: 28px;
-    color: #FFFFFF;
-    padding: 10px;
-    width: 150px;
-    text-align: center;
-    transition-duration: 0.4s;
-    text-decoration: none;
-    overflow: hidden;
-    cursor: pointer;
-}
-form button:hover{
-    color:chartreuse
-}
-
-.button:after {
-    content: "";
-    background: #f1f1f1;
-    display: block;
-    position: absolute;
-    padding-top: 300%;
-    padding-left: 350%;
-    margin-left: -20px;
-    margin-top: -120%;
-    opacity: 0;
-    transition: all 0.8s
+html {
+    scroll-behavior: smooth;
   }
   
-  .button:active:after {
-    padding: 0;
+  * {
     margin: 0;
-    opacity: 1;
-    transition: 0s
+    padding: 0;
+    /* box-sizing: border-box; */
   }
-p a:hover {
+
+.content-container{
+    margin-left: 6cm;
+}
+  
+  h1 {
     color: white;
+  
+    font-size: 35px;
+    font-weight: 800;
+  }
+
+  
+  .form-container {
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  
+    width: 500px;
+    height: 350px;
+  
+    margin-top: 10px;
+    padding-top: 20px;
+  
+    border-radius: 12px;
+  
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+  
+    background: #1f1f1f;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.199);
+  }
+  
+  .subtitle {
+    font-size: 11px;
+  
+    color: rgba(177, 177, 177, 0.3);
+  }
+  
+  input {
+    border: none;
+    border-bottom: solid rgb(143, 143, 143) 1px;
+  
+    margin-bottom: 30px;
+  
+    background: none;
+    color: rgba(255, 255, 255, 0.555);
+  
+    height: 35px;
+    width: 300px;
+  }
+  
+  .submit-btn {
     cursor: pointer;
-}
-
-p a{
-    text-decoration: underline;
-}
-
+  
+    border: none;
+    border-radius: 8px;
+  
+    box-shadow: 2px 2px 7px #38d39f70;
+  
+    background: #38d39f;
+    color: rgba(255, 255, 255, 0.8);
+  
+    width: 80px;
+  
+    transition: all 1s;
+  }
+  
+  .submit-btn:hover {
+    color: rgb(255, 255, 255);
+  
+    box-shadow: none;
+  }

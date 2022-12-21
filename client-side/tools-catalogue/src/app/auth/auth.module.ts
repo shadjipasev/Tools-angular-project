@@ -4,8 +4,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
-
-
+import { AuthenticationGuard } from './guards/authentication.guard';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,13 +13,15 @@ import { ProfileComponent } from './profile/profile.component';
   declarations: [
    LoginComponent,
    RegisterComponent,
-   ProfileComponent
+   ProfileComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    RouterModule
   ],
   providers: [
+    AuthenticationGuard
   ],
   exports: [
     LoginComponent,
