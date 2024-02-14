@@ -1,53 +1,50 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const error = require('./middlewares/error');
-const authController = require('./controllers.js/authController');
-const toolController = require('./controllers.js/toolController');
-const session = require('./middlewares/session');
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const error = require("./middlewares/error");
+const authController = require("./controllers.js/authController");
+const toolController = require("./controllers.js/toolController");
+const session = require("./middlewares/session");
+const cartController = require("./controllers.js/cartController");
 // const multer = require('multer')
 
+const connectionString = "mongodb://localhost:27017/tools";
 
-
-const connectionString = 'mongodb://localhost:27017/tools';
-
-start()
-
+start();
 
 async function start() {
+  mongoose.set("strictQuery", false);
+  await mongoose.connect(connectionString);
+  console.log("Database: Works");
 
-    await mongoose.connect(connectionString)
-    console.log('Database: Works')
+  const app = express();
+  app.use(express.json());
+  app.use(bodyParser.json());
 
-     
+  // app.use(cors())
 
-    const app = express();
-    app.use(express.json());
-    app.use(bodyParser.json());
+  const corsOptions = {
+    origin: "http://localhost:4200",
+    methods: ["HEAD", "OPTIONS", "GET", "POST", "PUT", "DELETE"],
+    Headers: ["Content-Type", "X-Authorization", "X-Frame-Options: GOFORIT"],
+  };
 
-    // app.use(cors())
+  app.use(cors(corsOptions));
 
-    const corsOptions = {
-        origin: 'http://localhost:4200',
-        methods: ['HEAD', 'OPTIONS', 'GET', 'POST', 'PUT', 'DELETE'],
-        Headers: ['Content-Type', 'X-Authorization']
-    }
+  app.get("/", (req, res) => {
+    res.json({ message: "REST" });
+  });
 
-    app.use(cors(corsOptions));
+  app.use(session());
+  app.use("/auth", authController);
+  app.use("/data", toolController);
+  app.use("/cart", cartController);
+  // app.use(session());
 
+  const PORT = process.env.PORT || 3000;
 
-    app.get('/', (req, res) => {
-        res.json({ message: 'REST' })
-    });
-                                    
-    app.use('/auth', authController);
-    app.use('/data', toolController);
-
-    app.use(session);
-
-    const PORT = process.env.PORT || 3000;
-
-    app.listen(PORT, () => { console.log('REST service started') });
-
+  app.listen(PORT, () => {
+    console.log("REST service started");
+  });
 }

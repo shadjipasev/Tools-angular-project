@@ -6,27 +6,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { RouterModule } from '@angular/router';
-
-
+import { AuthenicationForLoggedUsers } from './guards/authentication-for-logged-users.guard';
 
 @NgModule({
-  declarations: [
-   LoginComponent,
-   RegisterComponent,
-   ProfileComponent,
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule
-  ],
-  providers: [
-    AuthenticationGuard
-  ],
-  exports: [
-    LoginComponent,
-    RegisterComponent
-  ]
-  
+  declarations: [LoginComponent, RegisterComponent, ProfileComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  providers: [AuthenticationGuard, AuthenicationForLoggedUsers],
+  exports: [LoginComponent, RegisterComponent],
 })
-export class AuthModule { }
+export class AuthModule {}

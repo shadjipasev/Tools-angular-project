@@ -46,54 +46,81 @@
 </div> -->
 
 <div class="flex-container">
-    <div class="content-container">
-        <div class="form-container">
-            <form [formGroup]="form">
-                <h1>Register</h1>
-                <span class="subtitle">USERNAME:</span>
-                <br>
-                <input type="text" formControlName="username" value="">
-                <ng-container class="error" *ngIf="fc.username.touched">
-                    <div *ngIf="fc.username.errors">
-                        <div *ngIf="fc.username.errors['required']">Username field is required</div>
-                    </div><br>
-                </ng-container>
-                <br>
-                <span class="subtitle">EMAIL:</span>
-                <br>
-                <input type="text" formControlName="email" value="">
-                <br>
-                <ng-container *ngIf="fc.email.touched">
-                    <div *ngIf="fc.email.errors">
-                        <div *ngIf="fc.email.errors['required']">Email field is required</div>
-                        <div *ngIf="fc.email.errors['email']">Email is not in the correct format</div>
-                    </div><br>
-                </ng-container>
-            <ng-container formGroupName="pass">
-                <span class="subtitle">PASSWORD:</span>
-                <br>
-                <input type="password" formControlName="password" value="">
-                <br>
-                <ng-container *ngIf="fc.pass.get('password').touched">
-                    <div *ngIf="fc.pass.get('password').errors">
-                        <div *ngIf="fc.pass.get('password').errors['required']">Password fields are required</div>
-                        <div *ngIf="fc.pass.get('password').errors['minlength']">Password should be minimum 5 symbols</div>
-                    </div><br>
-                </ng-container>
-                <br>
-                <span class="subtitle">REPEAT PASSWORD:</span>
-                <br>
-                <input type="password" formControlName="rePass" value="">
-                <ng-container  *ngIf="fc.pass.get('rePass').touched">
-                    <div *ngIf="fc.pass.get('rePass').errors">
-                        <div *ngIf="fc.pass.get('rePass').errors['required']">Password fields are required</div>
-                        <div *ngIf="fc.pass.get('rePass').errors['minlength']">Password should be minimum 5 symbols</div>
-                    </div><br>
-                </ng-container>
-            </ng-container>
-                <br>    
-                <input type="submit" [disabled]="form.invalid" value="SUBMIT" class="submit-btn">
-            </form>
-        </div>
+  <div class="content-container">
+    <div class="form-container">
+      <form [formGroup]="form" (ngSubmit)="onRegister(form.value)">
+        <h1>Register</h1>
+        <span class="subtitle">USERNAME:</span>
+        <br />
+        <input type="text" formControlName="username" value="" />
+        <ng-container class="error" *ngIf="fc.username.touched">
+          <div *ngIf="fc.username.errors">
+            <div class="warning" *ngIf="fc.username.errors['required']">
+              Username field is required
+            </div>
+          </div>
+          <br />
+        </ng-container>
+        <br />
+        <span class="subtitle">EMAIL:</span>
+        <br />
+        <input type="text" formControlName="email" value="" />
+        <br />
+        <ng-container *ngIf="fc.email.touched">
+          <div *ngIf="fc.email.errors">
+            <div class="warning" *ngIf="fc.email.errors['required']">
+              Email field is required
+            </div>
+            <div class="warning" *ngIf="fc.email.errors['email']">
+              Email is not in the correct format
+            </div>
+          </div>
+          <br />
+        </ng-container>
+        <ng-container formGroupName="pass">
+          <span class="subtitle">PASSWORD:</span>
+          <br />
+          <input type="password" formControlName="password" value="" />
+          <br />
+          <ng-container *ngIf="fc.pass.get('password').touched">
+            <div *ngIf="fc.pass.get('password').errors">
+              <div
+                class="warning"
+                *ngIf="fc.pass.get('password').errors['required']"
+              >
+                Password fields are required
+              </div>
+              <div
+                class="warning"
+                *ngIf="fc.pass.get('password').errors['minlength']"
+              >
+                Password should be minimum 5 symbols
+              </div>
+            </div>
+            <br />
+          </ng-container>
+          <br />
+          <span class="subtitle">REPEAT PASSWORD:</span>
+          <br />
+          <input type="password" formControlName="rePass" value="" />
+          <ng-container *ngIf="fc.pass.get('rePass').touched">
+            <div *ngIf="fc.pass.get('rePass').errors">
+              <div
+                class="warning"
+                *ngIf="fc.pass.get('rePass').errors['required']"
+              >
+                Password fields are required
+              </div>
+              <div
+class="warning" *ngIf="fc.pass.get('rePass').errors['minlength']">Password should be minimum 5 symbols
+              </div>
+            </div>
+            <br />
+          </ng-container>
+        </ng-container>
+        <br />
+        <input type="submit" [disabled]="form.invalid" class="submit-btn"/>
+      </form>
     </div>
+  </div>
 </div>

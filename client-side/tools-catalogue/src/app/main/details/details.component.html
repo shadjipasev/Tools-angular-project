@@ -1,6 +1,6 @@
-<div class="tool-container">
+<!-- <div class="tool-container">
     <div>
-        <img src="{{tool.imgUrl}}" width="560" height="280">
+        <img src="{{tool.imgUrl}}" width="560" height="260">
     </div>
     <div>
         <h1 class="tool-title">{{tool.name}}</h1>
@@ -17,11 +17,119 @@
         <p>{{tool.description}}</p> 
     </div>
     <div class="three-inline-buttons">
-        <p>
-            <!-- <a class="buy button" routerLink="/data/buy/{{tool._id}}">Buy</a> -->
-            <a class="delete button" routerLink="/data/delete/{{tool._id}}">Delete</a>
+        <p> -->
+<!-- <a class="buy button" routerLink="/data/buy/{{tool._id}}">Buy</a> -->
+<!-- <a class="delete button" routerLink="/data/delete/{{tool._id}}">Delete</a>
             <a class="edit button" routerLink="/data/edit/{{tool._id}}">Edit</a>
         </p>
     </div>
     
+</div> -->
+
+<!-- <div *ngIf="tool">
+<div class="detail-container">
+  <div class="image-container">
+    <model-viewer
+      src="https://raw.githubusercontent.com/shadjipasev/Tools-angular-project/main/cc0_-_screwdriver_1k.glb"
+      auto-rotate
+      alt="boat"
+      shadow-intensity="1"
+      camera-controls
+      touch-action="pan-y"
+    >
+    </model-viewer>
+  </div>
+  <ng-container *ngIf="admin">
+  <div class="button-container">
+    <button class="detail-button" routerLink="/data/edit/{{tool._id}}">
+      Edit
+    </button>
+    <button class="detail-button" routerLink="/data/delete/{{tool._id}}">
+      Delete
+    </button>
+  </div>
+  </ng-container>
+  <div class="text-container">
+    <h2 class="detail-title">{{tool.name}}</h2>
+    <p class="detail-info">
+      <strong>Price:</strong>{{tool.price}}<br />
+      <strong>Material:</strong> {{tool.material}}<br />
+      <strong>Country:</strong>{{tool.country}}<br />
+      <strong>Type:</strong>{{tool.type}}
+    </p>
+  </div>
+</div>
+</div> -->
+
+<div *ngIf="tool">
+  <div class="detail-container">
+    <div class="image-container">
+      <!-- <model-viewer
+        src="https://raw.githubusercontent.com/shadjipasev/Tools-angular-project/main/cc0_-_screwdriver_1k.glb"
+        auto-rotate
+        alt="boat"
+        shadow-intensity="1"
+        camera-controls
+        touch-action="pan-y"
+      >
+      </model-viewer> -->
+      <iframe
+        scrolling="no"
+        allowfullscreen="true"
+        src="https://www.3dcontentcentral.com/external-site-embed.aspx?format=3D&catalogid=171&modelid=206082&width=250&height=250&edraw=true"
+        name="PreviewFrame3D"
+        id="PreviewFrame3D"
+        width="400"
+        height="340"
+      ></iframe>
+    </div>
+
+    <div class="text-container">
+      <h2 class="detail-title">{{ tool.name }}</h2>
+
+      <ul class="detail-info">
+        <p>
+          <li class="detail-info__tags">Price:</li>
+          {{ tool.price }} $
+        </p>
+
+        <p>
+          <li class="detail-info__tags">Material:</li>
+          {{ tool.material }}
+        </p>
+
+        <p>
+          <li class="detail-info__tags">Country:</li>
+          {{ tool.country }}
+        </p>
+
+        <p>
+          <li class="detail-info__tags">Type:</li>
+          {{ tool.type }}
+        </p>
+
+        <p>
+          <li class="detail-info__tags">Description:</li>
+          {{ tool.description }}
+        </p>
+      </ul>
+
+      <div class="button-container">
+        <button class="edit__button" (click)="addTool(tool)">
+          Add to Cart
+        </button>
+        <ng-container *ngIf="admin">
+          <button class="edit__button" routerLink="/data/edit/{{ tool._id }}">
+            Edit
+          </button>
+          <button
+            class="delete__button"
+            routerLink="/data/delete/{{ tool._id }}"
+          >
+            Delete
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
 </div>

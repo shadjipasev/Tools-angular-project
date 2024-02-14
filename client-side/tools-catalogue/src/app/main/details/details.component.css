@@ -1,8 +1,8 @@
-.tool-container {
+/* .tool-container {
     width: 580px;
     margin: 160px auto;
     padding: 10px 10px;
-    background-color: rgb(97, 72, 72);
+    background-color: rgba(198, 235, 33, 0.774);
     border-radius: 20px;
 }
 
@@ -44,13 +44,210 @@ img{
     border-radius: 10px;
 }
 
-.button:hover {
-    /* background-color: #4CAF50; Green */
-    background-color: green;
+.button:hover { */
+/* background-color: #4CAF50; Green */
+/* background-color: green;
     cursor: pointer;
   }
 
 .three-inline-buttons {
     display: table;
     margin: 0 auto;
+} */
+
+/* ----------------------------------------------------- */
+
+/* .detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 45px;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.image-container {
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.detail-button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.detail-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.detail-info {
+  text-align: center;
+  font-size: 16px;
+}
+
+model-viewer {
+  width: 100%;
+  height: 100%;
+  display: block;
+} */
+
+/* ------------------------------- */
+
+@import url("https://fonts.googleapis.com/css2?family=Bilbo+Swash+Caps&family=Caveat:wght@400;600&family=Roboto+Condensed:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mitr&family=Orbitron:wght@700&display=swap");
+
+.detail-container {
+  /* background-color: rgb(158, 156, 156); */
+  align-self: center;
+  align-items: center;
+  font-family: "Orbitron", sans-serif;
+  width: 70vw;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+}
+
+.image-container {
+  font-family: "Orbitron", sans-serif;
+  font-size: 30px;
+  position: relative;
+}
+
+/* model-viewer {
+  min-width: 40vw;
+  min-height: 40vh;
+} */
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-height: 340px;
+}
+
+.detail-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 30px;
+  padding: 20px;
+  margin: 10px;
+}
+
+.detail-info {
+  background-color: rgb(206, 204, 204);
+  font-size: 15px;
+  padding: 20px;
+  margin-bottom: 30px;
+  max-height: 340px;
+}
+
+.detail-info__tags {
+  font-size: 20px;
+}
+
+/* button,
+input[type="submit"],
+input[type="reset"] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+} */
+
+.delete__button {
+  background: #ff4742;
+  border: 1px solid #ff4742;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  margin: 10px;
+}
+
+.delete__button:hover,
+.delete__button:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #ff4742;
+}
+
+.delete__button:active {
+  opacity: 0.5;
+}
+
+.edit__button {
+  background: #7c7c7c;
+  border: 1px solid #7c7c7c;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  margin: 10px;
+}
+
+.edit__button:hover,
+.edit__button:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #9b9b9b;
+}
+
+.edit__button:active {
+  opacity: 0.5;
 }

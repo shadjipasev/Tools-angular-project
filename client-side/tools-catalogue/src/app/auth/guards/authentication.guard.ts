@@ -3,15 +3,16 @@ import { CanActivate, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationGuard implements CanActivate {
-  constructor(private authService: AuthService,private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {}
   canActivate(): boolean {
     if (this.authService.hasUser) {
       return true;
     } else {
-      this.router.navigateByUrl('auth/login')
+      console.warn('Only users with account can access this page!');
+      this.router.navigateByUrl('auth/login');
       return false;
     }
   }

@@ -1,32 +1,52 @@
+import { ShoppingCartService } from './../../main/services/shopping-cart/shopping-cart.service';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(private router: Router, public authService: AuthService) { }
-
   userId: any;
+  cartItems: number = 0;
+  constructor(
+    private router: Router,
+    public authService: AuthService,
+    private fb: FormBuilder,
+    private cartService: ShoppingCartService
+  ) {
+    this.cartService.cartSubject.subscribe((data) => {
+      console.log(data + ' check data');
+      this.cartItems = data;
+    });
+  }
+
+  // form: FormGroup
 
   ngOnInit(): void {
-    this.authService.isLogged()
-    this.authService.isAdmin()
-    this.userId = localStorage.getItem('userId')
+    this.cartService.cartSubject.next(this.cartService.getCartSize());
+    this.cartService.cartSubject.subscribe((data) => {
+      console.log(data + ' check data');
+      this.cartItems = data;
+    });
+    // this.cartItems = this.cartService.getCartSize();
+    this.authService.isLogged();
+
+    this.authService.isAdmin();
+    this.userId = localStorage.getItem('userId');
   }
 
   onLogout(): void {
-    this.authService.logout().subscribe(res=> {
-      console.log(res)
-    })
-    this.router.navigate(['/'])
+    this.authService.logout().subscribe((res) => {
+      console.log(res);
+      this.cartService.clearProducts();
+    });
+    this.router.navigate(['/']);
   }
+  // onSearch(): void{
 
-
-
-  
+  // }
 }

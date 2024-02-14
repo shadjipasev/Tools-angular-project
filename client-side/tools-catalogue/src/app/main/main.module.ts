@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { MainRoutingModule } from './main-routing.module';
@@ -16,8 +16,8 @@ import { CatalogHandToolsComponent } from './catalog-hand-tools/catalog-hand-too
 import { CatalogPersonalEquipmentComponent } from './catalog-personal-equipment/catalog-personal-equipment.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
-
+import { ArticleComponent } from './home/article/article.component';
+import { SlideshowComponent } from './home/slideshow/slideshow.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +32,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     CatalogPersonalEquipmentComponent,
     ShoppingCartComponent,
     PageNotFoundComponent,
+    ArticleComponent,
+    SlideshowComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -39,11 +41,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MainRoutingModule,
     CommonModule,
     RouterModule,
-
   ],
-  providers: [
-    AuthenticationGuard,
-    PermissionGuard,
-  ]
+  providers: [AuthenticationGuard, PermissionGuard],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class MainModule { }
+export class MainModule {}

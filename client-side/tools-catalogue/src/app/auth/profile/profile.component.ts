@@ -5,21 +5,18 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
+  constructor(private authService: AuthService, private router: Router) {}
 
-  constructor(private authService: AuthService, private router: Router) { }
-
-  userId: any = localStorage.getItem('userId')
-  user: any 
+  userId: any = localStorage.getItem('userId');
+  user: any;
 
   ngOnInit(): void {
-    this.authService.getUser(this.userId).subscribe(
-      res => {
-        this.user = res
-      }
-    )
+    this.authService.getUser(this.userId).subscribe((res) => {
+      // console.log(this.userId);
+      this.user = res;
+    });
   }
-
 }

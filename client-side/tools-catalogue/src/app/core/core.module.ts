@@ -5,21 +5,9 @@ import { HeaderComponent } from './header/header.component';
 import { AuthRoutingModule } from '../auth/auth-routing.module';
 import { MainRoutingModule } from '../main/main-routing.module';
 
-
-
 @NgModule({
-  declarations: [
-    FooterComponent,
-    HeaderComponent,
-  ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    MainRoutingModule
-  ],
-  exports: [
-    FooterComponent,
-    HeaderComponent
-  ]
+  declarations: [FooterComponent, HeaderComponent],
+  imports: [CommonModule, AuthRoutingModule, MainRoutingModule],
+  exports: [FooterComponent, HeaderComponent],
 })
-export class CoreModule { }
+export class CoreModule {}

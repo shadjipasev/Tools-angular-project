@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Mitr&family=Orbitron:wght@700&display=swap");
+
+.slogan {
+  display: flex;
+  width: 100%;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+.slogan__text {
+  font-family: "Mitr", sans-serif;
+  font-family: "Orbitron", sans-serif;
+  font-size: 2rem;
+}

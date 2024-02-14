@@ -1,108 +1,187 @@
 <body>
-    <div class="testbox">
-      <form [formGroup]="form" (ngSubmit)="onCreate()">
-        <div class="banner">
-          <h1>Create tool</h1>
-        </div> 
-        <div class="colums">
-            <!--  NAME ---->
-          <div class="item">
-            <label for="tool-name">Tool Name<span></span></label>
-            <input id="tool-name" formControlName="name" type="text"  name="tool-name"/>
-            <!-- ERROR NAME ---->
-            <ng-container *ngIf="fc.name.touched">
-              <div class="error" *ngIf="fc.name.errors">
-                <p *ngIf="fc.name.errors['required']">Name is required!</p>
-              </div>
-            </ng-container>
-          </div>
-            <!-- MATERIAL ---->
-          <div class="item">
-            <label for="material">Material<span></span></label>
-            <input id="material" type="text" formControlName="material"  name="material"/>
-            <!-- ERROR MATERIAL ---->
-            <ng-container *ngIf="fc.material.touched">
-              <div class="error" *ngIf="fc.material.errors">
-                <p *ngIf="fc.material.errors['required']">Material is required!</p>
-              </div>
-            </ng-container>
-          </div>
-          <div class="item">
-            <!-- COUNTRY -->
-            <label for="country">Country<span></span></label>
-            <input id="country" type="text"  formControlName="country" name="country" required/>
-            <!-- ERROR COUNTRY -->
-            <ng-container *ngIf="fc.country.touched">
-              <div class="error" *ngIf="fc.country.errors">
-                <p *ngIf="fc.country.errors['required']">Country is required!</p>
-              </div>
-            </ng-container>
-          </div>
- 
-          <!-- PRICE  -->
-          <div class="item">
-            <label for="price">Price<span></span></label>
-            <input id="price" type="text" formControlName="price" name="price" required/>
-          <!-- ERROR PRICE -->
-            <ng-container *ngIf="fc.price.touched">
-              <div class="error" *ngIf="fc.price.errors">
-                <p *ngIf="fc.price.errors['required']">Price is required!</p>
-                <p *ngIf="fc.price.errors['pattern']">Price should contain only numbers!</p>
-              </div>
-            </ng-container>
-          </div>
-        </div>
-          <!-- DESCRIPTION -->
-          <!-- IMAGE URL -->
+  <div class="testbox">
+    <form [formGroup]="form" (ngSubmit)="onCreate()">
+      <div class="banner">
+        <h1>Create tool</h1>
+      </div>
+      <div class="colums">
+        <!--  NAME ---->
         <div class="item">
-          <label for="imgUrl">Image<span></span></label>
-          <input id="imgUrl" type="text" formControlName="imgUrl" name="imgUrl" required/>
-        <!-- ERROR PRICE -->
-          <ng-container *ngIf="fc.imgUrl.touched">
-            <div class="error" *ngIf="fc.imgUrl.errors">
-              <p *ngIf="fc.imgUrl.errors['required']">Image is required!</p>
-              <p *ngIf="fc.imgUrl.errors['pattern']">Wrong image URL!</p>
+          <label for="tool-name">Tool Name<span></span></label>
+          <input
+            id="tool-name"
+            formControlName="name"
+            type="text"
+            name="tool-name"
+          />
+          <!-- ERROR NAME ---->
+          <ng-container *ngIf="fc.name.touched">
+            <div class="error" *ngIf="fc.name.errors">
+              <p *ngIf="fc.name.errors['required']">Name is required!</p>
             </div>
           </ng-container>
         </div>
-        <p><label for="description">Description</label></p>
-        <textarea id="description" formControlName="description" name="description" rows="4" cols="50"></textarea>
-         <!-- ERROR DESCRIPTION -->
-         <ng-container *ngIf="fc.description.touched">
-          <div class="error" *ngIf="fc.description.errors">
-            <p *ngIf="fc.description.errors['required']">Description is required!</p>
-            <!-- <p *ngIf="fc.price.errors['pattern']">Price should contain only numbers!</p> -->
+
+        <!-- MATERIAL ---->
+        <div class="item">
+          <label for="material">Material<span></span></label>
+          <input
+            id="material"
+            type="text"
+            formControlName="material"
+            name="material"
+          />
+          <!-- ERROR MATERIAL ---->
+          <ng-container *ngIf="fc.material.touched">
+            <div class="error" *ngIf="fc.material.errors">
+              <p *ngIf="fc.material.errors['required']">
+                Material is required!
+              </p>
+            </div>
+          </ng-container>
+        </div>
+
+        <!-- COUNTRY -->
+        <div class="item">
+          <label for="country">Country<span></span></label>
+          <input
+            id="country"
+            type="text"
+            formControlName="country"
+            name="country"
+            required
+          />
+          <!-- ERROR COUNTRY -->
+          <ng-container *ngIf="fc.country.touched">
+            <div class="error" *ngIf="fc.country.errors">
+              <p *ngIf="fc.country.errors['required']">Country is required!</p>
+            </div>
+          </ng-container>
+        </div>
+
+        <!-- PRICE  -->
+        <div class="item">
+          <label for="price">Price<span></span></label>
+          <input
+            id="price"
+            type="text"
+            formControlName="price"
+            name="price"
+            required
+          />
+          <!-- ERROR PRICE -->
+          <ng-container *ngIf="fc.price.touched">
+            <div class="error" *ngIf="fc.price.errors">
+              <p *ngIf="fc.price.errors['required']">Price is required!</p>
+              <p *ngIf="fc.price.errors['pattern']">
+                Price should contain only numbers!
+              </p>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- IMAGE URL -->
+      <div class="item">
+        <label for="imgUrl">Image<span></span></label>
+        <input
+          id="imgUrl"
+          type="text"
+          formControlName="imgUrl"
+          name="imgUrl"
+          required
+        />
+        <!-- ERROR PRICE -->
+        <ng-container *ngIf="fc.imgUrl.touched">
+          <div class="error" *ngIf="fc.imgUrl.errors">
+            <p *ngIf="fc.imgUrl.errors['required']">Image is required!</p>
+            <p *ngIf="fc.imgUrl.errors['pattern']">Wrong image URL!</p>
           </div>
         </ng-container>
-        <br>
-          <!-- CHECKBOX -->
-        <div class="question">
-          <label>Product type</label>
-          <div class="question-answer">
-            <div>
-              <input type="radio" value="Machining"  formControlName="selectType" id="radio_1" name="selectType"/>
-              <label for="radio_1" class="radio"><span>Machining</span></label>
-            </div>
-            <div>
-              <input  type="radio" value="Hand tools" formControlName="selectType" id="radio_2" name="selectType"/>
-              <label for="radio_2" class="radio"><span>Hand Tools</span></label>
-            </div>
-            <div>
-              <input  type="radio" value="Personal/Protective equipment" formControlName="selectType" id="radio_3" name="selectType"/>
-              <label for="radio_3" class="radio"><span>Personal / Protective equipment</span></label>
-            </div>
+      </div>
+
+      <!-- MODEL URL -->
+      <div class="item">
+        <label for="3dModel">3D Model<span></span></label>
+        <input id="3dModel" type="text" name="3dModel" required />
+      </div>
+
+      <!-- DESCRIPTION -->
+      <p><label for="description">Description</label></p>
+      <textarea
+        id="description"
+        formControlName="description"
+        name="description"
+        rows="4"
+        cols="50"
+      ></textarea>
+      <!-- ERROR DESCRIPTION -->
+      <ng-container *ngIf="fc.description.touched">
+        <div class="error" *ngIf="fc.description.errors">
+          <p *ngIf="fc.description.errors['required']">
+            Description is required!
+          </p>
+          <!-- <p *ngIf="fc.price.errors['pattern']">Price should contain only numbers!</p> -->
+        </div>
+      </ng-container>
+      <br />
+
+      <!-- CHECKBOX -->
+      <div class="question">
+        <label>Product type</label>
+        <div class="question-answer">
+          <div>
+            <input
+              type="radio"
+              value="Machining"
+              formControlName="selectType"
+              id="radio_1"
+              name="selectType"
+            />
+            <label for="radio_1" class="radio"
+              ><span class="radio__span">Machining</span></label
+            >
           </div>
+          <div>
+            <input
+              type="radio"
+              value="Hand tools"
+              formControlName="selectType"
+              id="radio_2"
+              name="selectType"
+            />
+            <label for="radio_2" class="radio"
+              ><span class="radio__span">Hand Tools</span></label
+            >
+          </div>
+          <div>
+            <input
+              type="radio"
+              value="Personal/Protective equipment"
+              formControlName="selectType"
+              id="radio_3"
+              name="selectType"
+            />
+            <label for="radio_3" class="radio"
+              ><span class="radio__span"
+                >Personal / Protective equipment</span
+              ></label
+            >
+          </div>
+        </div>
         <!-- ERROR CHECKBOX -->
-         <ng-container *ngIf="fc.selectType.touched">
+        <ng-container *ngIf="fc.selectType.touched">
           <div class="error" *ngIf="fc.selectType.errors">
-            <p *ngIf="fc.selectType.errors['required']">Product type is required!</p>
+            <p *ngIf="fc.selectType.errors['required']">
+              Product type is required!
+            </p>
           </div>
         </ng-container>
-        </div>
-  
-        <div class="btn-block">
-          <button [disabled]="form.invalid">Submit</button>
-        </div>
-      </form>
-    </div>
-  </body>
+      </div>
+
+      <div class="btn-block">
+        <button [disabled]="form.invalid">Submit</button>
+      </div>
+    </form>
+  </div>
+</body>
