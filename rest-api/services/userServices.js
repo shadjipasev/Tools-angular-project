@@ -2,7 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const BlackList = require("../models/BlackList");
-const { getToolById } = require("./toolServices");
+// const { getToolById } = require("./toolServices");
 const jwtDecode = require("jwt-decode");
 const secret = "zmhmfnios563dqa53d156";
 

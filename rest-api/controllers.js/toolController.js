@@ -17,18 +17,19 @@ const {
 const toolController = require("express").Router();
 
 toolController.post("/create", async (req, res) => {
-  // const image = { data: new Buffer.from(req.body.image, 'base64'), contentType: req.file.mimetype }
   const data = {
     name: req.body.name,
     material: req.body.material,
     country: req.body.country,
     price: req.body.price,
     imgUrl: req.body.imgUrl,
+    modelUrl: req.body.modelUrl,
     description: req.body.description,
     type: req.body.type,
   };
   try {
     await createTool(data);
+    console.log("Tool is created");
   } catch (error) {
     res.status(400).json({
       message: error.message,
@@ -57,13 +58,14 @@ toolController.get("/details/:id", async (req, res) => {
 
 toolController.put("/edit/:id", async (req, res) => {
   const toolId = req.params.id;
-  // console.log("Request is === " + req);
+  console.log("Request is === " + req);
   const data = {
     name: req.body.name,
     material: req.body.material,
     country: req.body.country,
     price: req.body.price,
     imgUrl: req.body.imgUrl,
+    modelUrl: req.body.modelUrl,
     description: req.body.description,
     type: req.body.type,
   };

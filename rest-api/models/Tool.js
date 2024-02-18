@@ -5,7 +5,7 @@ const toolSchema = new Schema({
   material: { type: String, required: true },
   country: { type: String, required: true },
   price: { type: Number, required: true },
-  imgUrl: { type: String, require: true },
+  imgUrl: { type: String, required: true },
   modelUrl: { type: String, required: true },
   description: { type: String, required: true },
   type: { type: String, required: true },

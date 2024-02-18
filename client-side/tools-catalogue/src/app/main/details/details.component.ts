@@ -4,7 +4,7 @@ import { AuthService } from './../../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToolService } from '../services/tool/tool.service';
-import { ITool } from 'src/app/shared/interfaces/Tool';
+// import { ITool } from 'src/app/shared/interfaces/Tool';
 
 @Component({
   selector: 'app-details',
@@ -12,8 +12,6 @@ import { ITool } from 'src/app/shared/interfaces/Tool';
   styleUrls: ['./details.component.css'],
 })
 export class DetailsComponent implements OnInit {
-  // tool: ITool[] = [];
-
   tool: any;
   toolId: string = '';
   admin: any;
