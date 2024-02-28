@@ -27,7 +27,7 @@ async function start() {
   const corsOptions = {
     origin: "http://localhost:4200",
     methods: ["HEAD", "OPTIONS", "GET", "POST", "PUT", "DELETE"],
-    Headers: ["Content-Type", "X-Authorization", "X-Frame-Options: GOFORIT"],
+    Headers: ["Content-Type", "X-Authorization", "X-Frame-Options: GOFORIT"], //SAMEORIGIN
   };
 
   app.use(cors(corsOptions));

@@ -18,6 +18,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ArticleComponent } from './home/article/article.component';
 import { SlideshowComponent } from './home/slideshow/slideshow.component';
+import { SafePipe } from 'safe-pipe';
+// import { SafePipe } from './details/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { SlideshowComponent } from './home/slideshow/slideshow.component';
     MainRoutingModule,
     CommonModule,
     RouterModule,
+    SafePipe,
   ],
   providers: [AuthenticationGuard, PermissionGuard],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

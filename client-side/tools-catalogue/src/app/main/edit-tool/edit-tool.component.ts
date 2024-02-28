@@ -31,6 +31,7 @@ export class EditToolComponent implements OnInit {
         country: this.toolValues.country,
         price: this.toolValues.price,
         imgUrl: this.toolValues.imgUrl,
+        modelUrl: this.toolValues.modelUrl,
         description: this.toolValues.description,
         selectType: this.toolValues.type,
       });
@@ -50,6 +51,7 @@ export class EditToolComponent implements OnInit {
           ),
         ],
       ],
+      modelUrl: [''],
       description: ['', Validators.required],
       selectType: ['', Validators.required],
     });
@@ -72,6 +74,7 @@ export class EditToolComponent implements OnInit {
       country: fv.country,
       price: fv.price,
       imgUrl: fv.imgUrl,
+      modelUrl: fv.modelUrl,
       description: fv.description,
       type: fv.selectType,
     };

@@ -1,9 +1,15 @@
 import { ShoppingCartService } from './../services/shopping-cart/shopping-cart.service';
 import { AuthService } from './../../auth/auth.service';
-
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ToolService } from '../services/tool/tool.service';
+
+import { Component, Input, OnInit, Pipe, NgModule } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import {
+  DomSanitizer,
+  SafeHtml,
+  SafeResourceUrl,
+} from '@angular/platform-browser';
+
 // import { ITool } from 'src/app/shared/interfaces/Tool';
 
 @Component({
@@ -16,16 +22,20 @@ export class DetailsComponent implements OnInit {
   toolId: string = '';
   admin: any;
   userId: any;
+  displayIframe: boolean = false;
+
+  @Input()
+  url: string;
+  urlSafe: SafeResourceUrl;
 
   constructor(
     private toolService: ToolService,
     private route: ActivatedRoute,
     private auth: AuthService,
-    public cartService: ShoppingCartService
+    public cartService: ShoppingCartService,
+    public sanitizer: DomSanitizer
   ) {
-    // this.cartService
-    //   .getCartSize()
-    //   .subscribe((size) => (this.cartSize = size.data));
+    // this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
 
   ngOnInit(): void {
@@ -39,9 +49,22 @@ export class DetailsComponent implements OnInit {
     this.toolId = this.route.snapshot.params['id'];
     this.toolService.getById(this.toolId).subscribe((res) => {
       this.tool = res;
+      this.url = res.modelUrl;
+      this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+      // console.log('This is url = ' + this.urlSafe);
       console.log(this.tool), (error: any) => console.log(error);
     });
   }
+
+  // getSafeUrl() {
+  //   return this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+  // }
+
+  // sanitizeUrl(url: string): SafeResourceUrl {
+  //   debugger;
+  //   this.displayIframe = true;
+  //   return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  // }
 
   addTool(product: any) {
     console.log('addTool Works');

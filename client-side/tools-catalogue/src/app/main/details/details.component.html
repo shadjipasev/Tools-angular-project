@@ -73,14 +73,17 @@
         touch-action="pan-y"
       >
       </model-viewer> -->
+
       <iframe
+        title="PreviewFrame3D"
         scrolling="no"
         allowfullscreen="true"
-        src="https://www.3dcontentcentral.com/external-site-embed.aspx?format=3D&catalogid=171&modelid=136245"
+        [src]="urlSafe"
         name="PreviewFrame3D"
         id="PreviewFrame3D"
-        width="400"
-        height="340"
+        width="500"
+        height="360"
+        allow-same-origin
       ></iframe>
     </div>
 

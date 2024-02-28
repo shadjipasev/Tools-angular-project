@@ -71,13 +71,23 @@
       <div class="item">
         <label for="imgUrl">Image<span></span></label>
         <input id="imgUrl" type="text" formControlName="imgUrl" name="imgUrl" />
-        <!-- ERROR PRICE -->
+        <!-- ERROR IMAGE URL -->
         <ng-container *ngIf="fc.imgUrl.touched">
           <div class="error" *ngIf="fc.imgUrl.errors">
             <p *ngIf="fc.imgUrl.errors['required']">Image is required!</p>
             <p *ngIf="fc.imgUrl.errors['pattern']">Wrong image URL!</p>
           </div>
         </ng-container>
+      </div>
+      <!-- IMAGE URL -->
+      <div class="item">
+        <label for="modelUrl">Model URL<span></span></label>
+        <input
+          id="modelUrl"
+          type="text"
+          formControlName="modelUrl"
+          name="modelUrl"
+        />
       </div>
       <p><label for="description">Description</label></p>
       <textarea
