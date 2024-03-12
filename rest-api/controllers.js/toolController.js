@@ -7,6 +7,7 @@ const {
   getToolById,
   editTool,
   delById,
+  searchByQuery,
 } = require("../services/toolServices");
 const {
   addToCart,
@@ -110,6 +111,12 @@ toolController.get("/cart/size", async (req, res) => {
       data: cartLength,
     });
   } catch (error) {}
+});
+
+toolController.get("/search/:query", async (req, res) => {
+  const searchQuery = req.params.query;
+  const listOfTools = await searchByQuery(searchQuery);
+  console.log(listOfTools);
 });
 
 module.exports = toolController;

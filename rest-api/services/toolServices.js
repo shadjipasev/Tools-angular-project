@@ -15,7 +15,7 @@ async function getToolById(id) {
 async function editTool(id, data) {
   const tool = await Tool.findById(id);
   console.log("Edit tool Service");
-  tool.name = data.name;
+  tool.toolName = data.name;
   tool.material = data.material;
   tool.country = data.country;
   tool.price = data.price;
@@ -37,11 +37,12 @@ async function delById(id) {
   await Tool.findByIdAndDelete(id);
 }
 
-// async function addToCard(id, user){
-//     const tool = await Tool.findById(id);
-
-//     tool.
-// }
+async function searchByQuery(query) {
+  const results = await Tool.find({
+    toolName: { $regex: query, $options: "i" },
+  });
+  return results;
+}
 
 module.exports = {
   createTool,
@@ -50,4 +51,5 @@ module.exports = {
   getToolById,
   editTool,
   delById,
+  searchByQuery,
 };
