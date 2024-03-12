@@ -1,7 +1,4 @@
 <header>
-  <div class="company">
-    <h1 class="company__logo">Tools Co.</h1>
-  </div>
   <nav>
     <ul class="navbar">
       <li><a id="navbar__home" routerLink="/">Home</a></li>
@@ -34,6 +31,13 @@
         </div>
       </li>
     </ul>
+
+    <div class="company">
+      <h1 class="company__logo">Tools Co.</h1>
+    </div>
+    <div class="search">
+      <input type="search" value="" placeholder="Search" />
+    </div>
     <ul class="buttons">
       <ng-container *ngIf="!this.authService.hasUser">
         <a routerLink="/auth/login">Login</a>
