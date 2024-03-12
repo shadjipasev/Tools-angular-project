@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class HeaderComponent implements OnInit {
   userId: any;
   cartItems: number = 0;
+  tools: any;
   constructor(
     private router: Router,
     public authService: AuthService,
@@ -52,7 +53,7 @@ export class HeaderComponent implements OnInit {
   onKey(value: string): void {
     console.log('Input value changed:', value);
     this.toolService.searchToolByName(value).subscribe((res) => {
-      console.log(res);
+      this.tools = res;
     });
   }
 

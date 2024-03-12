@@ -35,14 +35,23 @@
     <div class="company">
       <h1 class="company__logo">Tools Co.</h1>
     </div>
-    <div class="search">
+    <div class="search__container">
       <input
         #search
         (keyup)="onKey(search.value)"
         type="text"
         placeholder="Search"
       />
+
+      <ul *ngIf="search.value.length > 0" class="search__results">
+        <li class="search__items" *ngFor="let tool of tools">
+          <a></a>
+          <img src="{{ tool.imgUrl }}" alt="" />
+          <span class="item__name">{{ tool.toolName }}</span>
+        </li>
+      </ul>
     </div>
+
     <ul class="buttons">
       <ng-container *ngIf="!this.authService.hasUser">
         <a routerLink="/auth/login">Login</a>
