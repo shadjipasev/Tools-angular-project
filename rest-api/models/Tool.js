@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const toolSchema = new Schema({
-  name: { type: String, required: true },
+  toolName: { type: String, required: true },
   material: { type: String, required: true },
   country: { type: String, required: true },
   price: { type: Number, required: true },
@@ -10,6 +10,8 @@ const toolSchema = new Schema({
   description: { type: String, required: true },
   type: { type: String, required: true },
 });
+
+toolSchema.index({ toolName: 1 });
 
 const Tool = model("Tool", toolSchema);
 

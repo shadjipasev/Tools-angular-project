@@ -18,7 +18,7 @@ const toolController = require("express").Router();
 
 toolController.post("/create", async (req, res) => {
   const data = {
-    name: req.body.name,
+    toolName: req.body.name,
     material: req.body.material,
     country: req.body.country,
     price: req.body.price,
@@ -60,7 +60,7 @@ toolController.put("/edit/:id", async (req, res) => {
   const toolId = req.params.id;
   console.log("Request is === " + req);
   const data = {
-    name: req.body.name,
+    toolName: req.body.name,
     material: req.body.material,
     country: req.body.country,
     price: req.body.price,
