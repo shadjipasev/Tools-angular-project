@@ -36,7 +36,12 @@
       <h1 class="company__logo">Tools Co.</h1>
     </div>
     <div class="search">
-      <input type="search" value="" placeholder="Search" />
+      <input
+        #search
+        (keyup)="onKey(search.value)"
+        type="text"
+        placeholder="Search"
+      />
     </div>
     <ul class="buttons">
       <ng-container *ngIf="!this.authService.hasUser">

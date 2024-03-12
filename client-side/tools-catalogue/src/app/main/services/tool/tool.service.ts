@@ -35,4 +35,8 @@ export class ToolService {
   getToolsByType(type: string) {
     return this.httpClient.get<any>(`${this.apiUrl}/data/catalog/` + type);
   }
+
+  searchToolByName(query: string) {
+    return this.httpClient.get<any>(`${this.apiUrl}/data/search/` + query);
+  }
 }

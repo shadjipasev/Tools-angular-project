@@ -1,3 +1,4 @@
+import { ToolService } from './../../main/services/tool/tool.service';
 import { ShoppingCartService } from './../../main/services/shopping-cart/shopping-cart.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -16,7 +17,8 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     public authService: AuthService,
     private fb: FormBuilder,
-    private cartService: ShoppingCartService
+    private cartService: ShoppingCartService,
+    private toolService: ToolService
   ) {
     this.cartService.cartSubject.subscribe((data) => {
       console.log(data + ' check data');
@@ -46,6 +48,14 @@ export class HeaderComponent implements OnInit {
     });
     this.router.navigate(['/']);
   }
+
+  onKey(value: string): void {
+    console.log('Input value changed:', value);
+    this.toolService.searchToolByName(value).subscribe((res) => {
+      console.log(res);
+    });
+  }
+
   // onSearch(): void{
 
   // }
