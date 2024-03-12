@@ -116,7 +116,7 @@ toolController.get("/cart/size", async (req, res) => {
 toolController.get("/search/:query", async (req, res) => {
   const searchQuery = req.params.query;
   const listOfTools = await searchByQuery(searchQuery);
-  console.log(listOfTools);
+  res.json(listOfTools);
 });
 
 module.exports = toolController;
