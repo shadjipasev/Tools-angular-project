@@ -45,9 +45,14 @@
 
       <ul *ngIf="search.value.length > 0" class="search__results">
         <li class="search__items" *ngFor="let tool of tools">
-          <a></a>
-          <img src="{{ tool.imgUrl }}" alt="" />
-          <span class="item__name">{{ tool.toolName }}</span>
+          <img
+            routerLink="/data/details/{{ tool._id }}"
+            src="{{ tool.imgUrl }}"
+            alt=""
+          />
+          <span routerLink="/data/details/{{ tool._id }}" class="item__name">{{
+            tool.toolName
+          }}</span>
         </li>
       </ul>
     </div>
