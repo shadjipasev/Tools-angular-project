@@ -12,6 +12,7 @@ const toolSchema = new Schema({
 });
 
 toolSchema.index({ toolName: 1 });
+// toolSchema.index({ toolName: "text" });
 
 const Tool = model("Tool", toolSchema);
 

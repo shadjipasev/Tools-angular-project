@@ -40,8 +40,12 @@ async function delById(id) {
 async function searchByQuery(query) {
   const results = await Tool.find({
     toolName: { $regex: query, $options: "i" },
-  });
+  }).limit(4);
   return results;
+
+  // const result = await Tool.find({ $text: { $search: query } }).limit(4);
+
+  // return result;
 }
 
 module.exports = {
