@@ -1,19 +1,24 @@
 <h1>Machining Tools</h1>
 
-<ul class="catCardList" >
-    <li class="catCardList" *ngFor="let tool of tools">
-        <div class="catCard"><img src="{{tool.imgUrl}}" alt="">
-            <div class="lowerCatCard">
-                <h3>{{tool.name}}</h3>
-                <div class="startingPrice">Price:<span>{{tool.price}}$</span></div>
-                <p>{{tool.description}}</p>
-                <!-- <h4>Material: {{tool.material}}</h4>
+<ul class="catCardList">
+  <li class="catCardList" *ngFor="let tool of tools">
+    <div class="catCard">
+      <img src="{{ tool.imgUrl }}" alt="" />
+      <div class="lowerCatCard">
+        <h3>{{ tool.toolName }}</h3>
+        <div class="startingPrice">
+          Price:<span>{{ tool.price }}$</span>
+        </div>
+        <p>{{ tool.description }}</p>
+        <!-- <h4>Material: {{tool.material}}</h4>
                 <ul>
                     <li>Country: {{tool.country}}</li>
                     <li>Category: {{tool.type}}</li>
                 </ul> -->
-                <div id="catCardButton" class="button"><a routerLink="/data/details/{{tool._id}}">View Product</a></div>
-            </div>
+        <div id="catCardButton" class="button">
+          <a routerLink="/data/details/{{ tool._id }}">View Product</a>
         </div>
-    </li>
+      </div>
+    </div>
+  </li>
 </ul>

@@ -26,7 +26,7 @@ export class EditToolComponent implements OnInit {
     this.toolService.getById(this.toolId).subscribe((res) => {
       this.toolValues = res;
       this.form.patchValue({
-        name: this.toolValues.name,
+        name: this.toolValues.toolName,
         material: this.toolValues.material,
         country: this.toolValues.country,
         price: this.toolValues.price,
