@@ -115,8 +115,19 @@ toolController.get("/cart/size", async (req, res) => {
 
 toolController.get("/search/:query", async (req, res) => {
   const searchQuery = req.params.query;
-  const listOfTools = await searchByQuery(searchQuery);
-  res.json(listOfTools);
+
+  if (searchByQuery == "") {
+    return;
+  } else {
+    try {
+      const listOfTools = await searchByQuery(searchQuery);
+      res.json(listOfTools);
+    } catch (error) {
+      res.status(404).json({
+        message: "Item with " + searchQuery + "in it, is NOT found",
+      });
+    }
+  }
 });
 
 module.exports = toolController;

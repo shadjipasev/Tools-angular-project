@@ -14,10 +14,10 @@ export class HeaderComponent implements OnInit {
   userId: any;
   cartItems: number = 0;
   tools: any;
+  search: string;
   constructor(
     private router: Router,
     public authService: AuthService,
-    private fb: FormBuilder,
     private cartService: ShoppingCartService,
     private toolService: ToolService
   ) {
@@ -52,12 +52,16 @@ export class HeaderComponent implements OnInit {
 
   onKey(value: string): void {
     console.log('Input value changed:', value);
+    if (value == '') {
+      return;
+    }
+
     this.toolService.searchToolByName(value).subscribe((res) => {
       this.tools = res;
     });
   }
 
-  // onSearch(): void{
-
-  // }
+  clearSearchInput(): void {
+    this.search = '';
+  }
 }

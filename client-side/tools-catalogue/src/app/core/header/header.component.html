@@ -38,21 +38,21 @@
     <div class="search__container">
       <input
         #search
+        name="search"
         (keyup)="onKey(search.value)"
         type="text"
         placeholder="Search"
       />
 
       <ul *ngIf="search.value.length > 0" class="search__results">
-        <li class="search__items" *ngFor="let tool of tools">
-          <img
-            routerLink="/data/details/{{ tool._id }}"
-            src="{{ tool.imgUrl }}"
-            alt=""
-          />
-          <span routerLink="/data/details/{{ tool._id }}" class="item__name">{{
-            tool.toolName
-          }}</span>
+        <li
+          class="search__items"
+          *ngFor="let tool of tools"
+          [routerLink]="['data/details', tool._id]"
+          (click)="search.value = ''"
+        >
+          <img src="{{ tool.imgUrl }}" alt="" />
+          <span class="item__name">{{ tool.toolName }}</span>
         </li>
       </ul>
     </div>
