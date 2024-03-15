@@ -46,13 +46,17 @@ export class DetailsComponent implements OnInit {
     // this.cartService.getCartSize();
     this.cartService.cartSubject.next(this.cartService.getCartSize());
     this.userId = this.auth.getUserId();
-    this.toolId = this.route.snapshot.params['id'];
-    this.toolService.getById(this.toolId).subscribe((res) => {
-      this.tool = res;
-      this.url = res.modelUrl;
-      this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
-      // console.log('This is url = ' + this.urlSafe);
-      console.log(this.tool), (error: any) => console.log(error);
+    // this.toolId = this.route.snapshot.params['id'];
+    this.route.params.subscribe((params) => {
+      this.toolId = params['id'];
+      console.log(this.toolId);
+      this.toolService.getById(this.toolId).subscribe((res) => {
+        this.tool = res;
+        this.url = res.modelUrl;
+        this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+        // console.log('This is url = ' + this.urlSafe);
+        console.log(this.tool), (error: any) => console.log(error);
+      });
     });
   }
 

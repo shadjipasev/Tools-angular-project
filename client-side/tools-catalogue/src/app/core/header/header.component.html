@@ -48,7 +48,7 @@
         <li
           class="search__items"
           *ngFor="let tool of tools"
-          [routerLink]="['data/details', tool._id]"
+          [routerLink]="['/data/details', tool._id]"
           (click)="search.value = ''"
         >
           <img src="{{ tool.imgUrl }}" alt="" />

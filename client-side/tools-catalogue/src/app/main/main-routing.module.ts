@@ -1,3 +1,4 @@
+import { Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationGuard } from '../auth/guards/authentication.guard';
 import { PermissionGuard } from '../auth/guards/permission.guard';
@@ -62,10 +63,10 @@ const routes: Routes = [
     component: DeleteToolComponent,
     canActivate: [PermissionGuard],
   },
-  {
-    path: '%E2%80%AAhttps',
-    component: DetailsComponent,
-  },
+  // {
+  //   path: '%E2%80%AAhttps',
+  //   component: DetailsComponent,
+  // },
   { path: '404', component: PageNotFoundComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

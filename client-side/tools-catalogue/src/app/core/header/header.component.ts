@@ -60,8 +60,4 @@ export class HeaderComponent implements OnInit {
       this.tools = res;
     });
   }
-
-  clearSearchInput(): void {
-    this.search = '';
-  }
 }
