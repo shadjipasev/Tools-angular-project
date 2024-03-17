@@ -21,6 +21,7 @@ async function editTool(id, data) {
   tool.price = data.price;
   tool.imgUrl = data.imgUrl;
   tool.modelUrl = data.modelUrl;
+  tool.modelFile = data.modelFile;
   tool.description = data.description;
   tool.type = data.type;
 
