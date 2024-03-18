@@ -1,7 +1,7 @@
 import { ShoppingCartService } from './../services/shopping-cart/shopping-cart.service';
 import { AuthService } from './../../auth/auth.service';
 import { ToolService } from '../services/tool/tool.service';
-
+import { MatButtonModule } from '@angular/material/button';
 import { Component, Input, OnInit, Pipe, NgModule } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
@@ -9,6 +9,7 @@ import {
   SafeHtml,
   SafeResourceUrl,
 } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 
 // import { ITool } from 'src/app/shared/interfaces/Tool';
 
@@ -23,6 +24,7 @@ export class DetailsComponent implements OnInit {
   admin: any;
   userId: any;
   displayIframe: boolean = false;
+  fileName = '';
 
   @Input()
   url: string;
@@ -33,7 +35,8 @@ export class DetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private auth: AuthService,
     public cartService: ShoppingCartService,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    private http: HttpClient
   ) {
     // this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
@@ -78,6 +81,21 @@ export class DetailsComponent implements OnInit {
       this.cartService.addToCart(product);
       // this.cartService.loadCart();
       this.cartService.cartSubject.next(this.cartService.getCartSize());
+    }
+  }
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.fileName = file.name;
+
+      const formData = new FormData();
+
+      formData.append('thumbnail', file);
+
+      const upload$ = this.http.post('/api/thumbnail-upload', formData);
+
+      upload$.subscribe();
     }
   }
 

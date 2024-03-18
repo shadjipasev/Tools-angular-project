@@ -11,6 +11,7 @@ import { appInterceptorProvider } from './app.interceptor';
 import { MainRoutingModule } from './main/main-routing.module';
 import { MainModule } from './main/main.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // import { MatInputModule } from '@angular/material/input';
 // import { MatButtonModule } from '@angular/material/button';
@@ -30,6 +31,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     MainModule,
     MainRoutingModule,
     NoopAnimationsModule,
+    BrowserAnimationsModule,
     // MatDialogModule,
     // MatInputModule,
     // MatButtonModule,
