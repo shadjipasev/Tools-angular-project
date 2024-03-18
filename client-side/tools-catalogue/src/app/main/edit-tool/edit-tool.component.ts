@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToolService } from '../services/tool/tool.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-tool',
@@ -12,12 +13,14 @@ export class EditToolComponent implements OnInit {
   form: any = FormGroup;
   toolId: any;
   toolValues: any;
+  fileName = '';
 
   constructor(
     private toolService: ToolService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +62,22 @@ export class EditToolComponent implements OnInit {
 
   get fc() {
     return this.form.controls;
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.fileName = file.name;
+
+      const formData = new FormData();
+
+      formData.append('thumbnail', file);
+
+      const upload$ = this.http.post('/api/thumbnail-upload', formData);
+
+      upload$.subscribe();
+    }
   }
 
   onEdit() {

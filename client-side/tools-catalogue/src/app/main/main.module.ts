@@ -18,7 +18,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ArticleComponent } from './home/article/article.component';
 import { SlideshowComponent } from './home/slideshow/slideshow.component';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { SafePipe } from 'safe-pipe';
 
@@ -45,6 +46,8 @@ import { SafePipe } from 'safe-pipe';
     CommonModule,
     RouterModule,
     SafePipe,
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [AuthenticationGuard, PermissionGuard],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

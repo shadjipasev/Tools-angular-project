@@ -23,9 +23,7 @@
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.min.js" 
-            ]
+            "scripts": ["node_modules/jquery/dist/jquery.min.js"]
           },
           "configurations": {
             "production": {
@@ -64,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "tools-catalogue:build:production"
+              "browserTarget": "tools-catalogue:build:production"
             },
             "development": {
-              "buildTarget": "tools-catalogue:build:development"
+              "browserTarget": "tools-catalogue:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "tools-catalogue:build"
+            "browserTarget": "tools-catalogue:build"
           }
         },
         "test": {

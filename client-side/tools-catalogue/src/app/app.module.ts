@@ -12,6 +12,7 @@ import { MainRoutingModule } from './main/main-routing.module';
 import { MainModule } from './main/main.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
 
 // import { MatInputModule } from '@angular/material/input';
 // import { MatButtonModule } from '@angular/material/button';
@@ -32,6 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MainRoutingModule,
     NoopAnimationsModule,
     BrowserAnimationsModule,
+    MatButtonModule,
     // MatDialogModule,
     // MatInputModule,
     // MatButtonModule,

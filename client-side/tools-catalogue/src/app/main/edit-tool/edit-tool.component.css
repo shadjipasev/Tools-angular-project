@@ -240,3 +240,12 @@ button:hover {
 .radio__span:hover {
   color: #669999;
 }
+
+.file-input {
+  display: none;
+}
+
+.upload-btn {
+  border-radius: 20px;
+  width: 43px;
+}

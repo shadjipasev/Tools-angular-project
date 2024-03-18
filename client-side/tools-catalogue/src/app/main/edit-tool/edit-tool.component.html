@@ -66,7 +66,7 @@
           </ng-container>
         </div>
       </div>
-      <!-- DESCRIPTION -->
+
       <!-- IMAGE URL -->
       <div class="item">
         <label for="imgUrl">Image<span></span></label>
@@ -79,7 +79,7 @@
           </div>
         </ng-container>
       </div>
-      <!-- IMAGE URL -->
+      <!-- MODEL URL -->
       <div class="item">
         <label for="modelUrl">Model URL<span></span></label>
         <input
@@ -89,6 +89,31 @@
           name="modelUrl"
         />
       </div>
+
+      <!-- FILE UPLOAD -->
+      <label for="fileUpload">Upload 3D file:</label>
+      <input
+        type="file"
+        class="file-input"
+        (change)="onFileSelected($event)"
+        #fileUpload
+      />
+
+      <div class="file-upload">
+        {{ fileName || "No file uploaded yet." }}
+
+        <button
+          type="button"
+          mat-mini-fab
+          color="primary"
+          class="upload-btn"
+          (click)="fileUpload.click()"
+        >
+          <mat-icon>attach_file</mat-icon>
+        </button>
+      </div>
+
+      <!-- DESCRIPTION -->
       <p><label for="description">Description</label></p>
       <textarea
         id="description"

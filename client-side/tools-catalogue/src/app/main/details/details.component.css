@@ -251,7 +251,3 @@ input[type="reset"] {
 .edit__button:active {
   opacity: 0.5;
 }
-
-.file-input {
-  display: none;
-}
