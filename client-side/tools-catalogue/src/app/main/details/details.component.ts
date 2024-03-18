@@ -1,7 +1,6 @@
 import { ShoppingCartService } from './../services/shopping-cart/shopping-cart.service';
 import { AuthService } from './../../auth/auth.service';
 import { ToolService } from '../services/tool/tool.service';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { Component, Input, OnInit, Pipe, NgModule } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
@@ -81,21 +80,6 @@ export class DetailsComponent implements OnInit {
       this.cartService.addToCart(product);
       // this.cartService.loadCart();
       this.cartService.cartSubject.next(this.cartService.getCartSize());
-    }
-  }
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-
-    if (file) {
-      this.fileName = file.name;
-
-      const formData = new FormData();
-
-      formData.append('thumbnail', file);
-
-      const upload$ = this.http.post('/api/thumbnail-upload', formData);
-
-      upload$.subscribe();
     }
   }
 

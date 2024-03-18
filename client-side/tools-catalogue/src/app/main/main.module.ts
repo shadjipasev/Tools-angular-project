@@ -6,7 +6,7 @@ import { CreateToolComponent } from './create-tool/create-tool.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetailsComponent } from './details/details.component';
 import { CatalogComponent } from './catalog/catalog.component';
-import { RouterModule } from '@angular/router';
+
 import { CatalogMachiningComponent } from './catalog-machining/catalog-machining.component';
 import { EditToolComponent } from './edit-tool/edit-tool.component';
 import { DeleteToolComponent } from './delete-tool/delete-tool.component';
@@ -18,8 +18,9 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ArticleComponent } from './home/article/article.component';
 import { SlideshowComponent } from './home/slideshow/slideshow.component';
+
+import { RouterModule } from '@angular/router';
 import { SafePipe } from 'safe-pipe';
-// import { SafePipe } from './details/safe.pipe';
 
 @NgModule({
   declarations: [

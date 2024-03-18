@@ -1,5 +1,3 @@
-import { Component } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationGuard } from '../auth/guards/authentication.guard';
 import { PermissionGuard } from '../auth/guards/permission.guard';
 import { CatalogHandToolsComponent } from './catalog-hand-tools/catalog-hand-tools.component';
@@ -13,6 +11,7 @@ import { EditToolComponent } from './edit-tool/edit-tool.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
