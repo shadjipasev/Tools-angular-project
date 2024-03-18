@@ -1,5 +1,6 @@
 // const upload = require('../middlewares/upload');
 
+const { upload } = require("../middlewares/upload");
 const {
   createTool,
   getAllTools,
@@ -17,7 +18,7 @@ const {
 
 const toolController = require("express").Router();
 
-toolController.post("/create", async (req, res) => {
+toolController.post("/create", upload.single(modelFile), async (req, res) => {
   const data = {
     toolName: req.body.name,
     material: req.body.material,
@@ -25,6 +26,7 @@ toolController.post("/create", async (req, res) => {
     price: req.body.price,
     imgUrl: req.body.imgUrl,
     modelUrl: req.body.modelUrl,
+    modelFile: url + "/public/" + req.file.filename,
     description: req.body.description,
     type: req.body.type,
   };
