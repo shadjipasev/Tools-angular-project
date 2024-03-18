@@ -1,7 +1,7 @@
 import { ShoppingCartService } from './../services/shopping-cart/shopping-cart.service';
 import { AuthService } from './../../auth/auth.service';
 import { ToolService } from '../services/tool/tool.service';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { Component, Input, OnInit, Pipe, NgModule } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
