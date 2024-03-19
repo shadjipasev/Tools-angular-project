@@ -5,6 +5,8 @@ export interface ITool {
   country: string;
   price: number;
   imgUrl: string;
+  modelUrl: string;
+  modelFile: string;
   descripion: string;
   type: string;
 }
