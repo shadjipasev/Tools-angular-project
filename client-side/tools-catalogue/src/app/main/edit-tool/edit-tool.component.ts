@@ -3,6 +3,7 @@ import { ToolService } from '../services/tool/tool.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-tool',
@@ -13,7 +14,10 @@ export class EditToolComponent implements OnInit {
   form: any = FormGroup;
   toolId: any;
   toolValues: any;
-  fileName = '';
+
+  shortLink: string = '';
+  loading: boolean = false;
+  file: File = null as any;
 
   constructor(
     private toolService: ToolService,
@@ -64,22 +68,6 @@ export class EditToolComponent implements OnInit {
     return this.form.controls;
   }
 
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-
-    if (file) {
-      this.fileName = file.name;
-
-      const formData = new FormData();
-
-      formData.append('thumbnail', file);
-
-      const upload$ = this.http.post('/api/thumbnail-upload', formData);
-
-      upload$.subscribe();
-    }
-  }
-
   onEdit() {
     if (this.form.invalid) {
       return;
@@ -98,6 +86,8 @@ export class EditToolComponent implements OnInit {
       type: fv.selectType,
     };
 
+    // this.onUpload();
+
     this.toolService.editTool(this.toolId, tool).subscribe((res) => {
       console.log(`${res} ----> onEdit`),
         (error: any) => console.log('Error', error);
@@ -105,4 +95,23 @@ export class EditToolComponent implements OnInit {
     this.router.navigateByUrl(`/data/details/${this.toolId}`),
       console.warn(this.toolId);
   }
+
+  fileName = '';
+  onChange(event: any) {
+    this.file = event.target.files[0];
+    this.fileName = this.file.name;
+  }
+
+  // onUpload() {
+  //   this.loading = !this.loading;
+  //   console.log(this.file);
+  //   this.toolService.upload(this.file).subscribe((event: any) => {
+  //     if (typeof event === 'object') {
+  //       // Short link via api response
+  //       this.shortLink = event.link;
+
+  //       this.loading = false; // Flag variable
+  //     }
+  //   });
+  // }
 }

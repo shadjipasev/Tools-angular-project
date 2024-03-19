@@ -80,22 +80,13 @@
         </ng-container>
       </div>
       <!-- MODEL URL -->
-      <div class="item">
-        <label for="modelUrl">Model URL<span></span></label>
-        <input
-          id="modelUrl"
-          type="text"
-          formControlName="modelUrl"
-          name="modelUrl"
-        />
-      </div>
 
       <!-- FILE UPLOAD -->
       <label for="fileUpload">Upload 3D file:</label>
       <input
         type="file"
         class="file-input"
-        (change)="onFileSelected($event)"
+        (change)="onChange($event)"
         #fileUpload
       />
 

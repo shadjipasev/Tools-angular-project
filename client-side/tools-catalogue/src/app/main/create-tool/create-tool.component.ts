@@ -12,6 +12,10 @@ import { Router } from '@angular/router';
 export class CreateToolComponent implements OnInit {
   form: any = FormGroup;
 
+  percentDone: any = 0;
+  preview: string;
+  fileName: string = '';
+
   constructor(
     private toolService: ToolService,
     private fb: FormBuilder,
@@ -38,9 +42,26 @@ export class CreateToolComponent implements OnInit {
         ],
       ],
       modelUrl: ['', Validators.required],
+      modelFile: ['', Validators.required],
       description: ['', Validators.required],
       selectType: ['', Validators.required],
     });
+  }
+
+  uploadFile(event: any) {
+    const file = (event.target as HTMLInputElement as any).files[0];
+    this.form.patchValue({
+      modelFile: file,
+    });
+    this.form.get('modelFile').updateValueAndValidity();
+    this.fileName = file.name;
+
+    // File Preview
+    // const reader = new FileReader();
+    // reader.onload = () => {
+    //   this.preview = reader.result as string;
+    // };
+    // reader.readAsDataURL(file);
   }
 
   onCreate() {
@@ -57,6 +78,7 @@ export class CreateToolComponent implements OnInit {
       price: fv.price,
       imgUrl: fv.imgUrl,
       modelUrl: fv.modelUrl,
+      modelFile: fv.modelFile,
       description: fv.description,
       type: fv.selectType,
     };

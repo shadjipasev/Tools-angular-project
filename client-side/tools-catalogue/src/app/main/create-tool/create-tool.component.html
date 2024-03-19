@@ -102,7 +102,7 @@
 
       <!-- MODEL URL -->
       <div class="item">
-        <label for="modelUrl">Image<span></span></label>
+        <label for="modelUrl">Model URL<span></span></label>
         <input
           id="modelUrl"
           type="text"
@@ -110,6 +110,32 @@
           name="modelUrl"
           required
         />
+      </div>
+
+      <div class="progress form-group" *ngIf="percentDone">
+        <div
+          class="progress-bar progress-bar-striped bg-success"
+          role="progressbar"
+          [style.width.%]="percentDone"
+        ></div>
+      </div>
+
+      <div class="file-input">
+        <input type="file" (change)="uploadFile($event)" #modelFile />
+      </div>
+
+      <div class="file-upload">
+        {{ fileName || "No file uploaded yet." }}
+
+        <button
+          type="button"
+          mat-mini-fab
+          color="primary"
+          class="upload-btn"
+          (click)="modelFile.click()"
+        >
+          <mat-icon>attach_file</mat-icon>
+        </button>
       </div>
 
       <!-- DESCRIPTION -->

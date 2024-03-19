@@ -384,3 +384,11 @@ button:disabled {
 .radio__span:hover {
   color: #669999;
 }
+
+.file-input {
+  display: none;
+}
+
+.upload-btn {
+  width: 45px;
+}
