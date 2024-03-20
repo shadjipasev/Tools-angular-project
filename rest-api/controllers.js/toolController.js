@@ -18,18 +18,23 @@ const {
 
 const toolController = require("express").Router();
 
-toolController.post("/create", upload.single(modelFile), async (req, res) => {
+toolController.post("/create", upload.single("modelFile"), async (req, res) => {
+  const url = req.protocol + "://" + req.get("host");
+  console.log(req);
+  const jsonData = req.body.data; // Access data object as JSON string
+  const toolData = JSON.parse(jsonData);
   const data = {
-    toolName: req.body.name,
-    material: req.body.material,
-    country: req.body.country,
-    price: req.body.price,
-    imgUrl: req.body.imgUrl,
-    modelUrl: req.body.modelUrl,
+    toolName: toolData.name,
+    material: toolData.material,
+    country: toolData.country,
+    price: toolData.price,
+    imgUrl: toolData.imgUrl,
+    modelUrl: toolData.modelUrl,
     modelFile: url + "/public/" + req.file.filename,
-    description: req.body.description,
-    type: req.body.type,
+    description: toolData.description,
+    type: toolData.type,
   };
+  console.log(data);
   try {
     await createTool(data);
     console.log("Tool is created");
