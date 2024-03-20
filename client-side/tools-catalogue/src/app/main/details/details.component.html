@@ -1,90 +1,22 @@
-<!-- <div class="tool-container">
-    <div>
-        <img src="{{tool.imgUrl}}" width="560" height="260">
-    </div>
-    <div>
-        <h1 class="tool-title">{{tool.name}}</h1>
-    </div>
-    <div class="tool-details">
-        <div style="margin: 0px 10px;"><b>Material: </b>{{tool.material}}</div>
-        <div style="margin: 0px 10px;"><b>Country: </b>{{tool.country}}</div>
-        <div style="margin: 0px 10px;"><b>Type: </b>{{tool.type}}</div>
-    </div>
-    <div style="margin: 0px 10px;">
-        <h2>Price: {{tool.price}}$</h2>
-    </div>
-    <div style="margin: 20px 10px;">
-        <p>{{tool.description}}</p> 
-    </div>
-    <div class="three-inline-buttons">
-        <p> -->
-<!-- <a class="buy button" routerLink="/data/buy/{{tool._id}}">Buy</a> -->
-<!-- <a class="delete button" routerLink="/data/delete/{{tool._id}}">Delete</a>
-            <a class="edit button" routerLink="/data/edit/{{tool._id}}">Edit</a>
-        </p>
-    </div>
-    
-</div> -->
-
-<!-- <div *ngIf="tool">
-<div class="detail-container">
-  <div class="image-container">
-    <model-viewer
-      src="https://raw.githubusercontent.com/shadjipasev/Tools-angular-project/main/cc0_-_screwdriver_1k.glb"
-      auto-rotate
-      alt="boat"
-      shadow-intensity="1"
-      camera-controls
-      touch-action="pan-y"
-    >
-    </model-viewer>
-  </div>
-  <ng-container *ngIf="admin">
-  <div class="button-container">
-    <button class="detail-button" routerLink="/data/edit/{{tool._id}}">
-      Edit
-    </button>
-    <button class="detail-button" routerLink="/data/delete/{{tool._id}}">
-      Delete
-    </button>
-  </div>
-  </ng-container>
-  <div class="text-container">
-    <h2 class="detail-title">{{tool.name}}</h2>
-    <p class="detail-info">
-      <strong>Price:</strong>{{tool.price}}<br />
-      <strong>Material:</strong> {{tool.material}}<br />
-      <strong>Country:</strong>{{tool.country}}<br />
-      <strong>Type:</strong>{{tool.type}}
-    </p>
-  </div>
-</div>
-</div> -->
-
 <div *ngIf="tool">
   <div class="detail-container">
     <div class="image-container">
-      <!-- <model-viewer
-        src="https://raw.githubusercontent.com/shadjipasev/Tools-angular-project/main/cc0_-_screwdriver_1k.glb"
-        auto-rotate
-        alt="boat"
-        shadow-intensity="1"
-        camera-controls
-        touch-action="pan-y"
-      >
-      </model-viewer> -->
-
       <iframe
+        class="PreviewFrame3D"
         title="PreviewFrame3D"
         scrolling="no"
         allowfullscreen="true"
         [src]="urlSafe"
         name="PreviewFrame3D"
         id="PreviewFrame3D"
-        width="500"
+        width="400"
         height="360"
         allow-same-origin
       ></iframe>
+      <button class="download__button" icon="download">
+        Download Model
+        <span m class="material-icons md-light">download</span>
+      </button>
     </div>
 
     <div class="text-container">
@@ -111,20 +43,13 @@
           {{ tool.type }}
         </p>
 
-        <p>
-          <li class="detail-info__tags">Description:</li>
+        <p class="description">
+          <li>Description:</li>
           {{ tool.description }}
         </p>
       </ul>
 
       <div class="button-container">
-        <!-- <a
-          href="https://github.com/shadjipasev/shadjipasev.github.io/raw/main/Hammer-2.SLDASM"
-          download
-          >Download 3D Model</a
-        > -->
-        <!-- FILE UPLOAD -->
-
         <button class="edit__button" (click)="addTool(tool)">
           Add to Cart
         </button>
