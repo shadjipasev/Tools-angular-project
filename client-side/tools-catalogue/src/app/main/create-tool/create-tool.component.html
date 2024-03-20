@@ -112,13 +112,9 @@
         />
       </div>
 
-      <div class="progress form-group" *ngIf="percentDone">
-        <div
-          class="progress-bar progress-bar-striped bg-success"
-          role="progressbar"
-          [style.width.%]="percentDone"
-        ></div>
-      </div>
+      <!-- <div class="mat-progress-bar" *ngIf="percentDone">
+        <div class="mat-progress-bar" [style.width.%]="percentDone"></div>
+      </div> -->
 
       <div class="file-input">
         <input type="file" (change)="uploadFile($event)" #modelFile />

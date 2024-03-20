@@ -1,8 +1,10 @@
+import { ITool } from 'src/app/shared/interfaces/Tool';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ITool } from '../../../shared/interfaces/Tool';
+
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Data } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +14,12 @@ export class ToolService {
 
   constructor(private httpClient: HttpClient) {}
 
-  createTool(data: any) {
-    return this.httpClient.post<ITool>(`${this.apiUrl}/data/create`, data);
+  createTool(data: any, modelFile: File): Observable<any> {
+    const formData: any = new FormData();
+    formData.append('data', JSON.stringify(data));
+    formData.append('modelFile', modelFile);
+    console.log(formData);
+    return this.httpClient.post<ITool>(`${this.apiUrl}/data/create`, formData);
   }
 
   getAll() {

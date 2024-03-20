@@ -20,6 +20,7 @@ import { ArticleComponent } from './home/article/article.component';
 import { SlideshowComponent } from './home/slideshow/slideshow.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterModule } from '@angular/router';
 import { SafePipe } from 'safe-pipe';
 
@@ -48,6 +49,7 @@ import { SafePipe } from 'safe-pipe';
     SafePipe,
     MatButtonModule,
     MatIconModule,
+    MatProgressBarModule,
   ],
   providers: [AuthenticationGuard, PermissionGuard],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
