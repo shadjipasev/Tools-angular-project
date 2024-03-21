@@ -9,6 +9,7 @@ import {
   SafeResourceUrl,
 } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
+import { saveAs } from 'file-saver';
 
 // import { ITool } from 'src/app/shared/interfaces/Tool';
 
@@ -54,6 +55,7 @@ export class DetailsComponent implements OnInit {
       console.log(this.toolId);
       this.toolService.getById(this.toolId).subscribe((res) => {
         this.tool = res;
+        console.log(this.tool.modelFile);
         this.url = res.modelUrl;
         this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
         // console.log('This is url = ' + this.urlSafe);
@@ -83,20 +85,20 @@ export class DetailsComponent implements OnInit {
     }
   }
 
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
+  downloadFile(fileName: string, event: MouseEvent) {
+    event.preventDefault();
+    console.log(fileName.split('.')[1]);
+    this.toolService
+      .downloadFile(fileName)
+      .subscribe((blob) =>
+        saveAs(blob, `${fileName}.${fileName.split('.')[1]}`)
+      );
 
-    if (file) {
-      this.fileName = file.name;
+    // (error) => {
+    //   const options = 'Failed to download file. Please try again later.';
 
-      const formData = new FormData();
-
-      formData.append('thumbnail', file);
-
-      const upload$ = this.http.post('/api/thumbnail-upload', formData);
-
-      upload$.subscribe();
-    }
+    //   // this.snackBar.open(errorMessage, 'Dismiss', { duration: 5000 });
+    // };
   }
 
   cartSize: any;

@@ -13,7 +13,11 @@
         height="360"
         allow-same-origin
       ></iframe>
-      <button class="download__button" icon="download">
+      <button
+        (click)="downloadFile(this.tool.modelFile, $event)"
+        class="download__button"
+        icon="download"
+      >
         Download Model
         <span m class="material-icons md-light">download</span>
       </button>

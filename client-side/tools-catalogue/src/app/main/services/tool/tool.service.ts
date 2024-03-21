@@ -45,4 +45,10 @@ export class ToolService {
   searchToolByName(query: string) {
     return this.httpClient.get<any>(`${this.apiUrl}/data/search/` + query);
   }
+
+  downloadFile(fileName: string): Observable<Blob> {
+    return this.httpClient.get(`${this.apiUrl}/data/download/` + fileName, {
+      responseType: 'blob',
+    });
+  }
 }
