@@ -19,7 +19,7 @@ const {
 const toolController = require("express").Router();
 
 toolController.post("/create", upload.single("modelFile"), async (req, res) => {
-  const url = req.protocol + "://" + req.get("host");
+  // const url = req.protocol + "://" + req.get("host");
   console.log(req);
   const jsonData = req.body.data; // Access data object as JSON string
   const toolData = JSON.parse(jsonData);
@@ -30,7 +30,9 @@ toolController.post("/create", upload.single("modelFile"), async (req, res) => {
     price: toolData.price,
     imgUrl: toolData.imgUrl,
     modelUrl: toolData.modelUrl,
-    modelFile: url + "/public/" + req.file.filename,
+    // modelFile: url + "/public/" + req.file.filename,
+    modelFile: req.file.filename,
+
     description: toolData.description,
     type: toolData.type,
   };
@@ -134,6 +136,22 @@ toolController.get("/search/:query", async (req, res) => {
         message: "Item with " + searchQuery + "in it, is NOT found",
       });
     }
+  }
+});
+
+toolController.get("/download/:fileName", async (req, res) => {
+  const fileName = req.params.fileName;
+  console.log(fileName);
+  // if (fileName) {
+  //   return;
+  // } else {
+  try {
+    res.download("./public/" + fileName);
+  } catch (error) {
+    res.status(404).json({
+      message: "This tool can't be downloaded!",
+    });
+    // }
   }
 });
 
