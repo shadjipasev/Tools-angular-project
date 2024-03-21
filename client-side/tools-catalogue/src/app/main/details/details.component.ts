@@ -91,7 +91,7 @@ export class DetailsComponent implements OnInit {
     this.toolService
       .downloadFile(fileName)
       .subscribe((blob) =>
-        saveAs(blob, `${fileName}.${fileName.split('.')[1]}`)
+        saveAs(blob, `${fileName.split('.')[0]}.${fileName.split('.')[1]}`)
       );
 
     // (error) => {
