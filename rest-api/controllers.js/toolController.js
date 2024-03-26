@@ -142,9 +142,6 @@ toolController.get("/search/:query", async (req, res) => {
 toolController.get("/download/:fileName", async (req, res) => {
   const fileName = req.params.fileName;
   console.log(fileName);
-  // if (fileName) {
-  //   return;
-  // } else {
   try {
     res.download("./public/" + fileName);
   } catch (error) {
