@@ -1,10 +1,8 @@
 name: Deploy
-
 on:
   push:
     tags:
       - "v*"
-
 jobs:
   deploy_to_live:
     name: Deploy prod hosting
