@@ -11,7 +11,14 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2.3.2
       - name: Install Dependencies
-        run: npm install
+        run: |
+          if [ -e yarn.lock ]; then
+          yarn install --frozen-lockfile
+          elif [ -e package-lock.json ]; then
+          npm ci
+          else
+          npm i
+          fi
       - name: Build
         env:
           CI: false
