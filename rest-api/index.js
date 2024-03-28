@@ -7,9 +7,10 @@ const authController = require("./controllers.js/authController");
 const toolController = require("./controllers.js/toolController");
 const session = require("./middlewares/session");
 const cartController = require("./controllers.js/cartController");
+const { connectionString } = require("./services/connectionString");
 // const multer = require('multer')
 
-const connectionString = "mongodb://localhost:27017/tools";
+// const connectionString = connectionString;
 
 start();
 
@@ -27,7 +28,7 @@ async function start() {
   // app.use(cors())
 
   const corsOptions = {
-    origin: "http://localhost:4200",
+    origin: "https://tools-co.web.app",
     methods: ["HEAD", "OPTIONS", "GET", "POST", "PUT", "DELETE"],
     Headers: ["Content-Type", "X-Authorization", "X-Frame-Options: GOFORIT"], //SAMEORIGIN
   };
@@ -43,6 +44,7 @@ async function start() {
   app.use("/data", toolController);
   app.use("/cart", cartController);
   // app.use(session());
+  console.log(process.env.NODE_ENV);
 
   const PORT = process.env.PORT || 3000;
 
