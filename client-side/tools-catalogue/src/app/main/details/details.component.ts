@@ -9,7 +9,7 @@ import {
   SafeResourceUrl,
 } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
-import { saveAs } from 'file-saver';
+import { saveAs } from 'file-saver-es';
 
 // import { ITool } from 'src/app/shared/interfaces/Tool';
 
