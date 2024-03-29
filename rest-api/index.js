@@ -48,7 +48,7 @@ async function start() {
   app.get("/", (req, res) => {
     res.json({ message: "REST" });
   });
-
+  app.router.replace("/thankyou");
   app.use(session());
   app.use("/auth", authController);
   app.use("/data", toolController);
