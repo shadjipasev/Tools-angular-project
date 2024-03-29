@@ -20,7 +20,7 @@ start();
 
 async function start() {
   mongoose.set("strictQuery", false);
-  await mongoose.connect(process.env.MONGO_ATL_URI);
+  mongoose.connect(process.env.MONGO_ATL_URI);
   console.log("Database: Works");
 
   const app = express();
