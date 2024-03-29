@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -9,6 +11,8 @@ const session = require("./middlewares/session");
 const cartController = require("./controllers.js/cartController");
 const { connectionString } = require("./services/connectionString");
 // const multer = require('multer')
+
+// console.log(process.env); // remove this after you've confirmed it is working
 
 // const connectionString = connectionString;
 
