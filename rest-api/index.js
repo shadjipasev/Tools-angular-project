@@ -32,7 +32,7 @@ async function start() {
   // app.use(cors())
 
   const corsOptions = {
-    origin: "https://tools-co.web.app",
+    origin: ["*"],
     methods: ["HEAD", "OPTIONS", "GET", "POST", "PUT", "DELETE"],
     Headers: ["Content-Type", "X-Authorization", "X-Frame-Options: GOFORIT"], //SAMEORIGIN
   };
