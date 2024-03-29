@@ -21,6 +21,7 @@ start();
 async function start() {
   mongoose.set("strictQuery", false);
   mongoose.connect(process.env.MONGO_ATL_URI);
+
   console.log("Database: Works");
 
   const app = express();
@@ -34,7 +35,12 @@ async function start() {
   const corsOptions = {
     origin: ["*"],
     methods: ["HEAD", "OPTIONS", "GET", "POST", "PUT", "DELETE"],
-    Headers: ["Content-Type", "X-Authorization", "X-Frame-Options: GOFORIT"], //SAMEORIGIN
+    Headers: [
+      "Content-Type",
+      "X-Authorization",
+      "X-Frame-Options: GOFORIT",
+      "Origin",
+    ], //SAMEORIGIN
   };
 
   app.use(cors(corsOptions));
@@ -48,7 +54,7 @@ async function start() {
   app.use("/data", toolController);
   app.use("/cart", cartController);
   // app.use(session());
-  console.log(process.env.NODE_ENV);
+  console.log(process.env.MONGO_ATL_URI);
 
   // const PORT = process.env.PORT || 3000;
 
