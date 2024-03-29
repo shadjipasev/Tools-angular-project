@@ -20,7 +20,7 @@ start();
 
 async function start() {
   mongoose.set("strictQuery", false);
-  mongoose.connect(process.env.MONGO_ATL_URI);
+  mongoose.connect(process.env.MONGODB_CONNECT_URI);
 
   console.log("Database: Works");
 
@@ -48,13 +48,13 @@ async function start() {
   app.get("/", (req, res) => {
     res.json({ message: "REST" });
   });
-  app.router.replace("/thankyou");
+  // app.router.replace("/thankyou");
   app.use(session());
   app.use("/auth", authController);
   app.use("/data", toolController);
   app.use("/cart", cartController);
   // app.use(session());
-  console.log(process.env.MONGO_ATL_URI);
+  console.log(process.env.MONGODB_CONNECT_URI);
 
   // const PORT = process.env.PORT || 3000;
 
