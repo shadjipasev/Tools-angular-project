@@ -20,7 +20,9 @@ start();
 
 async function start() {
   mongoose.set("strictQuery", false);
-  await mongoose.connect(connectionString);
+  await mongoose.connect(
+    "mongodb+srv://shadjipasev:852456Patriciq123!@cluster1.atk3rn7.mongodb.net/tools-co"
+  );
   console.log("Database: Works");
 
   const app = express();
