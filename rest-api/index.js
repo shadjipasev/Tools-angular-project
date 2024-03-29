@@ -20,9 +20,7 @@ start();
 
 async function start() {
   mongoose.set("strictQuery", false);
-  await mongoose.connect(
-    "mongodb+srv://shadjipasev:852456Patriciq123!@cluster1.atk3rn7.mongodb.net/tools-co"
-  );
+  await mongoose.connect(process.env.MONGO_ATL_URI);
   console.log("Database: Works");
 
   const app = express();
@@ -52,9 +50,9 @@ async function start() {
   // app.use(session());
   console.log(process.env.NODE_ENV);
 
-  const PORT = process.env.PORT || 3000;
+  // const PORT = process.env.PORT || 3000;
 
-  app.listen(PORT, () => {
+  app.listen(process.env.PORT, () => {
     console.log("REST service started");
   });
 }
