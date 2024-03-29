@@ -19,7 +19,7 @@
     "@angular/core": "^17.3.0",
     "@angular/forms": "^17.3.0",
     "@angular/localize": "^17.3.0",
-    "@angular/material": "^15.2.9",
+    "@angular/material": "^16.2.14",
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
@@ -32,6 +32,7 @@
     "rxjs": "~7.5.0",
     "safe-pipe": "^3.0.4",
     "tslib": "^2.3.0",
+    "webpack": "^5.91.0",
     "zone.js": "~0.14.4"
   },
   "devDependencies": {
