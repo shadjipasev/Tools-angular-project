@@ -58,7 +58,7 @@ async function start() {
 
   // const PORT = process.env.PORT || 3000;
 
-  app.listen(process.env.PORT, () => {
+  app.listen(3000, () => {
     console.log("REST service started");
   });
 }
