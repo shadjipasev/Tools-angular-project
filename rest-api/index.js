@@ -33,7 +33,7 @@ async function start() {
   // app.use(cors())
 
   const corsOptions = {
-    origin: ["*"],
+    origin: "https://tools-co.web.app",
     methods: ["HEAD", "OPTIONS", "GET", "POST", "PUT", "DELETE"],
     Headers: [
       "Content-Type",
