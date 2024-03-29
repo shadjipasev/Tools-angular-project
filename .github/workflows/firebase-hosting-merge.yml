@@ -21,8 +21,9 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           entryPoint: client-side/tools-catalogue
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: "${{ secrets.FIREBASE_TOKEN }}"
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          expires: 7d
           channelId: live
           projectId: tools-co
         env:
