@@ -1,5 +1,4 @@
 export const environment = {
-  apiUrl:
-    'https://tools-angular-project-1s37yeotx-shadjipasevs-projects.vercel.app',
+  apiUrl: 'https://tools-angular-project.vercel.app',
   production: true,
 };
