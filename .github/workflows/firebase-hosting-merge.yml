@@ -18,6 +18,7 @@ jobs:
       # - run: ...
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
+          entryPoint: client-side/tools-catalogue
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: "${{ secrets.FIREBASE_TOKEN }}"
           channelId: live
