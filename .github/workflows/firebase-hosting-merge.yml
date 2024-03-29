@@ -14,7 +14,7 @@ jobs:
       # - run: ...
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          entryPoint: "."
+          entryPoint: "/Tools-angular-project"
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: "${{ secrets.FIREBASE_TOKEN }}"
           channelId: live
