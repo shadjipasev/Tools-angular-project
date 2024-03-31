@@ -14,12 +14,12 @@ const cartController = require("./controllers.js/cartController");
 //File
 // const { GridFsStorage } = require("multer-gridfs-storage");
 // const multer = require("multer");
-
+mongoose.set("strictQuery", false);
+const initDB = async () => mongoose.connect(process.env.MONGODB_CONNECT_URI);
 start();
 
 async function start() {
-  mongoose.set("strictQuery", false);
-  mongoose.connect(process.env.MONGODB_CONNECT_URI);
+  await initDB();
 
   // let connection = mongoose.connection
 
