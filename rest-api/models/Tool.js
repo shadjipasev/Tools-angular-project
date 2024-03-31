@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 
 const toolSchema = new Schema({
   toolName: { type: String, required: true },
@@ -7,7 +7,7 @@ const toolSchema = new Schema({
   price: { type: Number, required: true },
   imgUrl: { type: String, required: true },
   modelUrl: { type: String, required: true },
-  //modelFile: { type: String, required: true },
+  modelFile: { type: Types.ObjectId, required: true },
   description: { type: String, required: true },
   type: { type: String, required: true },
 });
