@@ -30,7 +30,7 @@ const storage = new GridFsStorage({
     return new Promise((resolve, reject) => {
       const filename = file.originalname;
       const fileInfo = {
-        filename: filename,
+        modelFile: filename,
         bucketName: "newBucket",
       };
       resolve(fileInfo);
