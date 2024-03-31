@@ -19,7 +19,7 @@ start();
 
 async function start() {
   mongoose.set("strictQuery", false);
-  mongoose.connect(process.env.MONGODB_CONNECT_URI);
+  mongoose.connect(process.env.MONGODB_CONNECT_URI, { useNewUrlParser: true });
 
   // let connection = mongoose.connection
 
