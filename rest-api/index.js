@@ -16,6 +16,7 @@ const cartController = require("./controllers.js/cartController");
 // const multer = require("multer");
 mongoose.set("strictQuery", false);
 const initDB = async () => mongoose.connect(process.env.MONGODB_CONNECT_URI);
+
 start();
 
 async function start() {

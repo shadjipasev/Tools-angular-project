@@ -56,4 +56,5 @@ var upload = multer({
 
 module.exports = {
   upload,
+  bucket,
 };

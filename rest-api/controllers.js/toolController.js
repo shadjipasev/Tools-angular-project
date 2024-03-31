@@ -1,6 +1,8 @@
 // const upload = require('../middlewares/upload');
 
-const { upload } = require("../middlewares/upload");
+const { upload, bucket } = require("../middlewares/upload");
+const mongoose = require("mongoose");
+
 const {
   createTool,
   getAllTools,
@@ -139,11 +141,12 @@ toolController.get("/search/:query", async (req, res) => {
   }
 });
 
-toolController.get("/download/:fileName", async (req, res) => {
-  const fileName = req.params.fileName;
-  console.log(fileName);
+toolController.get("/download/:fileId", async (req, res) => {
+  const fileId = req.params.fileId;
+
   try {
-    res.download("./public/" + fileName);
+    bucket.openDownloadStream(mongoose.Types.ObjectId(fileId));
+    downloadStream.pipe(res);
   } catch (error) {
     res.status(404).json({
       message: "This tool can't be downloaded!",

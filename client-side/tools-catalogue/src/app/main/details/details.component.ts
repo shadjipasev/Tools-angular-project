@@ -85,13 +85,13 @@ export class DetailsComponent implements OnInit {
     }
   }
 
-  downloadFile(fileName: string, event: MouseEvent) {
+  downloadFile(fileId: string, event: MouseEvent) {
     event.preventDefault();
-    console.log(fileName.split('.')[1]);
+    console.log(fileId);
     this.toolService
-      .downloadFile(fileName)
+      .downloadFile(fileId)
       .subscribe((blob) =>
-        saveAs(blob, `${fileName.split('.')[0]}.${fileName.split('.')[1]}`)
+        saveAs(blob, `${fileId.split('.')[0]}.${fileId.split('.')[1]}`)
       );
 
     // (error) => {
