@@ -90,9 +90,7 @@ export class DetailsComponent implements OnInit {
     console.log(fileId);
     this.toolService
       .downloadFile(fileId)
-      .subscribe((blob) =>
-        saveAs(blob, `${fileId.split('.')[0]}.${fileId.split('.')[1]}`)
-      );
+      .subscribe((blob) => saveAs(blob, this.tool.name));
 
     // (error) => {
     //   const options = 'Failed to download file. Please try again later.';
