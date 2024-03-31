@@ -49,9 +49,9 @@ async function start() {
   app.get("/", (req, res) => {
     res.json({ message: "REST" });
   });
-  app.get("/favicon.ico", (req, res) =>
-    res.status(200).sendFile("favicon.ico", "./static")
-  );
+  // app.get("/favicon.ico", (req, res) =>
+  //   res.status(200).sendFile("favicon.ico", "./static")
+  // );
   // app.router.replace("/thankyou");
   app.use(session());
   app.use("/auth", authController);
