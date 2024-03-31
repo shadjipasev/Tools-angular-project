@@ -28,9 +28,9 @@ async function editTool(id, data) {
   await tool.save();
 }
 
-async function createTool(data) {
+function createTool(data) {
   console.log(data);
-  await Tool.create(data);
+  Tool.create(data);
   console.log("Tool is created");
 }
 
