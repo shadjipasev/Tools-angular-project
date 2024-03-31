@@ -30,12 +30,12 @@ toolController.post("/create", upload.single("modelFile"), async (req, res) => {
     price: toolData.price,
     imgUrl: toolData.imgUrl,
     modelUrl: toolData.modelUrl,
-    modelFile: req.file.filename,
+    modelFile: req.file.id,
     description: toolData.description,
     type: toolData.type,
   };
-  console.log(data);
-  console.log("FILE ID = " + req.file.id);
+  //console.log(data);
+  //console.log("FILE ID = " + req.file.id);
   try {
     await createTool(data);
     console.log("Tool is created");
