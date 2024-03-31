@@ -34,7 +34,7 @@ async function start() {
   // app.use(cors())
 
   const corsOptions = {
-    origin: "https://tools-co.web.app",
+    origin: "*",
     methods: ["HEAD", "OPTIONS", "GET", "POST", "PUT", "DELETE"],
     Headers: [
       "Content-Type",
@@ -55,7 +55,7 @@ async function start() {
   app.use("/data", toolController);
   app.use("/cart", cartController);
   // app.use(session());
-  console.log(process.env.MONGODB_CONNECT_URI);
+  // console.log(process.env.MONGODB_CONNECT_URI);
 
   // const PORT = process.env.PORT || 3000;
 
