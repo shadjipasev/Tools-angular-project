@@ -1,8 +1,6 @@
 {
   "/api/*": {
     "target": "https://tools-angular-project-five.vercel.app",
-    "secure": "true",
-    "logLevel": "debug",
-    "changeOrigin": true
+    "secure": "true"
   }
 }
