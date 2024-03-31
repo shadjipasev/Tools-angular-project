@@ -19,7 +19,7 @@ start();
 
 async function start() {
   mongoose.set("strictQuery", false);
-  mongoose.connect(process.env.MONGODB_CONNECT_URI);
+  await mongoose.connect(process.env.MONGODB_CONNECT_URI);
 
   // let connection = mongoose.connection
 
