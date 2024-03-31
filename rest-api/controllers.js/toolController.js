@@ -20,9 +20,9 @@ const toolController = require("express").Router();
 
 toolController.post("/create", upload.single("modelFile"), async (req, res) => {
   // const url = req.protocol + "://" + req.get("host");
-  console.log(req);
+  // console.log(req);
   const jsonData = req.body.data; // Access data object as JSON string
-  const toolData = JSON.parse(jsonData);
+  const toolData = await JSON.parse(jsonData);
   const data = {
     toolName: toolData.name,
     material: toolData.material,
@@ -37,9 +37,9 @@ toolController.post("/create", upload.single("modelFile"), async (req, res) => {
   //console.log(data);
   //console.log("FILE ID = " + req.file.id);
   try {
-    await createTool(data);
+    const tool = await createTool(data);
     // console.log("Tool is created");
-    res.status(200).send("File uploaded successfully");
+    res.status(200).send(tool.toolName + "is uploaded successfully");
   } catch (error) {
     res.status(400).json({
       message: error.message,
