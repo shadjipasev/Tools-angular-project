@@ -37,6 +37,7 @@ async function start() {
     origin: "https://tools-co.web.app",
     methods: ["HEAD", "OPTIONS", "GET", "POST", "PUT", "DELETE"],
     Headers: [
+      "Access-Control-Allow-Headers",
       "Content-Type",
       "X-Authorization",
       "X-Frame-Options: GOFORIT",
