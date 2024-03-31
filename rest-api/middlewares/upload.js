@@ -25,7 +25,7 @@ mongoose.connection.on("connected", () => {
 // });
 
 const storage = new GridFsStorage({
-  url: mongouri,
+  url: process.env.MONGODB_CONNECT_URI,
   file: (req, file) => {
     return new Promise((resolve, reject) => {
       const filename = file.originalname;
