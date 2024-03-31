@@ -98,7 +98,7 @@ export class CreateToolComponent implements OnInit {
             break;
           case HttpEventType.UploadProgress:
             if (event.total) {
-              const total: number = event.total;
+              // const total: number = event.total;
               this.percentDone = Math.round((event.loaded / event.total) * 100);
               console.log(`Uploaded! ${this.percentDone}%`);
             } else {

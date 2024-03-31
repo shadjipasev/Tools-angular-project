@@ -25,6 +25,7 @@
     "@angular/router": "^17.3.0",
     "@google/model-viewer": "^3.1.1",
     "@popperjs/core": "^2.10.2",
+    "@vercel/blob": "^0.22.1",
     "file-saver-es": "^2.0.5",
     "jquery": "^3.6.3",
     "jquery-ui-dist": "^1.13.2",

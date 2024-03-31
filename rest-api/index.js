@@ -10,17 +10,18 @@ const toolController = require("./controllers.js/toolController");
 const session = require("./middlewares/session");
 const cartController = require("./controllers.js/cartController");
 const { connectionString } = require("./services/connectionString");
-// const multer = require('multer')
 
-// console.log(process.env); // remove this after you've confirmed it is working
-
-// const connectionString = connectionString;
+//File
+const { GridFsStorage } = require("multer-gridfs-storage");
+const multer = require("multer");
 
 start();
 
 async function start() {
   mongoose.set("strictQuery", false);
   mongoose.connect(process.env.MONGODB_CONNECT_URI);
+
+  // let connection = mongoose.connection
 
   console.log("Database: Works");
 
@@ -61,4 +62,5 @@ async function start() {
   app.listen(5000, () => {
     console.log("REST service started");
   });
+  // module.export =
 }

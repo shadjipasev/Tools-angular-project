@@ -30,7 +30,6 @@ toolController.post("/create", upload.single("modelFile"), async (req, res) => {
     price: toolData.price,
     imgUrl: toolData.imgUrl,
     modelUrl: toolData.modelUrl,
-    // modelFile: url + "/public/" + req.file.filename,
     modelFile: req.file.filename,
 
     description: toolData.description,
@@ -40,6 +39,7 @@ toolController.post("/create", upload.single("modelFile"), async (req, res) => {
   try {
     await createTool(data);
     console.log("Tool is created");
+    res.status(200).send("File uploaded successfully");
   } catch (error) {
     res.status(400).json({
       message: error.message,
