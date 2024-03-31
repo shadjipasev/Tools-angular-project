@@ -9,11 +9,11 @@ const authController = require("./controllers.js/authController");
 const toolController = require("./controllers.js/toolController");
 const session = require("./middlewares/session");
 const cartController = require("./controllers.js/cartController");
-const { connectionString } = require("./services/connectionString");
+// const { connectionString } = require("./services/connectionString");
 
 //File
-const { GridFsStorage } = require("multer-gridfs-storage");
-const multer = require("multer");
+// const { GridFsStorage } = require("multer-gridfs-storage");
+// const multer = require("multer");
 
 start();
 
@@ -28,7 +28,7 @@ async function start() {
   const app = express();
   app.use(express.json());
   app.use(bodyParser.json());
-  app.use(express.json({ limit: "10mb" }));
+  app.use(express.json({ limit: "100mb" }));
   app.use(express.urlencoded({ extended: false }));
 
   // app.use(cors())
