@@ -145,7 +145,7 @@ toolController.get("/download/:fileId", async (req, res) => {
   const fileId = req.params.fileId;
 
   try {
-    bucket.openDownloadStream(mongoose.Types.ObjectId(fileId));
+    bucket.openDownloadStream(fileId);
     downloadStream.pipe(res);
   } catch (error) {
     res.status(404).json({
