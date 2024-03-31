@@ -31,7 +31,6 @@ toolController.post("/create", upload.single("modelFile"), async (req, res) => {
     imgUrl: toolData.imgUrl,
     modelUrl: toolData.modelUrl,
     modelFile: req.file.filename,
-
     description: toolData.description,
     type: toolData.type,
   };
