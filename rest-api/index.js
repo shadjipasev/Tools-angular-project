@@ -28,7 +28,7 @@ async function start() {
   const app = express();
   app.use(express.json());
   app.use(bodyParser.json());
-  app.use(express.json({ limit: "100mb" }));
+  // app.use(express.json({ limit: "100mb" }));
   app.use(express.urlencoded({ extended: false }));
 
   // app.use(cors())
@@ -62,5 +62,4 @@ async function start() {
   app.listen(5000, () => {
     console.log("REST service started");
   });
-  // module.export =
 }
