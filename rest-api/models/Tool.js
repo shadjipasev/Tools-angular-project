@@ -7,7 +7,7 @@ const toolSchema = new Schema({
   price: { type: Number, required: true },
   imgUrl: { type: String, required: true },
   modelUrl: { type: String, required: true },
-  modelFile: { type: Types.ObjectId, required: true },
+  modelFile: { type: Types.ObjectId },
   description: { type: String, required: true },
   type: { type: String, required: true },
 });
