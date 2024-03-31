@@ -50,7 +50,7 @@ async function start() {
     res.json({ message: "REST" });
   });
   app.get("/favicon.ico", (req, res) =>
-    res.status(200).sendFile("favicon.ico", { root: __dirname + "/static/" })
+    res.status(200).sendFile("favicon.ico", "./static")
   );
   // app.router.replace("/thankyou");
   app.use(session());
