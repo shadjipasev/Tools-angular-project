@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
-const schema = require("gridfile");
+// const mongoose = require("mongoose");
+// const schema = require("gridfile");
 
-module.exports = mongoose.model("Attachment", schema, "attachment.files");
+// module.exports = mongoose.model("Attachment", schema, "attachment.files");
