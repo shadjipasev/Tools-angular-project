@@ -26,8 +26,8 @@ mongoose.connection.on("connected", () => {
 
 const storage = new GridFsStorage({
   url: process.env.MONGODB_CONNECT_URI,
-  file: async (req, file) => {
-    const promise = new Promise((resolve, reject) => {
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
       const filename = file.originalname;
       const fileInfo = {
         filename: filename,
@@ -35,7 +35,6 @@ const storage = new GridFsStorage({
       };
       resolve(fileInfo);
     });
-    console.log("PROMISE", promise);
   },
 });
 
