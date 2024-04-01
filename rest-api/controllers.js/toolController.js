@@ -145,7 +145,7 @@ toolController.get("/search/:query", async (req, res) => {
 
 toolController.get("/download/:fileId", async (req, res) => {
   const fileId = req.params.fileId;
-  let downloadStream = bucket.openDownloadStream(
+  let downloadStream = await bucket.openDownloadStream(
     new mongoose.Types.ObjectId(fileId)
   );
   try {
