@@ -147,7 +147,7 @@ toolController.get("/search/:query", async (req, res) => {
 
 toolController.get("/download/:fileName/:fileId", async (req, res) => {
   const fileName = req.params.fileName;
-  const fileId = new mongoose.Types.ObjectId(req.params.fileId());
+  const fileId = new mongoose.Types.ObjectId(req.params.fileId);
 
   try {
     let dbRef = mongoose.connections[0].db;
