@@ -1,7 +1,7 @@
 import { ShoppingCartService } from './../services/shopping-cart/shopping-cart.service';
 import { AuthService } from './../../auth/auth.service';
 import { ToolService } from '../services/tool/tool.service';
-import { Component, Input, OnInit, Pipe, NgModule } from '@angular/core';
+import { Component, Input, OnInit, Pipe, NgModule, model } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   DomSanitizer,
@@ -88,8 +88,10 @@ export class DetailsComponent implements OnInit {
   downloadFile(fileId: string, event: MouseEvent) {
     event.preventDefault();
     console.log(fileId);
+    let fileName = this.tool.name.toLowerCase();
+    console.log(this.tool.name);
     this.toolService
-      .downloadFile(fileId)
+      .downloadFile(fileId, fileName)
       .subscribe((blob) => saveAs(blob, this.tool.name));
     console.log(fileId);
     // (error) => {
