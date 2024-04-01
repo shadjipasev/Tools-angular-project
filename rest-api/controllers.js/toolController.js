@@ -159,6 +159,7 @@ toolController.get("/download/:fileId", async (req, res) => {
     );
     downloadStream.on("modelFile", (file) => {
       res.set("Content-Type", file.contentType);
+      res.set("Content-Disposition", 'attachment; filename="modelrad.rar"');
     });
 
     downloadStream.pipe(res);
