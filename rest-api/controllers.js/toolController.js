@@ -145,17 +145,16 @@ toolController.get("/search/:query", async (req, res) => {
   }
 });
 
-toolController.get("/download/:fileId", upload(), async (req, res) => {
+toolController.get("/download/:fileId", async (req, res) => {
   const fileId = req.params.fileId;
 
   try {
-    // let dbRef = mongoose.connections[0].db;
-    // let bucketRef = new mongoose.mongo.GridFSBucket(dbRef, {
-    //   bucketName: "newBucket",
-    // });
+    let dbRef = mongoose.connections[0].db;
+    let bucketRef = new mongoose.mongo.GridFSBucket(dbRef, {
+      bucketName: "newBucket",
+    });
     res.status(200).json("File is downloading");
-    bucket.openDownloadStream(fileId).pipe(res);
-    // });
+    bucketRef.openDownloadStream(fileId).pipe(res);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
