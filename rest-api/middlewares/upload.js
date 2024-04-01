@@ -64,6 +64,4 @@ var upload = multer({
 
 module.exports = {
   upload,
-  bucketRef,
-  dbRef,
 };
