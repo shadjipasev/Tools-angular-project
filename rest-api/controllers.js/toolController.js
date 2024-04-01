@@ -153,8 +153,17 @@ toolController.get("/download/:fileId", async (req, res) => {
     let bucketRef = new mongoose.mongo.GridFSBucket(dbRef, {
       bucketName: "newBucket",
     });
-    res.status(200).json("File is downloading");
-    bucketRef.openDownloadStream(fileId).pipe(res);
+    // res.status(200).json("File is downloading");
+    let downloadStream = bucket.openDownloadStream(
+      new mongoose.Types.ObjectId(fileId)
+    );
+    downloadStream.on("modelFile", (file) => {
+      res.set("Content-Type", file.contentType);
+    });
+
+    downloadStream.pipe(res);
+
+    // bucketRef.openDownloadStream(new mongoose.Types.ObjectId(fileId)).pipe(res);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
