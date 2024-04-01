@@ -6,7 +6,8 @@ const fs = require("fs");
 
 // const bucket = new mongodb.GridFSBucket(db, { bucketName: "newBucket" });
 let db = mongoose.connections[0].db;
-const bucket = new mongoose.mongo.GridFSBucket(db, { bucketName: "newBucket" });
+const bucket = async () =>
+  new mongoose.mongo.GridFSBucket(db, { bucketName: "newBucket" });
 
 const {
   createTool,
@@ -159,7 +160,7 @@ toolController.get("/download/:fileId", async (req, res) => {
 
     // downloadStream.pipe(res);
 
-    bucket
+    await bucket
       .openDownloadStream(ObjectId(fileId))
       .pipe(fs.createWriteStream("./outputFile"));
   } catch (error) {
