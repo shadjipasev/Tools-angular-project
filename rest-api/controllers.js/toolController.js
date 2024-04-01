@@ -149,15 +149,15 @@ toolController.get("/download/:fileId", async (req, res) => {
   const fileId = req.params.fileId;
 
   try {
-    const file = bucket.findById().toArray((err, files) => {
-      if (!files || files.length === 0) {
-        return res.status(404).json({
-          err: "no files exist",
-        });
-      }
-      res.status(200).json("File is downloading");
-      bucket.openDownloadStream(fileId).pipe(res);
-    });
+    // file = bucket.findById(fileId).toArray((err, files) => {
+    //   if (!files || files.length === 0) {
+    //     return res.status(404).json({
+    //       err: "no files exist",
+    //     });
+    //   }
+    res.status(200).json("File is downloading");
+    bucket.openDownloadStream(fileId).pipe(res);
+    // });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
