@@ -147,16 +147,14 @@ toolController.get("/search/:query", async (req, res) => {
 
 toolController.get("/download/:fileName/:fileId", async (req, res) => {
   const fileName = req.params.fileName;
-  const fileId = req.params.fileId;
+  const fileId = new mongoose.Types.ObjectId(req.params.fileId());
 
   try {
     let dbRef = mongoose.connections[0].db;
     let bucketRef = new mongoose.mongo.GridFSBucket(dbRef, {
       bucketName: "newBucket",
     });
-    let downloadStream = bucketRef.openDownloadStream(
-      new mongoose.Types.ObjectId(fileId)
-    );
+    let downloadStream = bucketRef.openDownloadStream(fileId);
     downloadStream.on("modelFile", (file) => {
       res.set("Content-Type", file.contentType);
     });
@@ -169,7 +167,7 @@ toolController.get("/download/:fileName/:fileId", async (req, res) => {
     //   res.set("Content-Type", file.contentType);
     // res.set("Content-Disposition", 'attachment; filename="modelrad.rar"');
     // });
-    bucketRef.rename(ObjectId(fileId), fileName);
+    bucketRef.rename(fileId, fileName);
     res.status(200).json("File is downloading");
 
     downloadStream.pipe(res);
