@@ -149,7 +149,7 @@ toolController.get("/download/:fileId", async (req, res) => {
     new mongoose.Types.ObjectId(fileId)
   );
   try {
-    await downloadStream.on("file", (file) => {
+    await downloadStream.on("modelFile", (file) => {
       res.set("Content-Type", file.contentType);
     });
     downloadStream.pipe(res);
