@@ -15,7 +15,7 @@ mongoose.connection.on("connected", () => {
 });
 
 const dbRef = mongoose.connections[0].db;
-const bucketRef = new mongoose.mongo.GridFSBucket(dbRef, {
+const bucketRef = mongoose.mongo.GridFSBucket(dbRef, {
   bucketName: "newBucket",
 });
 
