@@ -149,11 +149,14 @@ toolController.get("/download/:fileId", async (req, res) => {
   //   new mongoose.Types.ObjectId(fileId)
   // );
   try {
-    // await downloadStream.on("modelFile", (file) => {
-    //   res.set("Content-Type", file.contentType);
-    // });
-    // await downloadStream.pipe(res);
-    // res.status(200);
+    const file = await bucket
+      .find(new mongoose.Types.ObjectId(fileId))
+      .toArray();
+    if (!file || !file.length) {
+      console.error("File not found");
+      return res.status(404).json({ message: "File not found" });
+    }
+
     const downloadStream = bucket.openDownloadStream(
       new mongoose.Types.ObjectId(fileId)
     );
@@ -163,22 +166,13 @@ toolController.get("/download/:fileId", async (req, res) => {
       res.status(500).json({ message: "Internal Server Error" });
     });
 
-    const file = await bucket
-      .find(new mongoose.Types.ObjectId(fileId))
-      .toArray();
-    if (!file || !file.length) {
-      return res.status(404).json({ message: "File not found" });
-    }
-
     res.set("Content-Type", file[0].contentType);
     res.status(200);
 
     downloadStream.pipe(res);
   } catch (error) {
-    res.status(404).json({
-      message: "This tool can't be downloaded!",
-    });
-    // }
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
