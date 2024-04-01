@@ -4,6 +4,11 @@ const mongoose = require("mongoose");
 
 //creating bucket
 let bucket;
+
+let dbRef = mongoose.connections[0].db;
+let bucketRef = new mongoose.mongo.GridFSBucket(db, {
+  bucketName: "newBucket",
+});
 mongoose.connection.on("connected", () => {
   let db = mongoose.connections[0].db;
   bucket = new mongoose.mongo.GridFSBucket(db, {
@@ -63,4 +68,6 @@ var upload = multer({
 
 module.exports = {
   upload,
+  bucketRef,
+  dbRef,
 };

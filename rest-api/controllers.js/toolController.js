@@ -1,13 +1,10 @@
 // const upload = require('../middlewares/upload');
 
-const { upload } = require("../middlewares/upload");
+const { upload, bucketRef } = require("../middlewares/upload");
 const mongoose = require("mongoose");
 const fs = require("fs");
 
 // const bucket = new mongodb.GridFSBucket(db, { bucketName: "newBucket" });
-let db = mongoose.connections[0].db;
-const bucket = async () =>
-  new mongoose.mongo.GridFSBucket(db, { bucketName: "newBucket" });
 
 const {
   createTool,
@@ -150,19 +147,24 @@ toolController.get("/search/:query", async (req, res) => {
 
 toolController.get("/download/:fileId", async (req, res) => {
   const fileId = req.params.fileId;
-  // let downloadStream = bucket.openDownloadStream(
-  //   new mongoose.Types.ObjectId(fileId)
-  // );
+  let downloadStream = bucket.openDownloadStream(
+    new mongoose.Types.ObjectId(fileId)
+  );
   try {
+    downloadStream.on("file", (file) => {
+      res.set("Content-Type", file.contentType);
+    });
+
+    downloadStream.pipe(res);
     // downloadStream.on("file", (file) => {
     //   res.set("Content-Type", file.contentType);
     // });
 
     // downloadStream.pipe(res);
 
-    await bucket
-      .openDownloadStream(ObjectId(fileId))
-      .pipe(fs.createWriteStream("./outputFile"));
+    // bucketRef
+    //   .openDownloadStream(ObjectId(fileId))
+    //   .pipe(fs.createWriteStream("./outputFile"));
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
