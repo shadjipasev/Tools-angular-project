@@ -145,11 +145,14 @@ toolController.get("/search/:query", async (req, res) => {
 
 toolController.get("/download/:fileId", async (req, res) => {
   const fileId = req.params.fileId;
-
+  let downloadStream = bucket.openDownloadStream(
+    new mongoose.Types.ObjectId(fileId)
+  );
   try {
-    bucket
-      .openDownloadStream(ObjectId(fileId))
-      .pipe(fs.createWriteStream("./outputFile"));
+    await downloadStream.on("file", (file) => {
+      res.set("Content-Type", file.contentType);
+    });
+    downloadStream.pipe(res);
   } catch (error) {
     res.status(404).json({
       message: "This tool can't be downloaded!",
