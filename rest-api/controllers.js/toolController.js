@@ -152,7 +152,8 @@ toolController.get("/download/:fileId", async (req, res) => {
     await downloadStream.on("modelFile", (file) => {
       res.set("Content-Type", file.contentType);
     });
-    downloadStream.pipe(res);
+    await downloadStream.pipe(res);
+    res.status(200);
   } catch (error) {
     res.status(404).json({
       message: "This tool can't be downloaded!",
