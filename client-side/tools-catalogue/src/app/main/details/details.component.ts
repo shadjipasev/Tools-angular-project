@@ -91,7 +91,7 @@ export class DetailsComponent implements OnInit {
     this.toolService
       .downloadFile(fileId)
       .subscribe((blob) => saveAs(blob, this.tool.name));
-
+    // console.log(fileId);
     // (error) => {
     //   const options = 'Failed to download file. Please try again later.';
 

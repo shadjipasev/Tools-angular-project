@@ -2,6 +2,7 @@
 
 const { upload, bucket } = require("../middlewares/upload");
 const mongoose = require("mongoose");
+import fs from "fs";
 
 const {
   createTool,
@@ -17,6 +18,7 @@ const {
   decodeToken,
   cartSize,
 } = require("../services/userServices");
+const { ObjectId } = require("mongodb");
 
 const toolController = require("express").Router();
 
@@ -145,8 +147,9 @@ toolController.get("/download/:fileId", async (req, res) => {
   const fileId = req.params.fileId;
 
   try {
-    bucket.openDownloadStream(fileId);
-    downloadStream.pipe(res);
+    bucket
+      .openDownloadStream(ObjectId(fileId))
+      .pipe(fs.createWriteStream("./outputFile"));
   } catch (error) {
     res.status(404).json({
       message: "This tool can't be downloaded!",
