@@ -154,7 +154,6 @@ toolController.get("/download/:fileName/:fileId", async (req, res) => {
     let bucketRef = new mongoose.mongo.GridFSBucket(dbRef, {
       bucketName: "newBucket",
     });
-    // res.status(200).json("File is downloading");
     let downloadStream = bucketRef.openDownloadStream(
       new mongoose.Types.ObjectId(fileId)
     );
@@ -170,7 +169,9 @@ toolController.get("/download/:fileName/:fileId", async (req, res) => {
     //   res.set("Content-Type", file.contentType);
     // res.set("Content-Disposition", 'attachment; filename="modelrad.rar"');
     // });
-    bucketRef.rename(fileName);
+    bucketRef.rename(fileId, fileName);
+    res.status(200).json("File is downloading");
+
     downloadStream.pipe(res);
 
     // bucketRef.openDownloadStream(new mongoose.Types.ObjectId(fileId)).pipe(res);
