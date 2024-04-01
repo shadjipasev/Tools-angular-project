@@ -12,12 +12,12 @@ mongoose.connection.on("connected", () => {
   console.log(bucket);
 });
 
-const gridfs = {
-  getBucket: function () {
-    return bucket;
-  },
-  // Add more methods as needed
-};
+// const gridfs = {
+//   getBucket: function () {
+//     return bucket;
+//   },
+//   // Add more methods as needed
+// };
 
 // let connection = mongoose.connection;
 // const DIR = "./public/";
