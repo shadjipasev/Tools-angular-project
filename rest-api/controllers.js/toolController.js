@@ -154,14 +154,19 @@ toolController.get("/download/:fileId", async (req, res) => {
       bucketName: "newBucket",
     });
     // res.status(200).json("File is downloading");
-    let downloadStream = bucketRef.openDownloadStream(
-      new mongoose.Types.ObjectId(fileId)
-    );
+    // let downloadStream = bucketRef.openDownloadStream(
+    //   new mongoose.Types.ObjectId(fileId)
+    // );
+    // downloadStream.on("modelFile", (file) => {
+    //   res.set("Content-Type", file.contentType);
+    //   res.set("Content-Disposition", 'attachment; filename="modelrad.rar"');
+    // });
+    let downloadStream =
+      bucketRef.openDownloadStreamByName("hammer.rar (5).rar");
     downloadStream.on("modelFile", (file) => {
       res.set("Content-Type", file.contentType);
-      res.set("Content-Disposition", 'attachment; filename="modelrad.rar"');
+      // res.set("Content-Disposition", 'attachment; filename="modelrad.rar"');
     });
-
     downloadStream.pipe(res);
 
     // bucketRef.openDownloadStream(new mongoose.Types.ObjectId(fileId)).pipe(res);
