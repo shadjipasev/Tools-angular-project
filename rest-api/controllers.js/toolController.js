@@ -1,8 +1,10 @@
 // const upload = require('../middlewares/upload');
 
-const { upload, bucket } = require("../middlewares/upload");
+const { upload, gridfs } = require("../middlewares/upload");
 const mongoose = require("mongoose");
 const fs = require("fs");
+
+let bucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db);
 
 const {
   createTool,
@@ -145,29 +147,13 @@ toolController.get("/search/:query", async (req, res) => {
 
 toolController.get("/download/:fileId", async (req, res) => {
   const fileId = req.params.fileId;
-  // let downloadStream = await bucket.openDownloadStream(
-  //   new mongoose.Types.ObjectId(fileId)
-  // );
+  let downloadStream = bucket.openDownloadStream(
+    new mongoose.Types.ObjectId(fileId)
+  );
   try {
-    const file = await bucket
-      .find(new mongoose.Types.ObjectId(fileId))
-      .toArray();
-    if (!file || !file.length) {
-      console.error("File not found");
-      return res.status(404).json({ message: "File not found" });
-    }
-
-    const downloadStream = bucket.openDownloadStream(
-      new mongoose.Types.ObjectId(fileId)
-    );
-
-    downloadStream.on("error", (error) => {
-      console.error(error);
-      res.status(500).json({ message: "Internal Server Error" });
+    downloadStream.on("file", (file) => {
+      res.set("Content-Type", file.contentType);
     });
-
-    res.set("Content-Type", file[0].contentType);
-    res.status(200);
 
     downloadStream.pipe(res);
   } catch (error) {

@@ -3,13 +3,18 @@ const { GridFsStorage } = require("multer-gridfs-storage");
 const mongoose = require("mongoose");
 
 //creating bucket
-let bucket;
-mongoose.connection.on("connected", () => {
-  var db = mongoose.connections[0].db;
-  bucket = new mongoose.mongo.GridFSBucket(db, {
-    bucketName: "newBucket",
-  });
-  console.log(bucket);
+// let bucket;
+// mongoose.connection.on("connected", () => {
+//   var db = mongoose.connections[0].db;
+//   bucket = new mongoose.mongo.GridFSBucket(db, {
+//     bucketName: "newBucket",
+//   });
+//   console.log(bucket);
+// });
+// let connection = mongoose.connection;
+var db = mongoose.connections[0].db;
+let bucket = new mongoose.mongo.GridFSBucket(db, {
+  bucketName: "newBucket",
 });
 
 // let connection = mongoose.connection;
