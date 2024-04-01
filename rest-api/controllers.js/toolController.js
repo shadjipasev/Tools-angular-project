@@ -154,7 +154,7 @@ toolController.get("/download/:fileId", async (req, res) => {
       bucketName: "newBucket",
     });
     // res.status(200).json("File is downloading");
-    let downloadStream = bucket.openDownloadStream(
+    let downloadStream = bucketRef.openDownloadStream(
       new mongoose.Types.ObjectId(fileId)
     );
     downloadStream.on("modelFile", (file) => {
