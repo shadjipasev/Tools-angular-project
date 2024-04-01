@@ -1,6 +1,6 @@
 // const upload = require('../middlewares/upload');
 
-const { upload, bucketRef } = require("../middlewares/upload");
+const { upload, bucketRef, bucket } = require("../middlewares/upload");
 const mongoose = require("mongoose");
 const fs = require("fs");
 
@@ -146,22 +146,22 @@ toolController.get("/search/:query", async (req, res) => {
 });
 
 toolController.get("/download/:fileId", async (req, res) => {
-  // const fileId = req.params.fileId;
-  // let downloadStream = bucket.openDownloadStream(
-  //   new mongoose.Types.ObjectId(fileId)
-  // );
+  const fileId = req.params.fileId;
+
   try {
-    // downloadStream.on("file", (file) => {
-    //   res.set("Content-Type", file.contentType);
-    // });
-    // downloadStream.pipe(res);
-    // downloadStream.on("file", (file) => {
-    //   res.set("Content-Type", file.contentType);
-    // });
-    // downloadStream.pipe(res);
-    // bucketRef
-    //   .openDownloadStream(ObjectId(fileId))
-    //   .pipe(fs.createWriteStream("./outputFile"));
+    const file = bucket
+      .find({
+        _id: fileId,
+      })
+      .toArray((err, files) => {
+        if (!files || files.length === 0) {
+          return res.status(404).json({
+            err: "no files exist",
+          });
+        }
+        res.status(200).json("File is downloading");
+        gfs.openDownloadStreamByName(req.params.filename).pipe(res);
+      });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });

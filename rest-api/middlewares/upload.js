@@ -5,13 +5,31 @@ const mongoose = require("mongoose");
 //creating bucket
 let bucket;
 
-mongoose.connection.on("connected", () => {
+mongoose.connection.once("connected", () => {
   let db = mongoose.connections[0].db;
   bucket = new mongoose.mongo.GridFSBucket(db, {
     bucketName: "newBucket",
   });
   console.log(bucket);
 });
+
+// function createBucket(callback) {
+//   mongoose.connection.on("connected", () => {
+//     let db = mongoose.connections[0].db;
+//     let bucket = new mongoose.mongo.GridFSBucket(db, {
+//       bucketName: "newBucket",
+//     });
+//     callback(bucket); // Pass the bucket object to the callback
+//   });
+// }
+
+// bucketRef.ope
+
+// Example usage:
+// createBucket((bucket) => {
+// console.log(bucket.);
+// bucket // You can now use the bucket object here
+// });
 
 // const gridfs = {
 //   getBucket: function () {
@@ -64,4 +82,5 @@ var upload = multer({
 
 module.exports = {
   upload,
+  bucket,
 };
