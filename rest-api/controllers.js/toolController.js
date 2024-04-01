@@ -2,7 +2,7 @@
 
 const { upload, bucket } = require("../middlewares/upload");
 const mongoose = require("mongoose");
-import fs from "fs";
+const fs = require("fs");
 
 const {
   createTool,
@@ -145,15 +145,35 @@ toolController.get("/search/:query", async (req, res) => {
 
 toolController.get("/download/:fileId", async (req, res) => {
   const fileId = req.params.fileId;
-  let downloadStream = await bucket.openDownloadStream(
-    new mongoose.Types.ObjectId(fileId)
-  );
+  // let downloadStream = await bucket.openDownloadStream(
+  //   new mongoose.Types.ObjectId(fileId)
+  // );
   try {
-    await downloadStream.on("modelFile", (file) => {
-      res.set("Content-Type", file.contentType);
+    // await downloadStream.on("modelFile", (file) => {
+    //   res.set("Content-Type", file.contentType);
+    // });
+    // await downloadStream.pipe(res);
+    // res.status(200);
+    const downloadStream = bucket.openDownloadStream(
+      new mongoose.Types.ObjectId(fileId)
+    );
+
+    downloadStream.on("error", (error) => {
+      console.error(error);
+      res.status(500).json({ message: "Internal Server Error" });
     });
-    await downloadStream.pipe(res);
+
+    const file = await bucket
+      .find(new mongoose.Types.ObjectId(fileId))
+      .toArray();
+    if (!file || !file.length) {
+      return res.status(404).json({ message: "File not found" });
+    }
+
+    res.set("Content-Type", file[0].contentType);
     res.status(200);
+
+    downloadStream.pipe(res);
   } catch (error) {
     res.status(404).json({
       message: "This tool can't be downloaded!",
