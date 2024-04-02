@@ -165,7 +165,7 @@ toolController.get("/download/:fileId", async (req, res) => {
     //   res.set({ "Content-Disposition": `attachment; filename='shit.rar'` });
     // });
     bucketRef
-      .openDownloadStream(ObjectId("60edece5e06275bf0463aaf3"))
+      .openDownloadStream(ObjectId(fileId))
       .pipe(fs.createWriteStream("./outputFile"));
 
     // console.log("res == " + JSON.stringify(res));
