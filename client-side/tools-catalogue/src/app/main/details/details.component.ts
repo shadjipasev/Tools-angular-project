@@ -99,7 +99,7 @@ export class DetailsComponent implements OnInit {
     //-----------------------------
     this.toolService.downloadFile(fileId).subscribe((response: any) => {
       // Use FileSaver.js to save the blob as a file
-      saveAs(response, 'shit');
+      saveAs(response, 'shit.rar');
     });
     // (error) => {
     //   const options = 'Failed to download file. Please try again later.';
