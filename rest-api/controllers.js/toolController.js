@@ -21,7 +21,6 @@ const {
   cartSize,
 } = require("../services/userServices");
 const { ObjectId } = require("mongodb");
-
 const toolController = require("express").Router();
 
 toolController.post("/create", upload.single("modelFile"), async (req, res) => {
@@ -145,7 +144,7 @@ toolController.get("/search/:query", async (req, res) => {
   }
 });
 
-toolController.get("/download/:fileName/:fileId", async (req, res) => {
+toolController.get("/download/:fileId", async (req, res) => {
   const fileName = req.params.fileName;
   const fileId = req.params.fileId;
 
@@ -159,6 +158,7 @@ toolController.get("/download/:fileName/:fileId", async (req, res) => {
     );
     downloadStream.on("modelFile", (file) => {
       res.set("Content-Type", file.contentType);
+      // res.set("Content-Disposition", 'attachment; filename="modelrad.rar"');
     });
     // bucketRef.name;
     // bucket.rename(ObjectId(fileId), "");
