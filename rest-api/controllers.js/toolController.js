@@ -172,10 +172,10 @@ toolController.get("/download/:fileId", async (req, res) => {
     //   res.set("Content-Type", file.contentType);
     // res.set("Content-Disposition", 'attachment; filename="modelrad.rar"');
     // });
-    // bucketRef.rename(fileId, fileName);
-    bucketRef.rename(fileId, "shit");
-    downloadStream.pipe(res);
     res.status(200).json("File is downloading");
+    // bucketRef.rename(fileId, fileName);
+    //bucketRef.rename(fileId, "shit");
+    downloadStream.pipe(res);
 
     // bucketRef.openDownloadStream(new mongoose.Types.ObjectId(fileId)).pipe(res);
   } catch (error) {
