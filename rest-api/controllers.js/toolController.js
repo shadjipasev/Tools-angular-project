@@ -162,7 +162,7 @@ toolController.get("/download/:fileId", async (req, res) => {
       res.set("Content-Disposition", 'attachment; filename="modelrad.rar"');
     });
 
-    downloadStream.pipe(res.status(200).json("File Downloading"));
+    downloadStream.pipe(res);
 
     // bucketRef.openDownloadStream(new mongoose.Types.ObjectId(fileId)).pipe(res);
   } catch (error) {
