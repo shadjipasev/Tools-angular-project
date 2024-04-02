@@ -154,17 +154,21 @@ toolController.get("/download/:fileId", async (req, res) => {
       bucketName: "newBucket",
     });
     // res.status(200).json("File is downloading");
-    let downloadStream = bucketRef.openDownloadStream(
-      new mongoose.Types.ObjectId(fileId)
-    );
+    // let downloadStream = bucketRef.openDownloadStream(
+    //   new mongoose.Types.ObjectId(fileId)
+    // );
     downloadStream.pipe(res);
 
-    downloadStream.on("modelFile", (file) => {
-      downloadStream.pipe(res);
-      res.set("Content-Type", file.contentType);
-      res.set({ "Content-Disposition": `attachment; filename='shit.rar'` });
-    });
-    console.log("res == " + JSON.stringify(res));
+    // downloadStream.on("modelFile", (file) => {
+    //   downloadStream.pipe(res);
+    //   res.set("Content-Type", file.contentType);
+    //   res.set({ "Content-Disposition": `attachment; filename='shit.rar'` });
+    // });
+    bucketRef
+      .openDownloadStream(ObjectId("60edece5e06275bf0463aaf3"))
+      .pipe(fs.createWriteStream("./outputFile"));
+
+    // console.log("res == " + JSON.stringify(res));
 
     // bucketRef.openDownloadStream(new mongoose.Types.ObjectId(fileId)).pipe(res);
   } catch (error) {
