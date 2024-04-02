@@ -14,7 +14,7 @@
         allow-same-origin
       ></iframe>
       <button
-        (click)="downloadFile(this.tool.modelFile, $event)"
+        (click)="downloadFile(this.tool.modelFile, this.tool.name, $event)"
         class="download__button"
         icon="download"
       >
