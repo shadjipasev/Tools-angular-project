@@ -89,7 +89,7 @@ export class DetailsComponent implements OnInit {
     event.preventDefault();
     console.log(fileId);
     // let fileName = this.tool.name.toLowerCase();
-    console.log(this.tool.name);
+    // console.log(this.tool.name);
     this.toolService
       .downloadFile(fileId)
       .subscribe((blob) => saveAs(blob, this.tool.name));
