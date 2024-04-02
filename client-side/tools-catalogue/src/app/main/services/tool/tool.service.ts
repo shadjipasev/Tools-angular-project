@@ -52,10 +52,10 @@ export class ToolService {
   //   });
   // }
   downloadFile(fileId: string): Observable<Blob> {
-    const headers = new HttpHeaders();
-    headers.append('Accept', 'application/octet-stream');
+    // const headers = new HttpHeaders();
+    // headers.append('Accept', 'application/octet-stream');
     return this.httpClient.get(`${this.apiUrl}/data/download/${fileId} `, {
-      headers: headers,
+      // headers: headers,
       responseType: 'blob',
     });
   }
