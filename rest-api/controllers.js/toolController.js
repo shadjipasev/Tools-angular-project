@@ -144,24 +144,24 @@ toolController.get("/search/:query", async (req, res) => {
   }
 });
 
-toolController.get("/download/:fileId/:fileName", async (req, res) => {
-  const fileName = req.params.fileName;
-  console.log("149 toolControl - Filename" + fileName);
+toolController.get("/download/:fileId", async (req, res) => {
+  // const fileName = req.params.fileName;
+  // console.log("149 toolControl - Filename" + fileName);
   const fileId = req.params.fileId;
-  console.log("toolControler - FileId" + fileId);
+  console.log("toolControler - FileId " + fileId);
 
   try {
     let dbRef = mongoose.connections[0].db;
     let bucketRef = new mongoose.mongo.GridFSBucket(dbRef, {
       bucketName: "newBucket",
-    });
-    let downloadStream = bucketRef.openDownloadStream(
+    }).rename();
+    let downloadStream = await bucketRef.openDownloadStream(
       new mongoose.Types.ObjectId(fileId)
     );
     console.log("toolControler - downloadStream" + downloadStream);
     downloadStream.on("modelFile", (file) => {
       res.set("Content-Type", file.contentType);
-      res.set("Content-Disposition", 'attachment; filename="modelrar"');
+      // res.set("Content-Disposition", 'attachment; filename="modelrar"');
     });
     // bucketRef.name;
     // bucket.rename(ObjectId(fileId), "");
@@ -173,7 +173,7 @@ toolController.get("/download/:fileId/:fileName", async (req, res) => {
     // res.set("Content-Disposition", 'attachment; filename="modelrad.rar"');
     // });
     // bucketRef.rename(fileId, fileName);
-
+    bucketRef.rename(fileId, "shit");
     downloadStream.pipe(res);
     res.status(200).json("File is downloading");
 
