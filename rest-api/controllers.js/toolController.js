@@ -153,20 +153,19 @@ toolController.get("/download/:fileId", async (req, res) => {
     let bucketRef = new mongoose.mongo.GridFSBucket(dbRef, {
       bucketName: "newBucket",
     });
-    // res.status(200).json("File is downloading");
-    // let downloadStream = bucketRef.openDownloadStream(
-    //   new mongoose.Types.ObjectId(fileId)
-    // );
-    // downloadStream.pipe(res);
 
-    // downloadStream.on("modelFile", (file) => {
-    //   downloadStream.pipe(res);
-    //   res.set("Content-Type", file.contentType);
-    //   res.set({ "Content-Disposition": `attachment; filename='shit.rar'` });
-    // });
-    bucketRef
-      .openDownloadStream(new mongoose.Types.ObjectId(fileId))
-      .pipe(fs.createWriteStream("./outputFile"));
+    let downloadStream = bucketRef.openDownloadStream(
+      new mongoose.Types.ObjectId(fileId)
+    );
+
+    downloadStream.on("modelFile", (file) => {
+      res.set({ "Content-Disposition": `attachment; filename='shit.rar'` });
+      res.set("Content-Type", file.contentType);
+      downloadStream.pipe(res);
+    });
+    // bucketRef
+    //   .openDownloadStream(new mongoose.Types.ObjectId(fileId))
+    //   .pipe(fs.createWriteStream("./outputFile"));
 
     // console.log("res == " + JSON.stringify(res));
 
