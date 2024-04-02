@@ -46,7 +46,7 @@ export class ToolService {
     return this.httpClient.get<any>(`${this.apiUrl}/data/search/` + query);
   }
 
-  downloadFile(fileId: string, fileName: string): Observable<Blob> {
+  downloadFile(fileName: string, fileId: string): Observable<Blob> {
     return this.httpClient.get(
       `${this.apiUrl}/data/download/${fileName}/${fileId} `,
       {

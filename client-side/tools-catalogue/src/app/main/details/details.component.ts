@@ -91,7 +91,7 @@ export class DetailsComponent implements OnInit {
     let fileName = this.tool.name.toLowerCase();
     console.log(this.tool.name);
     this.toolService
-      .downloadFile(fileId, fileName)
+      .downloadFile(fileName, fileId)
       .subscribe((blob) => saveAs(blob, this.tool.name));
     console.log(fileId);
     // (error) => {
