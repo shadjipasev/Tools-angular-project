@@ -154,7 +154,7 @@ toolController.get("/download/:fileId", async (req, res) => {
     let dbRef = mongoose.connections[0].db;
     let bucketRef = new mongoose.mongo.GridFSBucket(dbRef, {
       bucketName: "newBucket",
-    }).rename();
+    });
     let downloadStream = bucketRef.openDownloadStream(
       new mongoose.Types.ObjectId(fileId)
     );
