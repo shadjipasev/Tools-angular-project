@@ -88,7 +88,7 @@ export class DetailsComponent implements OnInit {
   downloadFile(fileId: string, event: MouseEvent) {
     event.preventDefault();
     console.log(fileId);
-    // let fileName = this.tool.name.toLowerCase();
+    let fileName = this.tool.name.toLowerCase();
     // console.log(this.tool.name);
 
     // ----------------------------
@@ -99,7 +99,7 @@ export class DetailsComponent implements OnInit {
     //-----------------------------
     this.toolService.downloadFile(fileId).subscribe((response: any) => {
       // Use FileSaver.js to save the blob as a file
-      saveAs(response, 'response.rar');
+      saveAs(response, fileName);
     });
     // (error) => {
     //   const options = 'Failed to download file. Please try again later.';
