@@ -88,7 +88,7 @@ export class DetailsComponent implements OnInit {
   downloadFile(fileId: string, event: MouseEvent) {
     event.preventDefault();
     console.log(fileId);
-    let fileName = this.tool.name.toLowerCase();
+    // let fileName = this.tool.name.toLowerCase();
     console.log(this.tool.name);
     this.toolService
       .downloadFile(fileId)
