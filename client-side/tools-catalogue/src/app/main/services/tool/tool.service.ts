@@ -1,6 +1,6 @@
 import { ITool } from 'src/app/shared/interfaces/Tool';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -51,7 +51,15 @@ export class ToolService {
   //     responseType: 'blob',
   //   });
   // }
-  downloadFile(fileId: string): any {
-    return this.httpClient.get(`${this.apiUrl}/data/download/${fileId}`);
+  downloadFile(fileId: string): Observable<Blob> {
+    const headers = new HttpHeaders();
+    headers.append('Accept', 'application/octet-stream');
+    return this.httpClient.get(`${this.apiUrl}/data/download/${fileId} `, {
+      headers: headers,
+      responseType: 'blob',
+    });
   }
+  // downloadFile(fileId: string): any {
+  //   return this.httpClient.get(`${this.apiUrl}/data/download/${fileId}`);
+  // }
 }

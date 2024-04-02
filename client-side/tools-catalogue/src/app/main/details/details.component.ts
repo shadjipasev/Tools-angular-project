@@ -97,8 +97,10 @@ export class DetailsComponent implements OnInit {
     //   .subscribe((blob) => saveAs(blob));
     // console.log(fileId);
     //-----------------------------
-    this.toolService.downloadFile(fileId).subscribe;
-    console.log(fileId);
+    this.toolService.downloadFile(fileId).subscribe((response: any) => {
+      // Use FileSaver.js to save the blob as a file
+      saveAs(response, 'response.rar');
+    });
     // (error) => {
     //   const options = 'Failed to download file. Please try again later.';
 
