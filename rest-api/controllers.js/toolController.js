@@ -147,14 +147,16 @@ toolController.get("/search/:query", async (req, res) => {
 
 toolController.get("/download/:fileName/:fileId", async (req, res) => {
   const fileName = req.params.fileName;
-  const fileId = new mongoose.Types.ObjectId(req.params.fileId);
+  const fileId = req.params.fileId;
 
   try {
     let dbRef = mongoose.connections[0].db;
     let bucketRef = new mongoose.mongo.GridFSBucket(dbRef, {
       bucketName: "newBucket",
     });
-    let downloadStream = bucketRef.openDownloadStream(fileId);
+    let downloadStream = bucketRef.openDownloadStream(
+      new mongoose.Types.ObjectId(fileId)
+    );
     downloadStream.on("modelFile", (file) => {
       res.set("Content-Type", file.contentType);
     });
@@ -170,7 +172,7 @@ toolController.get("/download/:fileName/:fileId", async (req, res) => {
     // bucketRef.rename(fileId, fileName);
     res.status(200).json("File is downloading");
 
-    downloadStream.pipe(res);
+    downloadStream.pipe(res, "hey");
 
     // bucketRef.openDownloadStream(new mongoose.Types.ObjectId(fileId)).pipe(res);
   } catch (error) {
