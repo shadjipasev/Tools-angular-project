@@ -165,7 +165,7 @@ toolController.get("/download/:fileId", async (req, res) => {
     //   res.set({ "Content-Disposition": `attachment; filename='shit.rar'` });
     // });
     bucketRef
-      .openDownloadStream(ObjectId(fileId))
+      .openDownloadStream(new mongoose.Types.ObjectId(fileId))
       .pipe(fs.createWriteStream("./outputFile"));
 
     // console.log("res == " + JSON.stringify(res));
