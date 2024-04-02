@@ -146,7 +146,9 @@ toolController.get("/search/:query", async (req, res) => {
 
 toolController.get("/download/:fileId/:fileName", async (req, res) => {
   const fileName = req.params.fileName;
+  console.log("149 toolControl - Filename" + fileName);
   const fileId = req.params.fileId;
+  console.log("toolControler - FileId" + fileId);
 
   try {
     let dbRef = mongoose.connections[0].db;
@@ -156,9 +158,10 @@ toolController.get("/download/:fileId/:fileName", async (req, res) => {
     let downloadStream = bucketRef.openDownloadStream(
       new mongoose.Types.ObjectId(fileId)
     );
+    console.log("toolControler - downloadStream" + downloadStream);
     downloadStream.on("modelFile", (file) => {
       res.set("Content-Type", file.contentType);
-      // res.set("Content-Disposition", 'attachment; filename="modelrad.rar"');
+      res.set("Content-Disposition", 'attachment; filename="modelrar"');
     });
     // bucketRef.name;
     // bucket.rename(ObjectId(fileId), "");
