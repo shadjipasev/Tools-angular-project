@@ -1,6 +1,6 @@
 // const upload = require('../middlewares/upload');
 
-const { upload, bucketRef, bucket } = require("../middlewares/upload");
+const { upload } = require("../middlewares/upload");
 const mongoose = require("mongoose");
 const fs = require("fs");
 
