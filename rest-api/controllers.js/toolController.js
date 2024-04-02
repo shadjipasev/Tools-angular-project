@@ -158,10 +158,10 @@ toolController.get("/download/:fileId", async (req, res) => {
     let downloadStream = bucketRef.openDownloadStream(
       new mongoose.Types.ObjectId(fileId)
     );
-    // console.log("toolControler - downloadStream" + downloadStream);
+
     downloadStream.on("modelFile", (file) => {
       res.set("Content-Type", file.contentType);
-      // res.set("Content-Disposition", 'attachment; filename="modelrar"');
+      res.set("Content-Disposition", 'attachment; filename="modelrar"');
     });
     // bucketRef.name;
     // bucket.rename(ObjectId(fileId), "");
