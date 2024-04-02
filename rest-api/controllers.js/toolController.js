@@ -1,6 +1,6 @@
 // const upload = require('../middlewares/upload');
 
-const { upload } = require("../middlewares/upload");
+const { upload, bucketRef, bucket } = require("../middlewares/upload");
 const mongoose = require("mongoose");
 const fs = require("fs");
 
@@ -21,6 +21,7 @@ const {
   cartSize,
 } = require("../services/userServices");
 const { ObjectId } = require("mongodb");
+
 const toolController = require("express").Router();
 
 toolController.post("/create", upload.single("modelFile"), async (req, res) => {
@@ -145,36 +146,22 @@ toolController.get("/search/:query", async (req, res) => {
 });
 
 toolController.get("/download/:fileId", async (req, res) => {
-  // const fileName = req.params.fileName;
-  // console.log("149 toolControl - Filename" + fileName);
   const fileId = req.params.fileId;
-  console.log("toolControler - FileId " + fileId);
 
   try {
     let dbRef = mongoose.connections[0].db;
     let bucketRef = new mongoose.mongo.GridFSBucket(dbRef, {
       bucketName: "newBucket",
     });
+    // res.status(200).json("File is downloading");
     let downloadStream = bucketRef.openDownloadStream(
       new mongoose.Types.ObjectId(fileId)
     );
-
     downloadStream.on("modelFile", (file) => {
       res.set("Content-Type", file.contentType);
-      res.set("Content-Disposition", 'attachment; filename="modelrar"');
+      res.set("Content-Disposition", 'attachment; filename="modelrad.rar"');
     });
-    // bucketRef.name;
-    // bucket.rename(ObjectId(fileId), "");
-    // bucketRef.
-    // let downloadStream = bucketRef.openDownloadStreamByName(fileName);
-    // downloadStream.
-    // downloadStream.on("modelFile", (file) => {
-    //   res.set("Content-Type", file.contentType);
-    // res.set("Content-Disposition", 'attachment; filename="modelrad.rar"');
-    // });
-    res.status(200).json("File is downloading");
-    // bucketRef.rename(fileId, fileName);
-    //bucketRef.rename(fileId, "shit");
+
     downloadStream.pipe(res);
 
     // bucketRef.openDownloadStream(new mongoose.Types.ObjectId(fileId)).pipe(res);
