@@ -157,7 +157,7 @@ toolController.get("/download/:fileId", async (req, res) => {
     // let downloadStream = bucketRef.openDownloadStream(
     //   new mongoose.Types.ObjectId(fileId)
     // );
-    downloadStream.pipe(res);
+    // downloadStream.pipe(res);
 
     // downloadStream.on("modelFile", (file) => {
     //   downloadStream.pipe(res);
