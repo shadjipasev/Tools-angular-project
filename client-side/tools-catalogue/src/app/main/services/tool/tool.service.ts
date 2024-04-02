@@ -46,9 +46,12 @@ export class ToolService {
     return this.httpClient.get<any>(`${this.apiUrl}/data/search/` + query);
   }
 
-  downloadFile(fileId: string): Observable<Blob> {
-    return this.httpClient.get(`${this.apiUrl}/data/download/${fileId} `, {
-      responseType: 'blob',
-    });
+  // downloadFile(fileId: string): Observable<Blob> {
+  //   return this.httpClient.get(`${this.apiUrl}/data/download/${fileId} `, {
+  //     responseType: 'blob',
+  //   });
+  // }
+  downloadFile(fileId: string): any {
+    return this.httpClient.get(`${this.apiUrl}/data/download/${fileId}`);
   }
 }
