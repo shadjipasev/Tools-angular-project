@@ -144,7 +144,7 @@ toolController.get("/search/:query", async (req, res) => {
   }
 });
 
-toolController.get("/download/:fileId", async (req, res) => {
+toolController.get("/download/:fileId/:fileName", async (req, res) => {
   const fileName = req.params.fileName;
   const fileId = req.params.fileId;
 
