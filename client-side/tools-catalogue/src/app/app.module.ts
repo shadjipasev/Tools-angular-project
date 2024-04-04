@@ -13,8 +13,6 @@ import { MainModule } from './main/main.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { LoaderService } from './main/services/loader/loader.service';
-import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { SharedModule } from './shared/shared.module';
 
 // import { MatInputModule } from '@angular/material/input';
@@ -45,6 +43,6 @@ import { SharedModule } from './shared/shared.module';
     // MatFormFieldModule,
   ],
   bootstrap: [AppComponent],
-  providers: [ToolService, LoaderService, appInterceptorProvider],
+  providers: [ToolService, appInterceptorProvider],
 })
 export class AppModule {}
