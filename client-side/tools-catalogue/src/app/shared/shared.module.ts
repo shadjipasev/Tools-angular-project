@@ -6,5 +6,6 @@ import { SpinnerComponent } from './spinner/spinner.component';
 @NgModule({
   declarations: [SpinnerComponent],
   imports: [MatProgressSpinnerModule, CommonModule, SpinnerComponent],
+  exports: [SpinnerComponent],
 })
 export class SharedModule {}
