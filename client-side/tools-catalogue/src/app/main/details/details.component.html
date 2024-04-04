@@ -1,5 +1,5 @@
 <div>
-  <mat-progress-spinner></mat-progress-spinner>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
 </div>
 <div *ngIf="tool">
   <div class="detail-container">
