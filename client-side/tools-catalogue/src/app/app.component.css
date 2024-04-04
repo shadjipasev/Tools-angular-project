@@ -13,3 +13,10 @@
   background-color: aqua;
   flex-basis: 100%;
 } */
+
+app-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
