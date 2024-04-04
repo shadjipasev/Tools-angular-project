@@ -1,4 +1,5 @@
-<div *ngIf="tool && !isLoading">
+<mat-progress-spinner *ngIf="isLoading"></mat-progress-spinner>
+<div *ngIf="tool">
   <div class="detail-container">
     <div class="image-container">
       <iframe
