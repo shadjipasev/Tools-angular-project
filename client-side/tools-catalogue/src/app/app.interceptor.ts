@@ -1,5 +1,3 @@
-import { LoaderService } from './main/services/loader/loader.service';
-
 import {
   HttpErrorResponse,
   HttpEvent,
@@ -11,6 +9,7 @@ import {
 import { Injectable, Provider } from '@angular/core';
 import { catchError, finalize, Observable, throwError } from 'rxjs';
 import { AuthService } from './auth/auth.service';
+import { LoaderService } from './main/services/loader/loader.service';
 
 @Injectable()
 export class appInterceptor implements HttpInterceptor {
