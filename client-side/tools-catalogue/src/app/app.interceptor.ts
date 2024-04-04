@@ -23,8 +23,9 @@ export class appInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem(this.authService.tokenName);
     this.loader.showLoader();
+
+    const token = localStorage.getItem(this.authService.tokenName);
     if (token) {
       return next
         .handle(
@@ -32,12 +33,10 @@ export class appInterceptor implements HttpInterceptor {
             headers: req.headers.set(this.TOKEN_HEADER_KEY, token),
           })
         )
-        .pipe(catchError(this.handleError));
+        .pipe(finalize(() => this.loader.hideLoader()));
     } else {
       return next.handle(req).pipe(
-        finalize(() => {
-          this.loader.hideLoader(), catchError(this.handleError);
-        })
+        (catchError(this.handleError), finalize(() => this.loader.hideLoader())) // Call hideLoader on completion or error
       );
     }
   }
