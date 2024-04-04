@@ -19,12 +19,11 @@ import { saveAs } from 'file-saver-es';
   styleUrls: ['./details.component.css'],
 })
 export class DetailsComponent implements OnInit {
+  isLoading: boolean;
   tool: any;
   toolId: string = '';
   admin: any;
   userId: any;
-  displayIframe: boolean = false;
-  fileName = '';
 
   @Input()
   url: string;
@@ -45,7 +44,7 @@ export class DetailsComponent implements OnInit {
     if (this.auth.isAdmin()) {
       this.admin = true;
     }
-
+    this.isLoading = true;
     // this.cartService.getCartSize();
     this.cartService.cartSubject.next(this.cartService.getCartSize());
     this.userId = this.auth.getUserId();
@@ -54,6 +53,7 @@ export class DetailsComponent implements OnInit {
       this.toolId = params['id'];
       console.log(this.toolId);
       this.toolService.getById(this.toolId).subscribe((res) => {
+        this.isLoading = false;
         this.tool = res;
         console.log(this.tool.modelFile);
         this.url = res.modelUrl;
@@ -63,16 +63,6 @@ export class DetailsComponent implements OnInit {
       });
     });
   }
-
-  // getSafeUrl() {
-  //   return this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
-  // }
-
-  // sanitizeUrl(url: string): SafeResourceUrl {
-  //   debugger;
-  //   this.displayIframe = true;
-  //   return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  // }
 
   addTool(product: any) {
     console.log('addTool Works');
@@ -88,7 +78,7 @@ export class DetailsComponent implements OnInit {
   downloadFile(fileId: string, toolName: string, event: MouseEvent) {
     event.preventDefault();
     console.log(fileId);
-    let fileName = toolName.toLowerCase();
+    const fileName = toolName.toLowerCase();
     // console.log(this.tool.name);
 
     // ----------------------------
@@ -102,12 +92,6 @@ export class DetailsComponent implements OnInit {
       console.log(response);
       saveAs(response, fileName + '.rar');
     });
-
-    // (error) => {
-    //   const options = 'Failed to download file. Please try again later.';
-
-    //   // this.snackBar.open(errorMessage, 'Dismiss', { duration: 5000 });
-    // };
   }
 
   cartSize: any;
