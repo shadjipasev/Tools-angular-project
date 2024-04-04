@@ -100,7 +100,7 @@ export class DetailsComponent implements OnInit {
     this.toolService.downloadFile(fileId).subscribe((response: any) => {
       // Use FileSaver.js to save the blob as a file
       console.log(response);
-      saveAs(response, fileName + '.rar'); // ИМЕТО ТРЯБВА ДА ЗАВЪРШВА НА RAR // ДА ДОЙДЕ ОТ СЪРВАРА КАТО РЕСПОНС
+      saveAs(response, fileName + '.rar');
     });
 
     // (error) => {
