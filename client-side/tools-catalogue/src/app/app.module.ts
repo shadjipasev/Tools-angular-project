@@ -13,8 +13,7 @@ import { MainModule } from './main/main.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { SharedModule } from './shared/shared.module';
-import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { LoaderService } from './main/services/loader/loader.service';
 
 // import { MatInputModule } from '@angular/material/input';
 // import { MatButtonModule } from '@angular/material/button';
@@ -36,7 +35,6 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     NoopAnimationsModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    SharedModule,
     // MatDialogModule,
     // MatInputModule,
     // MatButtonModule,
@@ -44,6 +42,6 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     // MatFormFieldModule,
   ],
   bootstrap: [AppComponent],
-  providers: [ToolService, appInterceptorProvider],
+  providers: [ToolService, LoaderService, appInterceptorProvider],
 })
 export class AppModule {}
