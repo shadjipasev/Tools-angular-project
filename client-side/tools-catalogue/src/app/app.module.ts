@@ -23,7 +23,7 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 // import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [AppComponent, SpinnerComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
