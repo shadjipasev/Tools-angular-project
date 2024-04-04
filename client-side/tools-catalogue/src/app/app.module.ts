@@ -13,6 +13,8 @@ import { MainModule } from './main/main.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from './shared/shared.module';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 // import { MatInputModule } from '@angular/material/input';
 // import { MatButtonModule } from '@angular/material/button';
@@ -34,6 +36,7 @@ import { MatButtonModule } from '@angular/material/button';
     NoopAnimationsModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    SharedModule,
     // MatDialogModule,
     // MatInputModule,
     // MatButtonModule,

@@ -44,7 +44,7 @@ export class DetailsComponent implements OnInit {
     if (this.auth.isAdmin()) {
       this.admin = true;
     }
-    this.isLoading = true;
+    // this.isLoading = true;
     // this.cartService.getCartSize();
     this.cartService.cartSubject.next(this.cartService.getCartSize());
     this.userId = this.auth.getUserId();
@@ -53,7 +53,7 @@ export class DetailsComponent implements OnInit {
       this.toolId = params['id'];
       console.log(this.toolId);
       this.toolService.getById(this.toolId).subscribe((res) => {
-        this.isLoading = false;
+        // this.isLoading = false;
         this.tool = res;
         console.log(this.tool.modelFile);
         this.url = res.modelUrl;
