@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from './shared/shared.module';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 // import { MatInputModule } from '@angular/material/input';
 // import { MatButtonModule } from '@angular/material/button';
@@ -37,6 +38,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     BrowserAnimationsModule,
     MatButtonModule,
     SharedModule,
+    SpinnerComponent,
     // MatDialogModule,
     // MatInputModule,
     // MatButtonModule,
