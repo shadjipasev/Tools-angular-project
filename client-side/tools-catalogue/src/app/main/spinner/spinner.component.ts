@@ -5,7 +5,7 @@ import { LoaderService } from '../services/loader/loader.service';
   selector: 'app-spinner',
   templateUrl: './spinner.component.html',
   styleUrls: ['./spinner.component.css'],
-  // encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class SpinnerComponent implements OnInit {
   constructor(public loader: LoaderService) {}
