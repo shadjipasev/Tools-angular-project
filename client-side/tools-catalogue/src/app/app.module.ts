@@ -13,7 +13,6 @@ import { MainModule } from './main/main.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { SharedModule } from './shared/shared.module';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 // import { MatInputModule } from '@angular/material/input';
