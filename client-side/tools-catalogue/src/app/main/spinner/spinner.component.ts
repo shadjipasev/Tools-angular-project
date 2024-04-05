@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { LoaderService } from '../services/loader/loader.service';
 
 @Component({
-  selector: 'app-spinner',
+  selector: 'app-loader',
   templateUrl: './spinner.component.html',
   styleUrl: './spinner.component.css',
   encapsulation: ViewEncapsulation.ShadowDom,

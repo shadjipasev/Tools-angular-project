@@ -23,6 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterModule } from '@angular/router';
 import { SafePipe } from 'safe-pipe';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { SafePipe } from 'safe-pipe';
     PageNotFoundComponent,
     ArticleComponent,
     SlideshowComponent,
+    SpinnerComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -50,6 +53,7 @@ import { SafePipe } from 'safe-pipe';
     MatButtonModule,
     MatIconModule,
     MatProgressBarModule,
+    MatProgressSpinner,
   ],
   providers: [AuthenticationGuard, PermissionGuard],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
