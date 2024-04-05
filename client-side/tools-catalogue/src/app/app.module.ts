@@ -36,7 +36,6 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     NoopAnimationsModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    SharedModule,
   ],
   bootstrap: [AppComponent],
   providers: [ToolService, appInterceptorProvider],

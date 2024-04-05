@@ -1,3 +1,4 @@
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
@@ -24,7 +25,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterModule } from '@angular/router';
 import { SafePipe } from 'safe-pipe';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -53,7 +53,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
     MatButtonModule,
     MatIconModule,
     MatProgressBarModule,
-    MatProgressSpinner,
+    MatProgressSpinnerModule,
   ],
   providers: [AuthenticationGuard, PermissionGuard],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
