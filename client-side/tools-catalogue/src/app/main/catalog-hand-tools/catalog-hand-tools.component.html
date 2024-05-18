@@ -1,4 +1,4 @@
-<h1 ngIf="{{ tools }}">Hand Tools</h1>
+<h1 *ngIf="tools">Hand Tools</h1>
 <ul class="catCardList">
   <li class="catCardList" *ngFor="let tool of tools">
     <div class="catCard">
