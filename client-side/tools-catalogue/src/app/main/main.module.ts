@@ -57,7 +57,7 @@ import { ToolService } from './services/tool/tool.service';
     MatProgressBarModule,
   ],
   exports: [SpinnerComponent],
-  providers: [AuthenticationGuard, PermissionGuard, ToolService],
+  providers: [AuthenticationGuard, PermissionGuard],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MainModule {}
