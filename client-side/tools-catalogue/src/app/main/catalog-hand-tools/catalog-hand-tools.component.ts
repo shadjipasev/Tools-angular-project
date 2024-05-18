@@ -13,6 +13,7 @@ export class CatalogHandToolsComponent implements OnInit {
   tools: any;
 
   ngOnInit(): void {
+    console.log('test 123');
     this.toolService.getToolsByType('Hand tools').subscribe((res) => {
       (this.tools = res), (error: any) => console.log(error);
     });
