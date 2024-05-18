@@ -31,6 +31,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     HttpClientModule,
     ReactiveFormsModule,
     MainModule,
+    MainRoutingModule,
     NoopAnimationsModule,
     BrowserAnimationsModule,
     MatButtonModule,

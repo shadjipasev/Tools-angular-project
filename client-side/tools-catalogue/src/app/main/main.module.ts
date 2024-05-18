@@ -25,6 +25,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterModule } from '@angular/router';
 import { SafePipe } from 'safe-pipe';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { ToolService } from './services/tool/tool.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     MatProgressBarModule,
   ],
   exports: [SpinnerComponent],
-  providers: [AuthenticationGuard, PermissionGuard],
+  providers: [AuthenticationGuard, PermissionGuard, ToolService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MainModule {}
