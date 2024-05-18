@@ -19,15 +19,15 @@ const routes: Routes = [
     pathMatch: 'full',
     component: HomeComponent,
   },
-  {
-    path: 'data/catalog',
-    component: CatalogComponent,
-    // children: [
-    //     {path: 'machining', component: CatalogMachiningComponent},
-    //     {path: 'hand-tools', component: CatalogHandToolsComponent},
-    //     {path: 'personal-equipment', component: CatalogPersonalEquipmentComponent},
-    // ]
-  },
+  // {
+  //   path: 'data/catalog',
+  //   component: CatalogComponent,
+  //   // children: [
+  //   //     {path: 'machining', component: CatalogMachiningComponent},
+  //   //     {path: 'hand-tools', component: CatalogHandToolsComponent},
+  //   //     {path: 'personal-equipment', component: CatalogPersonalEquipmentComponent},
+  //   // ]
+  // },
   { path: 'data/catalog/machining', component: CatalogMachiningComponent },
 
   { path: 'data/catalog/hand-tools', component: CatalogHandToolsComponent },
