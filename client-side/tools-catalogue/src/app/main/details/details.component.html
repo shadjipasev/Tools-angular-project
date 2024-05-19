@@ -17,7 +17,7 @@
         allow-same-origin
       ></iframe>
       <button
-        *ngIf="!tool.modelFile || tool.modelFile.length == 0"
+        *ngIf="tool.modelFile.length > 0"
         (click)="downloadFile(this.tool.modelFile, this.tool.toolName, $event)"
         class="download__button"
         icon="download"
