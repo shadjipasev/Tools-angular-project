@@ -14,8 +14,17 @@ const cartController = require("./controllers.js/cartController");
 //File
 // const { GridFsStorage } = require("multer-gridfs-storage");
 // const multer = require("multer");
+let connectionString = "";
+
+if (process.env.NODE_ENV === "production") {
+  // use Atlas DB
+  connectionString = process.env.MONGODB_CONNECT_URI;
+} else {
+  // use local DB
+  connectionString = process.env.MONGODB_CONNECT_URI_LOCAL;
+}
 mongoose.set("strictQuery", false);
-const initDB = async () => mongoose.connect(process.env.MONGODB_CONNECT_URI);
+const initDB = async () => mongoose.connect(connectionString);
 
 start();
 
@@ -35,7 +44,7 @@ async function start() {
   // app.use(cors())
 
   const corsOptions = {
-    origin: "https://tools-co.web.app",
+    origin: ["https://tools-co.web.app", "http://localhost:4200"],
     methods: ["HEAD", "OPTIONS", "GET", "POST", "PUT", "DELETE"],
     Headers: [
       "Access-Control-Allow-Headers",
@@ -61,9 +70,9 @@ async function start() {
   // app.use(session());
   // console.log(process.env.MONGODB_CONNECT_URI);
 
-  // const PORT = process.env.PORT || 3000;
+  const PORT = process.env.PORT || 3000;
 
-  app.listen(5000, () => {
+  app.listen(PORT, () => {
     console.log("REST service started");
   });
 }

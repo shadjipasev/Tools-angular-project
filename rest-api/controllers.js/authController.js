@@ -15,7 +15,7 @@ authController.post("/logout", async (req, res) => {
 
 authController.post("/register", async (req, res) => {
   try {
-    console.log("works");
+    console.log("works just fine");
     const token = await register(
       req.body.username,
       req.body.email,

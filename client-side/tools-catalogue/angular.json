@@ -65,7 +65,7 @@
             "production": {
               "buildTarget": "tools-catalogue:build:production"
             },
-            "development": {
+            "dev": {
               "buildTarget": "tools-catalogue:build:development"
             }
           },

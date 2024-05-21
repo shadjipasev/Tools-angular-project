@@ -26,8 +26,12 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   onChangeQty(product: any, item: any) {
-    // item.quantity = product.qty;
-    // this.cartServices.saveCart();
+    console.log('product' + product);
+    console.log('item' + item);
+
+    item.quantity = product.qty;
+    this.cartServices.saveCart();
+    this.getTotalPrice();
   }
 
   getTotalPrice() {
