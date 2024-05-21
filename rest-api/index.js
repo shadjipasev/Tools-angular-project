@@ -63,6 +63,7 @@ async function start() {
   //   res.status(200).sendFile("favicon.ico", "./static")
   // );
   // app.router.replace("/thankyou");
+  // app.use(express.static(path.join(__dirname, ".dist/tools-catalogue")));
   app.use(session());
   app.use("/auth", authController);
   app.use("/data", toolController);
@@ -72,7 +73,7 @@ async function start() {
 
   const PORT = process.env.PORT || 3000;
 
-  app.listen(PORT, () => {
+  app.listen(3000, () => {
     console.log("REST service started");
   });
 }
