@@ -63,7 +63,7 @@
         <a routerLink="/auth/register">Register</a>
       </ng-container>
       <ng-container *ngIf="this.authService.hasUser">
-        <a (click)="onLogout()">Logou</a>
+        <a (click)="onLogout()">Logout</a>
         <a routerLink="/auth/profile/{{ userId }}">Profile</a>
         <a routerLink="/data/create">Create</a>
         <a routerLink="/data/cart" class="menu-item-right"

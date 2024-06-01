@@ -11,9 +11,6 @@ const session = require("./middlewares/session");
 const cartController = require("./controllers.js/cartController");
 // const { connectionString } = require("./services/connectionString");
 
-//File
-// const { GridFsStorage } = require("multer-gridfs-storage");
-// const multer = require("multer");
 let connectionString = "";
 
 if (process.env.NODE_ENV === "production") {
@@ -69,7 +66,7 @@ async function start() {
   app.use("/data", toolController);
   app.use("/cart", cartController);
   // app.use(session());
-  // console.log(process.env.MONGODB_CONNECT_URI);
+  console.log(process.env.MONGODB_CONNECT_URI);
 
   const PORT = process.env.PORT || 3000;
 
