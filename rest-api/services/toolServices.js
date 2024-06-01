@@ -15,6 +15,7 @@ async function getToolById(id) {
 async function editTool(id, data) {
   const tool = await Tool.findById(id);
   console.log("Edit tool Service");
+  console.log(data);
   tool.toolName = data.name;
   tool.material = data.material;
   tool.country = data.country;
