@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "node .",
+    "dev": "set NODE_ENV=development&& nodemon index.js",
+    "prod": "set NODE_ENV=production&& node index.js",
     "vercel-build": "echo hello"
   },
   "keywords": [],

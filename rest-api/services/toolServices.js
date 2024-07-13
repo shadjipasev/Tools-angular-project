@@ -9,7 +9,8 @@ async function getAllTools() {
 }
 
 async function getToolById(id) {
-  return await Tool.findById(id);
+  const tool = await Tool.findById(id);
+  return tool;
 }
 
 async function editTool(id, data) {
