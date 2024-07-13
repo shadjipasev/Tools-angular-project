@@ -42,6 +42,7 @@ async function start() {
       "Content-Type",
       "X-Authorization",
       "X-Frame-Options: GOFORIT",
+      "Access - Control - Allow - Origin",
     ], //SAMEORIGIN
   };
 
