@@ -67,8 +67,8 @@
         <input
           this.tool
           type="number"
-          value="{{ qty }}"
-          min="0"
+          value="{{ tool.quantity }}"
+          min="1"
           #changeQty
           (change)="onChangeQty(changeQty, this.tool)"
         />
@@ -93,6 +93,6 @@
       </td>
     </tr>
   </table>
-  <div id="checkout">Checkout<span> &rarr;</span></div>
+  <div id="checkout" (click)="onSubmitOrder()">Checkout<span></span></div>
   <div id="footer"></div>
 </div>

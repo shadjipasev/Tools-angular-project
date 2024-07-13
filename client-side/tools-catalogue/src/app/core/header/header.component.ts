@@ -15,6 +15,8 @@ export class HeaderComponent implements OnInit {
   cartItems: number = 0;
   tools: any;
   search: string;
+  itemIsInCart: boolean;
+
   constructor(
     private router: Router,
     public authService: AuthService,
@@ -24,6 +26,9 @@ export class HeaderComponent implements OnInit {
     this.cartService.cartSubject.subscribe((data) => {
       console.log(data + ' check data');
       this.cartItems = data;
+    });
+    this.cartService.allReadyInCart.subscribe((data) => {
+      this.itemIsInCart = data;
     });
   }
 
@@ -59,5 +64,9 @@ export class HeaderComponent implements OnInit {
     this.toolService.searchToolByName(value).subscribe((res) => {
       this.tools = res;
     });
+  }
+
+  hideNotification() {
+    this.itemIsInCart = false;
   }
 }

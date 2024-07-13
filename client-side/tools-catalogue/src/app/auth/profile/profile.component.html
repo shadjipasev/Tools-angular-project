@@ -1,13 +1,16 @@
-<div class="card">
-    <div class="img-name">
-        <img src="https://p7.hiclipart.com/preview/304/305/226/web-development-computer-icons-avatar-business-user-profile.jpg" alt="profilna">
-    </div>
-    <div class="followers">
-        <h3>Username: {{user.username}}</h3>
-        <h3>Email: {{user.email}}</h3>
-        <h3>Permission: {{user.role}}</h3>
-    </div>
-    <!-- <div class="profile-buttons">
+<div *ngIf="user" class="card">
+  <div class="img-name">
+    <img
+      src="https://p7.hiclipart.com/preview/304/305/226/web-development-computer-icons-avatar-business-user-profile.jpg"
+      alt="profilna"
+    />
+  </div>
+  <div class="followers">
+    <h3>Username: {{ user.username }}</h3>
+    <h3>Email: {{ user.email }}</h3>
+    <h3>Permission: {{ user.role }}</h3>
+  </div>
+  <!-- <div class="profile-buttons">
         <button class="cart" routerLink="shopping-cart">Shopping Cart</button> 
         <button class="edit-profile">Edit Profile</button>
     </div> -->

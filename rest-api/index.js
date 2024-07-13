@@ -9,17 +9,10 @@ const authController = require("./controllers.js/authController");
 const toolController = require("./controllers.js/toolController");
 const session = require("./middlewares/session");
 const cartController = require("./controllers.js/cartController");
-// const { connectionString } = require("./services/connectionString");
+const { getConnectionString } = require("./services/connectionString");
 
-let connectionString = "";
+let connectionString = getConnectionString();
 
-if (process.env.NODE_ENV === "production") {
-  // use Atlas DB
-  connectionString = process.env.MONGODB_CONNECT_URI;
-} else {
-  // use local DB
-  connectionString = process.env.MONGODB_CONNECT_URI_LOCAL;
-}
 mongoose.set("strictQuery", false);
 const initDB = async () => mongoose.connect(connectionString);
 
@@ -66,7 +59,7 @@ async function start() {
   app.use("/data", toolController);
   app.use("/cart", cartController);
   // app.use(session());
-  console.log(process.env.MONGODB_CONNECT_URI);
+  console.log(connectionString);
 
   const PORT = process.env.PORT || 3000;
 

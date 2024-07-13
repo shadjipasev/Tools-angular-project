@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('userId', res._id);
       this.authService.isLogged();
       this.authService.isAdmin();
-      this.redirectToHome(), (error: any) => console.log("fuk of");
+      this.redirectToHome(), (error: any) => console.log(error.message);
     });
   }
 }

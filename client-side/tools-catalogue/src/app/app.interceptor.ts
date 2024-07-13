@@ -1,3 +1,5 @@
+import { GlobalErrorHandler } from './main/services/error-handler/global-error-handler.service';
+// import { GlobalErrorHandlerService } from './main/services/errorHandler/global-error-handler.service';
 import {
   HttpErrorResponse,
   HttpEvent,
@@ -6,7 +8,7 @@ import {
   HttpRequest,
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
-import { Injectable, Provider } from '@angular/core';
+import { Inject, Injectable, Provider } from '@angular/core';
 import { catchError, finalize, Observable, throwError } from 'rxjs';
 import { AuthService } from './auth/auth.service';
 import { LoaderService } from './main/services/loader/loader.service';
@@ -17,7 +19,8 @@ export class appInterceptor implements HttpInterceptor {
 
   constructor(
     private authService: AuthService,
-    private loader: LoaderService
+    private loader: LoaderService,
+    private errorService: GlobalErrorHandler
   ) {}
   intercept(
     req: HttpRequest<any>,
@@ -36,13 +39,12 @@ export class appInterceptor implements HttpInterceptor {
         .pipe(finalize(() => this.loader.hideLoader()));
     } else {
       return next.handle(req).pipe(
-        (catchError(this.handleError), finalize(() => this.loader.hideLoader())) // Call hideLoader on completion or error
+        catchError((error: HttpErrorResponse) =>
+          this.errorService.handleError(error)
+        ),
+        finalize(() => this.loader.hideLoader()) // Call hideLoader on completion or error
       );
     }
-  }
-
-  handleError(error: HttpErrorResponse): Observable<never> {
-    return throwError(() => error);
   }
 }
 

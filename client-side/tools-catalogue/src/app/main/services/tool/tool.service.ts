@@ -30,8 +30,13 @@ export class ToolService {
     return this.httpClient.get<any>(`${this.apiUrl}/data/details/${id}`);
   }
 
-  editTool(id: any, data: any) {
-    return this.httpClient.put<any>(`${this.apiUrl}/data/edit/` + id, data);
+  editTool(id: any, data: any, modelFile: File): Observable<any> {
+    const formData: any = new FormData();
+    formData.append('data', JSON.stringify(data));
+    formData.append('modelFile', modelFile);
+    formData.append('id', id);
+    console.log(formData);
+    return this.httpClient.put<any>(`${this.apiUrl}/data/edit/` + id, formData);
   }
 
   deleteTool(id: any) {

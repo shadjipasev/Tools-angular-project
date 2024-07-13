@@ -1,12 +1,19 @@
-if (process.env.NODE_ENV === "production") {
-  // use Atlas DB
-  connectionString =
-    "mongodb+srv://shadjipasev:852456Patriciq123!@cluster1.atk3rn7.mongodb.net/tools-co";
-} else {
-  // use local DB
-  connectionString = "mongodb://localhost:27017/tools";
+function getConnectionString() {
+  let connectionString = "";
+
+  if (process.env.NODE_ENV === "production") {
+    // use Atlas DB
+    connectionString = process.env.MONGODB_CONNECT_URI;
+    console.log("prod:env");
+  } else {
+    // use local DB
+    connectionString = process.env.MONGODB_CONNECT_URI_LOCAL;
+    console.log("dev:env");
+  }
+
+  return connectionString;
 }
 
 module.exports = {
-  connectionString,
+  getConnectionString,
 };

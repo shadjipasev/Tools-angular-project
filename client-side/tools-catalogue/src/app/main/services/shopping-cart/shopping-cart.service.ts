@@ -10,6 +10,7 @@ import { ICart } from 'src/app/shared/interfaces/Cart';
 })
 export class ShoppingCartService {
   cartSubject = new Subject<any>();
+  allReadyInCart = new Subject<boolean>();
   private apiUrl = environment.apiUrl;
   tools: ITool[] = [];
   products: any[] = [];
@@ -21,11 +22,22 @@ export class ShoppingCartService {
 
   saveCart() {
     localStorage.setItem('cart_items', JSON.stringify(this.products));
+    this.cartSubject.next(this.getCartSize());
+  }
+
+  saveCartChanges(cartItems: any) {
+    this.products = cartItems;
+    this.saveCart();
   }
 
   addToCart(addedProduct: any) {
-    this.products.push(addedProduct);
-    this.saveCart();
+    if (!this.productInCart(addedProduct)) {
+      addedProduct.quantity = 1;
+      this.products.push(addedProduct);
+      this.saveCart();
+    }
+    //add logic for notification if product is added
+    return;
   }
 
   loadCart() {
@@ -48,10 +60,11 @@ export class ShoppingCartService {
       this.products.splice(index, 1);
       this.saveCart();
     }
+    this.cartSubject.next(this.getCartSize());
   }
 
   clearProducts() {
-    localStorage.clear();
+    localStorage.setItem('cart_items', '');
   }
 
   // getCart() {

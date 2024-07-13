@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,15 +14,17 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { GlobalErrorHandler } from './main/services/error-handler/global-error-handler.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ErrorComponent } from './main/error/error.component';
 
 // import { MatInputModule } from '@angular/material/input';
 // import { MatButtonModule } from '@angular/material/button';
 // import { MatCardModule } from '@angular/material/card';
 // import { MatFormFieldModule } from '@angular/material/form-field';
-// import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ErrorComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -35,9 +37,14 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     NoopAnimationsModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatDialogModule,
   ],
   bootstrap: [AppComponent],
-  providers: [ToolService, appInterceptorProvider],
+  providers: [
+    ToolService,
+    appInterceptorProvider,
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
+  ],
 })
 export class AppModule {}
 

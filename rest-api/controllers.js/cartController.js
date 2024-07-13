@@ -64,16 +64,22 @@ cartController.get("/size", async (req, res) => {
       message: "Here is the cart length",
       data: cartLength,
     });
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error });
+  }
 });
 
 cartController.get("/get", async (req, res) => {
   const userPayload = decodeToken(req.token);
   const userId = userPayload._id;
-
-  const cart = await getAllCartItems(userId);
-
-  res.json(cart);
+  try {
+    const cart = await getAllCartItems(userId);
+    res.json(cart);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error });
+  }
 });
 
 module.exports = cartController;

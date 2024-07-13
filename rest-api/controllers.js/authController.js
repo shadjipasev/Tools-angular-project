@@ -32,7 +32,10 @@ authController.post("/register", async (req, res) => {
 authController.post("/login", async (req, res) => {
   try {
     const token = await login(req.body.username, req.body.password);
-    res.json(token);
+
+    if (token) {
+      res.json(token);
+    }
   } catch (error) {
     res.status(401).json({
       message: error.message,

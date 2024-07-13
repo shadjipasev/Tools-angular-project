@@ -30,7 +30,12 @@
         <h1>Login</h1>
         <span class="subtitle">USERNAME:</span>
         <br />
-        <input type="text" formControlName="username" value="" />
+        <input
+          type="text"
+          formControlName="username"
+          autocomplete="username"
+          value=""
+        />
         <ng-container class="error" *ngIf="fc.username.touched">
           <div *ngIf="fc.username.errors">
             <div id="warning" *ngIf="fc.username.errors['required']">
@@ -42,7 +47,12 @@
         <br />
         <span class="subtitle">PASSWORD:</span>
         <br />
-        <input type="password" formControlName="password" value="" />
+        <input
+          type="password"
+          formControlName="password"
+          autocomplete="current-password"
+          value=""
+        />
         <br /><ng-container *ngIf="fc.password.touched">
           <div *ngIf="fc.password.errors">
             <div id="warning" *ngIf="fc.password.errors['required']">

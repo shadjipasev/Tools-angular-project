@@ -14,6 +14,9 @@ export class EditToolComponent implements OnInit {
   form: any = FormGroup;
   toolId: any;
   toolValues: any;
+  fileName = '';
+  fileId = '';
+  isFileUploaded: boolean = false;
 
   shortLink: string = '';
   loading: boolean = false;
@@ -32,6 +35,7 @@ export class EditToolComponent implements OnInit {
 
     this.toolService.getById(this.toolId).subscribe((res) => {
       this.toolValues = res;
+
       this.form.patchValue({
         name: this.toolValues.toolName,
         material: this.toolValues.material,
@@ -42,6 +46,14 @@ export class EditToolComponent implements OnInit {
         description: this.toolValues.description,
         selectType: this.toolValues.type,
       });
+      if (this.toolValues.modelFile[0]) {
+        console.log('modelFile' + this.toolValues.modelFile[0].fileName);
+        console.log('fileId' + this.toolValues.modelFile[0].fileId);
+
+        this.fileName = this.toolValues.modelFile[0].fileName;
+        this.fileId = this.toolValues.modelFile[0].fileId;
+        this.isFileUploaded = true;
+      }
     });
 
     this.form = this.fb.group({
@@ -59,6 +71,7 @@ export class EditToolComponent implements OnInit {
         ],
       ],
       modelUrl: [''],
+      modelFile: {},
       description: ['', Validators.required],
       selectType: ['', Validators.required],
     });
@@ -68,12 +81,34 @@ export class EditToolComponent implements OnInit {
     return this.form.controls;
   }
 
+  onChange(event: any) {
+    // this.file = event.target.files[0];
+    // this.fileName = this.file.name;
+    const file = (event.target as HTMLInputElement as any).files[0];
+    this.form.patchValue({
+      modelFile: file,
+    });
+    this.form.get('fileUpload');
+    this.fileName = file.name;
+    // this.isFileUploaded = true;
+  }
+
   onEdit() {
     if (this.form.invalid) {
       return;
     }
 
     const fv = this.form.value;
+
+    // let modelFileObj: object;
+    // if (this.isFileUploaded == false) {
+    //   // modelFileObj = {
+    //   //   fileId: this.fileId,
+    //   //   fileName: this.fileName,
+    //   // };
+    //   modelFileObj.fileId = this.fileId;
+    //   modelFileObj.fileName = this.fileName
+    // }
 
     const tool = {
       name: fv.name,
@@ -82,24 +117,26 @@ export class EditToolComponent implements OnInit {
       price: fv.price,
       imgUrl: fv.imgUrl,
       modelUrl: fv.modelUrl,
+      modelFile: {
+        fileId: this.fileId,
+        fileName: this.fileName,
+      },
       description: fv.description,
       type: fv.selectType,
     };
 
+    console.log('ModelFile === ' + tool.modelFile.fileId);
+
     // this.onUpload();
 
-    this.toolService.editTool(this.toolId, tool).subscribe((res) => {
-      console.log(`${res} ----> onEdit`),
-        (error: any) => console.log('Error', error);
-    });
-    this.router.navigateByUrl(`/data/details/${this.toolId}`),
-      console.warn(this.toolId);
-  }
-
-  fileName = '';
-  onChange(event: any) {
-    this.file = event.target.files[0];
-    this.fileName = this.file.name;
+    this.toolService
+      .editTool(this.toolId, tool, fv.modelFile)
+      .subscribe((res) => {
+        console.log(`${res} ----> onEdit`),
+          (error: any) => console.log('Error', error);
+      });
+    this.router.navigateByUrl(`/data/details/${this.toolId}`);
+    // console.warn(this.toolId);
   }
 
   // onUpload() {

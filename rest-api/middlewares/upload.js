@@ -1,6 +1,9 @@
 const multer = require("multer");
 const { GridFsStorage } = require("multer-gridfs-storage");
 const mongoose = require("mongoose");
+const { getConnectionString } = require("../services/connectionString");
+
+let connectionURL = getConnectionString();
 
 //creating bucket
 let bucket;
@@ -10,7 +13,7 @@ mongoose.connection.once("connected", () => {
   bucket = new mongoose.mongo.GridFSBucket(db, {
     bucketName: "newBucket",
   });
-  console.log(bucket);
+  // console.log(bucket.s.db.s);
 });
 
 // function createBucket(callback) {
@@ -50,8 +53,9 @@ mongoose.connection.once("connected", () => {
 //   },
 // });
 
+console.log(connectionURL + " connection string in upload");
 const storage = new GridFsStorage({
-  url: process.env.MONGODB_CONNECT_URI,
+  url: connectionURL,
   file: (req, file) => {
     return new Promise((resolve, reject) => {
       const filename = file.originalname;
@@ -83,4 +87,5 @@ var upload = multer({
 module.exports = {
   upload,
   bucket,
+  storage,
 };

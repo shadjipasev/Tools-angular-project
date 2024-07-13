@@ -2,6 +2,11 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// import {enviroment as evn} from './environment.dev';
+// import { enviroment as evn } from './environment.prod';
+
+// export const environment = { …env, production: false };
+
 export const environment = {
   apiUrl: 'http://localhost:3000',
   production: false,

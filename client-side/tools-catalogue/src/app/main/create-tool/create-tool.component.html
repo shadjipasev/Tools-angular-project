@@ -116,9 +116,14 @@
         <div class="mat-progress-bar" [style.width.%]="percentDone"></div>
       </div> -->
 
-      <div class="file-input">
-        <input type="file" (change)="uploadFile($event)" #modelFile />
-      </div>
+      <!-- FILE UPLOAD -->
+      <label for="modelFile">Upload 3D file:</label>
+      <input
+        class="file-input"
+        type="file"
+        (change)="uploadFile($event)"
+        #modelFile
+      />
 
       <div class="file-upload">
         {{ fileName || "No file uploaded yet." }}

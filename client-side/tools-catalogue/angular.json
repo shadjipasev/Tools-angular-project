@@ -48,12 +48,25 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "3mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2mb",
+                  "maximumError": "3mb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.prod.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ],
+              "outputHashing": "all"
             }
           },
           "defaultConfiguration": "production"
@@ -65,7 +78,7 @@
             "production": {
               "buildTarget": "tools-catalogue:build:production"
             },
-            "dev": {
+            "development": {
               "buildTarget": "tools-catalogue:build:development"
             }
           },

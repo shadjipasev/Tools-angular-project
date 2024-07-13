@@ -25,7 +25,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterModule } from '@angular/router';
 import { SafePipe } from 'safe-pipe';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { ToolService } from './services/tool/tool.service';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -55,6 +55,7 @@ import { ToolService } from './services/tool/tool.service';
     MatButtonModule,
     MatIconModule,
     MatProgressBarModule,
+    MatDialogModule,
   ],
   exports: [SpinnerComponent],
   providers: [AuthenticationGuard, PermissionGuard],

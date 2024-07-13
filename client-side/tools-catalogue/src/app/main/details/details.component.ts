@@ -1,7 +1,15 @@
 import { ShoppingCartService } from './../services/shopping-cart/shopping-cart.service';
 import { AuthService } from './../../auth/auth.service';
 import { ToolService } from '../services/tool/tool.service';
-import { Component, Input, OnInit, Pipe, NgModule, model } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  Pipe,
+  NgModule,
+  model,
+  OnDestroy,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   DomSanitizer,
@@ -18,7 +26,7 @@ import { saveAs } from 'file-saver-es';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css'],
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit, OnDestroy {
   isLoading: boolean;
   tool: any;
   toolId: string = '';
@@ -44,9 +52,10 @@ export class DetailsComponent implements OnInit {
     if (this.auth.isAdmin()) {
       this.admin = true;
     }
+
     // this.isLoading = true;
     // this.cartService.getCartSize();
-    this.cartService.cartSubject.next(this.cartService.getCartSize());
+    // this.cartService.cartSubject.next(this.cartService.getCartSize());
     this.userId = this.auth.getUserId();
     // this.toolId = this.route.snapshot.params['id'];
     this.route.params.subscribe((params) => {
@@ -72,6 +81,8 @@ export class DetailsComponent implements OnInit {
       this.cartService.addToCart(product);
       // this.cartService.loadCart();
       this.cartService.cartSubject.next(this.cartService.getCartSize());
+    } else {
+      this.cartService.allReadyInCart.next(true);
     }
   }
 
@@ -94,17 +105,7 @@ export class DetailsComponent implements OnInit {
     });
   }
 
-  cartSize: any;
-  // cartSizeFunc() {
-  //   this.cartService.getCartSize().subscribe({
-  //     next: (res) => {
-  //       if (res) {
-  //         this.cartSize = res.data;
-  //         console.log(res.message);
-  //       }
-  //     },
-  //   });
-  //   this.cartService.cartSubject.next(this.cartSize);
-  //   console.log(this.cartSize + ' is the cartSize');
-  // }
+  ngOnDestroy(): void {
+    this.cartService.allReadyInCart.next(false);
+  }
 }

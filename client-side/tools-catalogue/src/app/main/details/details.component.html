@@ -18,7 +18,13 @@
       ></iframe>
       <button
         *ngIf="tool.modelFile.length > 0"
-        (click)="downloadFile(this.tool.modelFile, this.tool.toolName, $event)"
+        (click)="
+          downloadFile(
+            this.tool.modelFile[0].fileId,
+            this.tool.modelFile[0].fileName,
+            $event
+          )
+        "
         class="download__button"
         icon="download"
       >

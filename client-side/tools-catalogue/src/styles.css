@@ -138,6 +138,7 @@ app-root {
   min-width: 100vh;
   display: flex;
   flex-direction: column;
+  /* flex-wrap: wrap; */
   /* justify-content: space-between; */
 }
 body {

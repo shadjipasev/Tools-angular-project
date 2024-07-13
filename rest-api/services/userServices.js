@@ -7,12 +7,12 @@ const jwtDecode = require("jwt-decode");
 const secret = "zmhmfnios563dqa53d156";
 
 async function register(username, email, password) {
-  const existingEmail = await User.findOne({ username }).collation({
+  const existingUsername = await User.findOne({ username }).collation({
     locale: "en",
     strength: 2,
   });
 
-  const existingUsername = await User.findOne({ email }).collation({
+  const existingEmail = await User.findOne({ email }).collation({
     locale: "en",
     strength: 2,
   });
@@ -44,13 +44,12 @@ async function login(username, password) {
     throw new Error("Wrong username or password!");
   }
 
-  const hasMatch = bcrypt.compare(password, user.hashedPassword);
+  const hasMatch = await bcrypt.compare(password, user.hashedPassword);
 
-  if (!hasMatch) {
-    throw new Error("Wrong username or password!");
+  if (hasMatch) {
+    return createToken(user);
   }
-
-  return createToken(user);
+  throw new Error("Wrong username or password!");
 }
 
 async function logout(token) {
@@ -64,6 +63,7 @@ function createToken(user) {
     _id: user._id,
     username: user.username,
   };
+  console.log(user);
 
   return {
     _id: user._id,

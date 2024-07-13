@@ -56,20 +56,28 @@
         </li>
       </ul>
     </div>
+    <div>
+      <ul class="buttons">
+        <ng-container *ngIf="!this.authService.hasUser">
+          <a routerLink="/auth/login">Login</a>
+          <a routerLink="/auth/register">Register</a>
+        </ng-container>
+        <ng-container *ngIf="this.authService.hasUser">
+          <a (click)="onLogout()">Logout</a>
+          <a routerLink="/auth/profile/{{ userId }}">Profile</a>
+          <a routerLink="/data/create">Create</a>
+          <a routerLink="/data/cart" class="menu-item-right"
+            >Cart ({{ cartItems }})
+          </a>
 
-    <ul class="buttons">
-      <ng-container *ngIf="!this.authService.hasUser">
-        <a routerLink="/auth/login">Login</a>
-        <a routerLink="/auth/register">Register</a>
-      </ng-container>
-      <ng-container *ngIf="this.authService.hasUser">
-        <a (click)="onLogout()">Logout</a>
-        <a routerLink="/auth/profile/{{ userId }}">Profile</a>
-        <a routerLink="/data/create">Create</a>
-        <a routerLink="/data/cart" class="menu-item-right"
-          >Cart ({{ cartItems }})</a
-        >
-      </ng-container>
-    </ul>
+          <div class="notification-wrapper">
+            <div class="already_in_cart" *ngIf="itemIsInCart">
+              <span class="close-btn" (click)="hideNotification()">X</span>
+              <p>Item is already in the cart</p>
+            </div>
+          </div>
+        </ng-container>
+      </ul>
+    </div>
   </nav>
 </header>

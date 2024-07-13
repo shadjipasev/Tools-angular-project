@@ -363,3 +363,37 @@ nav {
   max-height: 90px;
   object-fit: contain;
 }
+
+.menu-item-right {
+  position: relative;
+  z-index: 20;
+}
+
+.notification-wrapper {
+  position: relative;
+  cursor: default;
+}
+
+.already_in_cart {
+  position: absolute;
+  display: none;
+  top: 100%; /* Position it below the cart link */
+
+  right: 0;
+  background-color: #ffdddd; /* Light red background */
+  border: 1px solid #ff0000; /* Red border */
+  padding: 10px;
+  z-index: 10;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.close-btn {
+  position: relative;
+  right: -75px;
+  cursor: pointer;
+}
+.notification-wrapper .already_in_cart {
+  display: block; /* This will show the notification for demo purposes */
+}

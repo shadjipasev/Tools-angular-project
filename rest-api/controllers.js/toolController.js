@@ -1,6 +1,6 @@
 // const upload = require('../middlewares/upload');
 
-const { upload, bucketRef, bucket } = require("../middlewares/upload");
+const { upload, bucketRef, bucket, storage } = require("../middlewares/upload");
 const mongoose = require("mongoose");
 const fs = require("fs");
 
@@ -20,15 +20,20 @@ const {
   decodeToken,
   cartSize,
 } = require("../services/userServices");
-const { ObjectId } = require("mongodb");
+const { ObjectId, Db, DBRef } = require("mongodb");
+const { GridFsStorage } = require("multer-gridfs-storage");
 
 const toolController = require("express").Router();
 
 toolController.post("/create", upload.single("modelFile"), async (req, res) => {
   // const url = req.protocol + "://" + req.get("host");
-  console.log(req);
+  // console.log(req);
   const jsonData = req.body.data; // Access data object as JSON string
   const toolData = JSON.parse(jsonData);
+  const file = {
+    fileId: req.file.id,
+    fileName: req.file.filename,
+  };
   const data = {
     toolName: toolData.name,
     material: toolData.material,
@@ -36,7 +41,7 @@ toolController.post("/create", upload.single("modelFile"), async (req, res) => {
     price: toolData.price,
     imgUrl: toolData.imgUrl,
     modelUrl: toolData.modelUrl,
-    modelFile: req.file.id,
+    modelFile: file,
     description: toolData.description,
     type: toolData.type,
   };
@@ -45,7 +50,7 @@ toolController.post("/create", upload.single("modelFile"), async (req, res) => {
   try {
     await createTool(data);
     console.log("Tool is created");
-    res.status(200).send("File uploaded successfully");
+    res.status(200).json("File uploaded successfully");
   } catch (error) {
     res.status(400).json({
       message: error.message,
@@ -66,35 +71,64 @@ toolController.get("/catalog/:type", async (req, res) => {
 
 toolController.get("/details/:id", async (req, res) => {
   const toolId = req.params.id;
-  const tool = await getToolById(toolId);
-  // console.log(toolId)
 
-  res.json(tool);
-});
-
-toolController.put("/edit/:id", async (req, res) => {
-  const toolId = req.params.id;
-  console.log("Request is === " + req);
-  const data = {
-    toolName: req.body.name,
-    material: req.body.material,
-    country: req.body.country,
-    price: req.body.price,
-    imgUrl: req.body.imgUrl,
-    modelUrl: req.body.modelUrl,
-    description: req.body.description,
-    type: req.body.type,
-  };
   try {
-    await editTool(toolId, data);
-    // res.json(toolId)
-    // res.json(req.body)
+    const tool = await getToolById(toolId);
+    res.json(tool);
   } catch (error) {
     res.status(400).json({
       message: error.message,
     });
   }
 });
+
+toolController.put(
+  "/edit/:id",
+  upload.single("modelFile"),
+  async (req, res) => {
+    const toolId = req.params.id;
+    // console.log("Request is === " + req);
+    const jsonData = req.body.data; // Access data object as JSON string
+    const toolData = JSON.parse(jsonData);
+    // console.log("TOOLDATA === " + toolData);
+    // console.log(req.file);
+    let file = {};
+
+    const data = {
+      toolName: toolData.name,
+      material: toolData.material,
+      country: toolData.country,
+      price: toolData.price,
+      imgUrl: toolData.imgUrl,
+      modelUrl: toolData.modelUrl,
+      description: toolData.description,
+      type: toolData.type,
+    };
+
+    if (req.file) {
+      file = {
+        fileId: req.file.id,
+        fileName: req.file.filename,
+      };
+      data.modelFile = file;
+    } else {
+      file = {
+        fileId: toolData.modelFile.fileId,
+        fileName: toolData.modelFile.fileName,
+      };
+      data.modelFile = file;
+    }
+
+    try {
+      await editTool(toolId, data);
+      res.status(200).json("Tool Edited");
+    } catch (error) {
+      res.status(400).json({
+        message: error.message,
+      });
+    }
+  }
+);
 
 toolController.get("/delete/:id", async (req, res) => {
   const toolId = req.params.id;

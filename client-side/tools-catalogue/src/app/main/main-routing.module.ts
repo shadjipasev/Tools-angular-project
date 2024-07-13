@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { Routes, RouterModule } from '@angular/router';
+import { SubmitOrderComponent } from './submit-order/submit-order.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,11 @@ const routes: Routes = [
   {
     path: 'data/delete/:id',
     component: DeleteToolComponent,
+    canActivate: [PermissionGuard],
+  },
+  {
+    path: 'order-submited',
+    component: SubmitOrderComponent,
     canActivate: [PermissionGuard],
   },
   // {

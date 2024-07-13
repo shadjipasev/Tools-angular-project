@@ -4,6 +4,7 @@
   /* align-self: center; */
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
   /* flex-direction: column; */
   position: relative;
   justify-content: center;

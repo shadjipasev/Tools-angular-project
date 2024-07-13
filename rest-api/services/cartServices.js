@@ -37,11 +37,6 @@ async function createCart(toolId, userId) {
 async function getAllCartItems(userId) {
   const cart = await Cart.findOne({ user: userId }).populate("tools");
 
-  // let cartItems = [];
-
-  // for (let tool of cart.tools) {
-  // }
-
   console.log(cart.tools);
   return cart.tools;
 }
