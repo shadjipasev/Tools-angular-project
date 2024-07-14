@@ -134,8 +134,9 @@ export class EditToolComponent implements OnInit {
       .subscribe((res) => {
         console.log(`${res} ----> onEdit`),
           (error: any) => console.log('Error', error);
+        this.router.navigateByUrl(`/data/details/${this.toolId}`);
       });
-    this.router.navigateByUrl(`/data/details/${this.toolId}`);
+
     // console.warn(this.toolId);
   }
 

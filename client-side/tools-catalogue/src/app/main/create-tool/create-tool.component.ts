@@ -17,6 +17,7 @@ export class CreateToolComponent implements OnInit {
   percentDone: any = 0;
   preview: string;
   fileName: string = '';
+  toolID: string;
 
   constructor(
     private toolService: ToolService,
@@ -87,9 +88,9 @@ export class CreateToolComponent implements OnInit {
     console.log(fv.modelFile);
 
     this.toolService.createTool(tool, fv.modelFile).subscribe((res) => {
-      console.log(res.newToolData._id + ' ---- >tool ID');
-
-      // .subscribe((event: HttpEvent<any>) => {
+      console.log(res.newToolId + ' ---- >tool ID');
+      this.toolID = res.newToolId;
+      // .subscribe( => {
       // console.log('Console log event = ' + event);
       // switch (event.type) {
       //   case HttpEventType.Sent:
@@ -112,9 +113,8 @@ export class CreateToolComponent implements OnInit {
       //     this.percentDone = false;
       //     this.router.navigate(['users-list']);
       // }
+      this.router.navigateByUrl('data/details/' + this.toolID);
     });
-
-    this.router.navigateByUrl('data/catalog' + tool.type);
 
     // console.warn(tool)
   }
