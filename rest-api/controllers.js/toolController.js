@@ -135,7 +135,14 @@ toolController.put(
 
 toolController.get("/delete/:id", async (req, res) => {
   const toolId = req.params.id;
-  await delById(toolId);
+  try {
+    await delById(toolId);
+    res.status(200).json("Tool Deleted");
+  } catch (error) {
+    res.status(400).json({
+      message: error.message,
+    });
+  }
 });
 
 toolController.post("/cart/add/:id", async (req, res) => {
