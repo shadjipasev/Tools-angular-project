@@ -86,34 +86,35 @@ export class CreateToolComponent implements OnInit {
 
     console.log(fv.modelFile);
 
-    this.toolService
-      .createTool(tool, fv.modelFile)
-      .subscribe((event: HttpEvent<any>) => {
-        console.log('Console log event = ' + event);
-        // switch (event.type) {
-        //   case HttpEventType.Sent:
-        //     console.log('Request has been made!');
-        //     break;
-        //   case HttpEventType.ResponseHeader:
-        //     console.log('Response header has been received!');
-        //     break;
-        //   case HttpEventType.UploadProgress:
-        //     if (event.total) {
-        //       // const total: number = event.total;
-        //       this.percentDone = Math.round((event.loaded / event.total) * 100);
-        //       console.log(`Uploaded! ${this.percentDone}%`);
-        //     } else {
-        //       console.log('Illeagal State');
-        //     }
-        //     break;
-        //   case HttpEventType.Response:
-        //     console.log('User successfully created!', event.body);
-        //     this.percentDone = false;
-        //     this.router.navigate(['users-list']);
-        // }
-      });
+    this.toolService.createTool(tool, fv.modelFile).subscribe((res) => {
+      console.log(res + ' ---- >CREATE');
 
-    this.router.navigateByUrl('data/catalog');
+      // .subscribe((event: HttpEvent<any>) => {
+      // console.log('Console log event = ' + event);
+      // switch (event.type) {
+      //   case HttpEventType.Sent:
+      //     console.log('Request has been made!');
+      //     break;
+      //   case HttpEventType.ResponseHeader:
+      //     console.log('Response header has been received!');
+      //     break;
+      //   case HttpEventType.UploadProgress:
+      //     if (event.total) {
+      //       // const total: number = event.total;
+      //       this.percentDone = Math.round((event.loaded / event.total) * 100);
+      //       console.log(`Uploaded! ${this.percentDone}%`);
+      //     } else {
+      //       console.log('Illeagal State');
+      //     }
+      //     break;
+      //   case HttpEventType.Response:
+      //     console.log('User successfully created!', event.body);
+      //     this.percentDone = false;
+      //     this.router.navigate(['users-list']);
+      // }
+    });
+
+    this.router.navigateByUrl('data/catalog' + tool.type);
 
     // console.warn(tool)
   }
