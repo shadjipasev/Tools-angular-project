@@ -13,7 +13,7 @@ export class CatalogPersonalEquipmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.toolService
-      .getToolsByType('Personal/Protective equipment')
+      .getToolsByType('Personal and Protective equipment')
       .subscribe((res) => {
         (this.tools = res), (error: any) => console.log(error);
       });
