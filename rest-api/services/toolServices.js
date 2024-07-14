@@ -32,8 +32,9 @@ async function editTool(id, data) {
 
 async function createTool(data) {
   console.log(data);
-  await Tool.create(data);
+  const tool = await Tool.create(data);
   console.log("Tool is created");
+  return tool;
 }
 
 async function delById(id) {

@@ -48,9 +48,9 @@ toolController.post("/create", upload.single("modelFile"), async (req, res) => {
   // console.log(data);
   // console.log("FILE ID = " +req )
   try {
-    await createTool(data);
+    const newToolData = await createTool(data);
     console.log("Tool is created");
-    res.status(200).json("File uploaded successfully");
+    res.status(200).json("File uploaded successfully", newToolData);
   } catch (error) {
     res.status(400).json({
       message: error.message,

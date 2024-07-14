@@ -89,7 +89,7 @@ export class CreateToolComponent implements OnInit {
     this.toolService
       .createTool(tool, fv.modelFile)
       .subscribe((event: HttpEvent<any>) => {
-        console.log(event);
+        console.log('Console log event = ' + event);
         // switch (event.type) {
         //   case HttpEventType.Sent:
         //     console.log('Request has been made!');
