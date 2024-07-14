@@ -20,9 +20,8 @@ export class DeleteToolComponent implements OnInit {
     this.toolId = this.route.snapshot.params['id'];
 
     this.toolService.deleteTool(this.toolId).subscribe((res) => {
-      console.log(`${res} ---- DELETED`),
-        (error: any) => console.log(error),
-        this.router.navigateByUrl('/');
+      console.log(`${res} ---- DELETED`), (error: any) => console.log(error);
+      // this.router.navigateByUrl('data/catalog')
     });
   }
 }
