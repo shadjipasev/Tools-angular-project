@@ -87,7 +87,7 @@ export class CreateToolComponent implements OnInit {
     console.log(fv.modelFile);
 
     this.toolService.createTool(tool, fv.modelFile).subscribe((res) => {
-      console.log(res + ' ---- >CREATE');
+      console.log(res.newToolData._id + ' ---- >tool ID');
 
       // .subscribe((event: HttpEvent<any>) => {
       // console.log('Console log event = ' + event);
