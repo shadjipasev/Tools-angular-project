@@ -9,7 +9,7 @@ import {
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { Inject, Injectable, Provider } from '@angular/core';
-import { catchError, finalize, Observable, throwError } from 'rxjs';
+import { catchError, finalize, Observable, Subject, throwError } from 'rxjs';
 import { AuthService } from './auth/auth.service';
 import { LoaderService } from './main/services/loader/loader.service';
 
@@ -27,6 +27,7 @@ export class appInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     this.loader.showLoader();
+    this.authService.userId.next(localStorage.getItem('userId'));
 
     const token = localStorage.getItem(this.authService.tokenName);
     if (token) {

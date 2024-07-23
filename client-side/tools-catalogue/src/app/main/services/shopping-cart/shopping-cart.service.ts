@@ -64,7 +64,7 @@ export class ShoppingCartService {
   }
 
   clearProducts() {
-    localStorage.setItem('cart_items', '');
+    localStorage.removeItem('cart_items');
   }
 
   // getCart() {

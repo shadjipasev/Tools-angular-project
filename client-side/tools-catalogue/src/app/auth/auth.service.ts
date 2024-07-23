@@ -1,6 +1,7 @@
 import { ShoppingCartService } from './../main/services/shopping-cart.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 const apiUrl = environment.apiUrl;
@@ -13,6 +14,8 @@ export class AuthService {
     private http: HttpClient,
     private cartService: ShoppingCartService
   ) {}
+
+  public userId = new Subject<any>();
 
   public tokenName: string = 'token';
 

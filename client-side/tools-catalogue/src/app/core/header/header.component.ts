@@ -37,6 +37,13 @@ export class HeaderComponent implements OnInit {
   // form: FormGroup
 
   ngOnInit(): void {
+    //  = this.authService.userId(localStorage.getItem(""));
+
+    this.authService.userId.subscribe((data) => {
+      // console.log(data + ' check data');
+      this.userId = data;
+    });
+
     this.cartService.cartSubject.next(this.cartService.getCartSize());
     this.cartService.cartSubject.subscribe((data) => {
       console.log(data + ' check data');
@@ -46,7 +53,6 @@ export class HeaderComponent implements OnInit {
     this.authService.isLogged();
 
     this.authService.isAdmin();
-    this.userId = localStorage.getItem('userId');
   }
 
   onLogout(): void {
