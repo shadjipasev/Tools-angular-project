@@ -81,6 +81,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   onSubmitOrder() {
     // this.cartServices.clearProducts();
     // this.cartServices.saveCartChanges('');
+    // localStorage.removeItem('cart_items');
     this.cartServices.clearProducts();
     this.router.navigate(['/order-submited']);
   }

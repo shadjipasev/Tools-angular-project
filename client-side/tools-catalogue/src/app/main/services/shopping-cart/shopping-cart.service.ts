@@ -64,7 +64,8 @@ export class ShoppingCartService {
   }
 
   clearProducts() {
-    localStorage.removeItem('cart_items');
+    const emptyArray: any = [];
+    localStorage.setItem('cart_items', emptyArray);
   }
 
   // getCart() {
