@@ -29,6 +29,10 @@ export class HeaderComponent implements OnInit {
       console.log(data + ' check data');
       this.cartItems = data;
     });
+    this.authService.userId.subscribe((data) => {
+      console.log(data + '->>>> userId');
+      this.userId = data;
+    });
     this.cartService.allReadyInCart.subscribe((data) => {
       this.itemIsInCart = data;
     });
@@ -38,9 +42,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     //  = this.authService.userId(localStorage.getItem(""));
-
+    this.authService.userId.next(localStorage.getItem('userId'));
     this.authService.userId.subscribe((data) => {
-      // console.log(data + ' check data');
+      console.log(data + '->>>> userId');
       this.userId = data;
     });
 
