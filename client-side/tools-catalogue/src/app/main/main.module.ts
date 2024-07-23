@@ -1,3 +1,4 @@
+import { SubmitOrderComponent } from './submit-order/submit-order.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -43,6 +44,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ArticleComponent,
     SlideshowComponent,
     SpinnerComponent,
+    SubmitOrderComponent,
   ],
   imports: [
     ReactiveFormsModule,

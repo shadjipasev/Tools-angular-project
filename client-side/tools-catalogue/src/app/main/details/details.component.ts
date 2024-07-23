@@ -101,7 +101,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.toolService.downloadFile(fileId).subscribe((response: any) => {
       // Use FileSaver.js to save the blob as a file
       console.log(response);
-      saveAs(response, fileName + '.rar');
+      saveAs(response, fileName);
     });
   }
 

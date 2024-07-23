@@ -8,12 +8,12 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
+  userId: any = '';
+  user: any;
   constructor(private authService: AuthService, private router: Router) {}
 
-  userId: any = localStorage.getItem('userId');
-  user: any;
-
   ngOnInit(): void {
+    this.userId = localStorage.getItem('userId');
     this.authService.getUser(this.userId).subscribe((res) => {
       // console.log(this.userId);
       this.user = res;

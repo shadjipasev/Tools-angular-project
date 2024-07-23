@@ -1,3 +1,4 @@
+import { LoaderService } from './../../main/services/loader/loader.service';
 import { ToolService } from './../../main/services/tool/tool.service';
 import { ShoppingCartService } from './../../main/services/shopping-cart/shopping-cart.service';
 import { Component, OnInit } from '@angular/core';
@@ -21,7 +22,8 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     public authService: AuthService,
     private cartService: ShoppingCartService,
-    private toolService: ToolService
+    private toolService: ToolService,
+    private loaderService: LoaderService
   ) {
     this.cartService.cartSubject.subscribe((data) => {
       console.log(data + ' check data');
@@ -49,8 +51,9 @@ export class HeaderComponent implements OnInit {
 
   onLogout(): void {
     this.authService.logout().subscribe((res) => {
-      console.log(res);
+      console.log(res.message);
       this.cartService.clearProducts();
+      // this.loaderService.hideLoader();
     });
     this.router.navigate(['/']);
   }

@@ -392,3 +392,9 @@ button:disabled {
 .upload-btn {
   width: 45px;
 }
+
+.file-upload {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}

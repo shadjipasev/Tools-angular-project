@@ -1,3 +1,4 @@
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToolService } from '../services/tool/tool.service';
@@ -5,6 +6,7 @@ import { ToolService } from '../services/tool/tool.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpEvent } from '@angular/common/http';
+import { ErrorComponent } from '../error/error.component';
 
 @Component({
   selector: 'app-create-tool',
@@ -22,7 +24,8 @@ export class CreateToolComponent implements OnInit {
   constructor(
     private toolService: ToolService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   get fc() {
@@ -68,11 +71,17 @@ export class CreateToolComponent implements OnInit {
   }
 
   onCreate() {
+    const fv = this.form.value;
+
+    if (fv.modelFile == '') {
+      this.dialog.open(ErrorComponent, {
+        data: { message: 'Please upload file!' },
+      });
+    }
+
     if (this.form.invalid) {
       return;
     }
-
-    const fv = this.form.value;
 
     const tool = {
       name: fv.name,

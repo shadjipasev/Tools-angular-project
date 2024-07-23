@@ -9,8 +9,16 @@ const authController = require("express").Router();
 
 authController.post("/logout", async (req, res) => {
   const token = await req.body.token;
-  await logout(token);
-  res.status(204).end;
+  // try {
+
+  // } catch (error) {
+
+  // }
+  // await logout(token);
+  console.log("works logout");
+  res.json({
+    message: "User is logged out!",
+  });
 });
 
 authController.post("/register", async (req, res) => {
