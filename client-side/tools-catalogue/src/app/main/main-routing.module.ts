@@ -66,7 +66,7 @@ const routes: Routes = [
   {
     path: 'order-submited',
     component: SubmitOrderComponent,
-    canActivate: [PermissionGuard],
+    canActivate: [AuthenticationGuard],
   },
   // {
   //   path: '%E2%80%AAhttps',
