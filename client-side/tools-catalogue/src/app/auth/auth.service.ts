@@ -33,11 +33,11 @@ export class AuthService {
   }
 
   logout() {
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
     localStorage.clear();
     this.isLogged();
     this.isAdmin();
-    return this.http.post<any>(`${apiUrl}/auth/logout`, { token });
+    // return this.http.post<any>(`${apiUrl}/auth/logout`, { token });
   }
 
   isLogged() {

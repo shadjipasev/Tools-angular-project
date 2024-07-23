@@ -50,6 +50,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogout(): void {
+    this.authService.logout();
     this.cartService.clearProducts();
     this.loaderService.hideLoader();
     this.router.navigate(['/']);
