@@ -37,6 +37,12 @@ export class HeaderComponent implements OnInit {
     this.cartService.allReadyInCart.subscribe((data) => {
       this.itemIsInCart = data;
     });
+    this.authService.userRole.next(localStorage.getItem('role'));
+
+    this.authService.userRole.subscribe((data) => {
+      // console.log(data + ' check data');
+      this.userRole = data;
+    });
     this.authService.isLogged();
 
     this.authService.isAdmin();

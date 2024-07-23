@@ -16,5 +16,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.cartSubject.next(this.cartService.getCartSize());
     this.authService.userId.next(localStorage.getItem('userId'));
+    this.authService.userRole.next(localStorage.getItem('role'));
   }
 }
