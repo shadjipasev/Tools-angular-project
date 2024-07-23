@@ -50,11 +50,8 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogout(): void {
-    this.authService.logout().subscribe((res) => {
-      console.log(res.message);
-      this.cartService.clearProducts();
-      // this.loaderService.hideLoader();
-    });
+    this.cartService.clearProducts();
+    this.loaderService.hideLoader();
     this.router.navigate(['/']);
   }
 
