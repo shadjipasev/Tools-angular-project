@@ -17,6 +17,8 @@ export class AuthService {
 
   public userId = new Subject<any>();
 
+  public userRole = new Subject<any>();
+
   public tokenName: string = 'token';
 
   public hasUser: boolean = false;

@@ -77,6 +77,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(username, email, password).subscribe((res) => {
       console.log('works');
       console.log(res);
+      this.authService.userRole.next(res.role);
       localStorage.setItem(this.authService.tokenName, res.token);
       localStorage.setItem('userId', res._id);
       localStorage.setItem('role', res.role);

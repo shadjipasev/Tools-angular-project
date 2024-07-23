@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   tools: any;
   search: string;
   itemIsInCart: boolean;
+  userRole: string;
 
   constructor(
     private router: Router,
@@ -55,6 +56,12 @@ export class HeaderComponent implements OnInit {
     this.cartService.cartSubject.subscribe((data) => {
       console.log(data + ' check data');
       this.cartItems = data;
+    });
+
+    this.authService.userRole.next(localStorage.getItem('role'));
+    this.authService.userRole.subscribe((data) => {
+      // console.log(data + ' check data');
+      this.userRole = data;
     });
     // this.cartItems = this.cartService.getCartSize();
     this.authService.isLogged();

@@ -65,7 +65,9 @@
         <ng-container *ngIf="this.authService.hasUser">
           <a (click)="onLogout()">Logout</a>
           <a routerLink="/auth/profile/{{ userId }}">Profile</a>
-          <a routerLink="/data/create">Create</a>
+          <ng-container *ngIf="userRole === 'admin'">
+            <a routerLink="/data/create">Create</a>
+          </ng-container>
           <a routerLink="/data/cart" class="menu-item-right"
             >Cart ({{ cartItems }})
           </a>
