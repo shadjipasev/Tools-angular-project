@@ -64,8 +64,8 @@ export class ShoppingCartService {
   }
 
   clearProducts() {
-    const emptyArray: any = [];
-    localStorage.setItem('cart_items', emptyArray);
+    const emptyArray: any[] = [];
+    localStorage.setItem('cart_items', JSON.stringify(emptyArray));
   }
 
   // getCart() {
