@@ -43,9 +43,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(username, password).subscribe((res) => {
       localStorage.setItem(this.authService.tokenName, res.token);
-      if (res.role === 'admin') {
-        localStorage.setItem('role', res.role);
-      }
+      localStorage.setItem('role', res.role);
       localStorage.setItem('userId', res._id);
       this.authService.isLogged();
       this.authService.isAdmin();

@@ -36,6 +36,9 @@ export class HeaderComponent implements OnInit {
     this.cartService.allReadyInCart.subscribe((data) => {
       this.itemIsInCart = data;
     });
+    this.authService.isLogged();
+
+    this.authService.isAdmin();
   }
 
   // form: FormGroup

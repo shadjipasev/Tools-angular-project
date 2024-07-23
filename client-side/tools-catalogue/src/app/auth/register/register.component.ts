@@ -18,24 +18,17 @@ import { AuthService } from '../auth.service';
 export class RegisterComponent implements OnInit {
   form: any = FormGroup;
 
-  
-  
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService,
-  
-
+    private authService: AuthService
   ) {}
 
   get fc() {
-
     return this.form.controls;
-    
   }
 
   ngOnInit(): void {
-
     this.form = this.fb.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -43,7 +36,7 @@ export class RegisterComponent implements OnInit {
         {
           password: ['', [Validators.required, Validators.minLength(5)]],
           rePass: ['', [Validators.required, Validators.minLength(5)]],
-        },
+        }
         // [Validators, this.matchPasswords('pass', 'rePass')]
       ),
     });
@@ -64,13 +57,13 @@ export class RegisterComponent implements OnInit {
   // }
 
   redirectToHome(): void {
-      console.log("Works")
+    console.log('Works');
 
     this.router.navigate(['/']);
   }
 
   onRegister(data: any) {
-      console.log("Works")
+    console.log('Works');
 
     if (this.form.invalid) {
       return;
@@ -82,10 +75,11 @@ export class RegisterComponent implements OnInit {
     const password = fv.pass.password;
 
     this.authService.register(username, email, password).subscribe((res) => {
-      console.log("works")
+      console.log('works');
       console.log(res);
       localStorage.setItem(this.authService.tokenName, res.token);
       localStorage.setItem('userId', res._id);
+      localStorage.setItem('role', res.role);
       this.authService.isLogged();
       this.authService.isAdmin();
       this.redirectToHome(), (error: any) => console.log(error);
