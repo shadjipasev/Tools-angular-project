@@ -59,8 +59,8 @@ To run Tools-Co locally, follow these steps:
 **Steps:**
 
 1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/shadjipasev/Tools-angular-project.git](https://www.google.com/search?q=https://github.com/shadjipasev/Tools-angular-project.git)
+   ```bash
+    git clone [https://github.com/shadjipasev/Tools-angular-project.git](https://github.com/shadjipasev/Tools-angular-project.git)
     cd Tools-angular-project
     ```
 
