@@ -59,10 +59,11 @@ To run Tools-Co locally, follow these steps:
 **Steps:**
 
 1.  **Clone the repository:**
-   ```bash
-    git clone [https://github.com/shadjipasev/Tools-angular-project.git](https://github.com/shadjipasev/Tools-angular-project.git)
+    ```bash
+    git clone https://github.com/shadjipasev/Tools-angular-project.git
     cd Tools-angular-project
     ```
+    
 
 2.  **Install Server Dependencies:**
     ```bash
@@ -72,9 +73,6 @@ To run Tools-Co locally, follow these steps:
 
 3.  **Configure MongoDB:**
     * Ensure your MongoDB server is running.
-    * [**Important:** Here you should mention if you have any specific database name or connection string requirements. For example:]
-        * "The server connects to a MongoDB database named `tools-db` running on the default port."
-        * "You might need to configure the MongoDB connection string in the `.env` file in the `server` directory (if you are using environment variables)."
 
 4.  **Run the Backend Server:**
     ```bash
@@ -91,14 +89,7 @@ To run Tools-Co locally, follow these steps:
 
 6.  **Run the Angular Frontend:**
     ```bash
-    ng serve -o
+    ng serve
     ```
     This command will build your Angular application and open it in your default web browser. You'll likely see it running on `http://localhost:4200`.
-
-## Usage
-
-* **Browsing Tools:** Navigate to the homepage to browse the categorized tool catalogs.
-* **Viewing Details:** Log in (if you have an account) to view detailed information about each tool where you can see 3d visualized tool.
-* **Profile Page:** Access your profile page after logging in.
-* **Admin Features:** If you have administrator privileges, you will see options to create, edit, and delete tools within the catalogs.
 ---
